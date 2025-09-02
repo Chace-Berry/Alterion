@@ -21,11 +21,12 @@
 
 ## 📋 Implementation Status
 
-Legend: **[✅]** Implemented • **[🔄]** In Progress • **[📋]** Planned
+
+Legend: **[x]** Implemented • **[ ]** Planned
 
 ### Core Language Pipeline
-- **[*] Lexer/Tokenizer** - Complete token recognition for all Alterion syntax
-- **[*] Parser & AST** - Full recursive descent parser with component support  
+- **[x] Lexer/Tokenizer** - Complete token recognition for all Alterion syntax
+- **[x] Parser & AST** - Full recursive descent parser with component support  
 - **[ ] Semantic Analysis** - Type checking and validation
 - **[ ] Code Generation** - IR generation and optimization passes
 - **[ ] Memory Analysis** - Ownership and lifetime verification
