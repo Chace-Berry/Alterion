@@ -404,7 +404,7 @@ ctest --verbose
 
 ## 📊 Performance
 
-My goals for Alterion is designed for performance:
+My goals for Alterions' designed for performance:
 
 - **Fast Compilation**: Multi-threaded compilation with intelligent caching
 - **Optimized Output**: Generated code is optimized for target platforms
