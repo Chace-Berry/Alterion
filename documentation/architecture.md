@@ -235,8 +235,8 @@ extern "C" {
 
 ## 🔮 Future Architecture Plans
 
-### Phase 7: LLVM Backend
-- Replace custom code generation with LLVM
+### Phase 7: Direct to metal
+- Replace custom code generation directly to cpu and hardware
 - Enable advanced optimizations
 - Support for more target architectures
 
