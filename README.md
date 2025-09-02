@@ -3,12 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=flat&logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](.)
-[![Version](https://img.shields.io/badge/version-2.6.0-ora## 🌍 Community
-
-- 💬 Discord Server - *Coming Soon*
-- 🌐 Official Website - *Coming Soon*
-- 📧 [Contact](mailto:chaceberry686@gmail.com) - Questions and discussions
-- 🐛 [Report Issues](mailto:chaceberry686@gmail.com) - Bug reports and feature requestssvg)](.)
+[![Version](https://img.shields.io/badge/version-2.6.0-orange.svg)](.)
 
 > **A modern, expressive programming language with native compilation, component-based architecture, and universal NativeUI rendering.**
 
