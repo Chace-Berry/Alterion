@@ -2,8 +2,8 @@
 
 <div align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="Logo.svg">
-    <source media="(prefers-color-scheme: light)" srcset="Logo_Dark.svg">
+    <source media="(prefers-color-scheme: dark)" srcset=".assets/Logo.svg">
+    <source media="(prefers-color-scheme: light)" srcset=".assets/Logo_Dark.svg">
     <img alt="Alterion Logo" src="Logo_Dark.svg" width="400">
   </picture>
 </div>
