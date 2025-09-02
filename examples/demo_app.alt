@@ -1,0 +1,297 @@
+// Example Alterion code demonstrating all features
+// This will be compiled to TypeScript React components
+
+import { useState, useEffect } from "react";
+import { ApiService } from "./services/api";
+
+// Simple component with state
+component Counter {
+    count: number = 0
+    
+    increment {
+        count = count + 1
+    }
+    
+    decrement {
+        count = count - 1
+    }
+    
+    reset {
+        count = 0
+    }
+    
+    render:
+        <div class="counter-container" center>
+            <h2>Counter Example</h2>
+            <div class="counter-display">
+                Count: {count}
+            </div>
+            <div class="counter-buttons">
+                <button onClick={increment} class="btn-primary">+</button>
+                <button onClick={decrement} class="btn-secondary">-</button>
+                <button onClick={reset} class="btn-warning">Reset</button>
+            </div>
+        </div>
+}
+
+// Component with async operations
+component UserProfile {
+    user: object = null
+    loading: boolean = true
+    error: string = null
+    
+    @async
+    loadUser(userId: string) {
+        loading = true
+        error = null
+        
+        try {
+            async {
+                let response = await ApiService.getUser(userId)
+                user = response.data
+                loading = false
+            }
+        } catch (err) {
+            error = "Failed to load user"
+            loading = false
+        }
+    }
+    
+    @async
+    updateUser(userData: object) {
+        try {
+            async {
+                let response = await ApiService.updateUser(user.id, userData)
+                user = response.data
+            }
+        } catch (err) {
+            error = "Failed to update user"
+        }
+    }
+    
+    render:
+        <div class="user-profile">
+            {loading ? (
+                <div class="loading-spinner" center>
+                    <span>Loading...</span>
+                </div>
+            ) : error ? (
+                <div class="error-message">
+                    <h3>Error</h3>
+                    <p>{error}</p>
+                    <button onClick={() => loadUser(user?.id)}>
+                        Retry
+                    </button>
+                </div>
+            ) : user ? (
+                <div class="user-details">
+                    <div class="user-header">
+                        <img src={user.avatar} alt="User avatar" class="avatar" />
+                        <div class="user-info">
+                            <h1>{user.name}</h1>
+                            <p class="user-email">{user.email}</p>
+                            <p class="user-role">{user.role}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="user-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Posts</span>
+                            <span class="stat-value">{user.postCount}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Followers</span>
+                            <span class="stat-value">{user.followerCount}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Following</span>
+                            <span class="stat-value">{user.followingCount}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="user-actions">
+                        <button onClick={() => updateUser({status: "active"})} 
+                                class="btn-primary">
+                            Activate
+                        </button>
+                        <button onClick={() => updateUser({status: "inactive"})} 
+                                class="btn-secondary">
+                            Deactivate
+                        </button>
+                    </div>
+                </div>
+            ) : (
+                <div class="no-user">
+                    <p>No user found</p>
+                </div>
+            )}
+        </div>
+}
+
+// Complex component with loops and conditions
+component TodoList {
+    todos: array = []
+    filter: string = "all"
+    newTodo: string = ""
+    
+    addTodo {
+        if (newTodo.trim()) {
+            todos = [...todos, {
+                id: Date.now(),
+                text: newTodo.trim(),
+                completed: false,
+                createdAt: new Date()
+            }]
+            newTodo = ""
+        }
+    }
+    
+    toggleTodo(id: number) {
+        todos = todos.map(todo => 
+            todo.id === id 
+                ? {...todo, completed: !todo.completed}
+                : todo
+        )
+    }
+    
+    deleteTodo(id: number) {
+        todos = todos.filter(todo => todo.id !== id)
+    }
+    
+    clearCompleted {
+        todos = todos.filter(todo => !todo.completed)
+    }
+    
+    getFilteredTodos {
+        switch (filter) {
+            case "active":
+                return todos.filter(todo => !todo.completed)
+            case "completed":
+                return todos.filter(todo => todo.completed)
+            default:
+                return todos
+        }
+    }
+    
+    render:
+        <div class="todo-app">
+            <header class="todo-header">
+                <h1>Todo List</h1>
+                <div class="todo-input-container">
+                    <input 
+                        type="text"
+                        value={newTodo}
+                        onChange={(e) => newTodo = e.target.value}
+                        onKeyPress={(e) => e.key === "Enter" && addTodo()}
+                        placeholder="Add a new todo..."
+                        class="todo-input"
+                    />
+                    <button onClick={addTodo} class="add-btn">Add</button>
+                </div>
+            </header>
+            
+            <nav class="todo-filters">
+                <button 
+                    onClick={() => filter = "all"}
+                    class={filter === "all" ? "filter-btn active" : "filter-btn"}>
+                    All ({todos.length})
+                </button>
+                <button 
+                    onClick={() => filter = "active"}
+                    class={filter === "active" ? "filter-btn active" : "filter-btn"}>
+                    Active ({todos.filter(t => !t.completed).length})
+                </button>
+                <button 
+                    onClick={() => filter = "completed"}
+                    class={filter === "completed" ? "filter-btn active" : "filter-btn"}>
+                    Completed ({todos.filter(t => t.completed).length})
+                </button>
+            </nav>
+            
+            <main class="todo-list">
+                {getFilteredTodos().length === 0 ? (
+                    <div class="empty-state" center>
+                        <p>No todos {filter === "all" ? "" : filter}</p>
+                    </div>
+                ) : (
+                    <ul class="todo-items">
+                        {getFilteredTodos().map(todo => (
+                            <li key={todo.id} class={`todo-item ${todo.completed ? "completed" : ""}`}>
+                                <div class="todo-content">
+                                    <input 
+                                        type="checkbox"
+                                        checked={todo.completed}
+                                        onChange={() => toggleTodo(todo.id)}
+                                        class="todo-checkbox"
+                                    />
+                                    <span class="todo-text">{todo.text}</span>
+                                    <small class="todo-date">
+                                        {todo.createdAt.toLocaleDateString()}
+                                    </small>
+                                </div>
+                                <button 
+                                    onClick={() => deleteTodo(todo.id)}
+                                    class="delete-btn">
+                                    ×
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </main>
+            
+            {todos.some(todo => todo.completed) && (
+                <footer class="todo-footer">
+                    <button onClick={clearCompleted} class="clear-btn">
+                        Clear Completed
+                    </button>
+                </footer>
+            )}
+        </div>
+}
+
+// Main app component
+component App {
+    currentView: string = "counter"
+    userId: string = "user123"
+    
+    switchView(view: string) {
+        currentView = view
+    }
+    
+    render:
+        <div class="app">
+            <header class="app-header">
+                <h1>Alterion Demo App</h1>
+                <nav class="main-nav">
+                    <button 
+                        onClick={() => switchView("counter")}
+                        class={currentView === "counter" ? "nav-btn active" : "nav-btn"}>
+                        Counter
+                    </button>
+                    <button 
+                        onClick={() => switchView("profile")}
+                        class={currentView === "profile" ? "nav-btn active" : "nav-btn"}>
+                        Profile
+                    </button>
+                    <button 
+                        onClick={() => switchView("todos")}
+                        class={currentView === "todos" ? "nav-btn active" : "nav-btn"}>
+                        Todos
+                    </button>
+                </nav>
+            </header>
+            
+            <main class="app-content">
+                {currentView === "counter" && <Counter />}
+                {currentView === "profile" && <UserProfile userId={!userId} />}
+                {currentView === "todos" && <TodoList />}
+            </main>
+            
+            <footer class="app-footer">
+                <p>Built with Alterion 💜</p>
+            </footer>
+        </div>
+}
+
+export default App
