@@ -25,20 +25,20 @@
 Legend: **[x]** Implemented • **[ ]** Planned
 
 ### Core Language Pipeline
-- **[x] Lexer/Tokenizer** - Complete token recognition for all Alterion syntax
-- **[x] Parser & AST** - Full recursive descent parser with component support  
-- **[ ] Semantic Analysis** - Type checking and validation
-- **[ ] Code Generation** - IR generation and optimization passes
-- **[ ] Memory Analysis** - Ownership and lifetime verification
-- **[ ] Backend** - Native code generation (x86_64, ARM, WebAssembly)
+- [x] **Lexer/Tokenizer** - Complete token recognition for all Alterion syntax
+- [x] **Parser & AST** - Full recursive descent parser with component support  
+- [ ] **Semantic Analysis** - Type checking and validation
+- [ ] **Code Generation** - IR generation and optimization passes
+- [ ] **Memory Analysis** - Ownership and lifetime verification
+- [ ] **Backend** - Native code generation (x86_64, ARM, WebAssembly)
 
 ### Advanced Features
-- **[ ] NativeUI Engine** - Cross-platform UI rendering system
-- **[ ] Async Runtime** - Structured concurrency implementation  
-- **[ ] FFI System** - C/C++ interoperability layer
-- **[ ] Package Manager** - Dependency management and distribution
-- **[ ] Language Server** - IDE integration and tooling support
-- **[ ] Debugger** - Source-level debugging capabilities
+- [ ] **NativeUI Engine** - Cross-platform UI rendering system
+- [ ] **Async Runtime** - Structured concurrency implementation  
+- [ ] **FFI System** - C/C++ interoperability layer
+- [ ] **Package Manager** - Dependency management and distribution
+- [ ] **Language Server** - IDE integration and tooling support
+- [ ] **Debugger** - Source-level debugging capabilities
 
 ## 🔄 End-to-End Example
 
