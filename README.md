@@ -428,8 +428,8 @@ My goals for Alterions' designed for performance:
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 ### What this means:
-- ✅ **Free to use** for any purpose
-- ✅ **Free to modify** and distribute
+- ✅ **Free to use**
+- ✅ **Free to modify**
 - ✅ **Free to contribute** to open source projects
 - ❌ **Cannot be used** in proprietary software without releasing source code
 - ❌ **Cannot be monetized** without explicit permission from the author
