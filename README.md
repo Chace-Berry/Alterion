@@ -9,7 +9,7 @@
 <div align="center">
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![C++](https://img.shields.io/badge/++-%2300599C.svg?style=flat&logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
+[![C++](https://img.shields.io/badge/C++-%2300599C.svg?style=flat&logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](.)
 [![Version](https://img.shields.io/badge/version-0.1.26-orange.svg)](.)
 
