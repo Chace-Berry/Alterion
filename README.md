@@ -113,30 +113,29 @@ chmod +x scripts/build.sh
 ./scripts/build.sh
 ```
 
+
 ### Your First Alterion Program
 
 Create `hello.alt`:
 
 ```alterion
 component HelloWorld {
-    name: string = "Alterion"
-    count: number = 0
-    
+    name = "Alterion" // Inferred as String
+    count: Int = 0    // Statically declared
+
     increment {
         count += 1
     }
-    
+
     render:
         <div center>
             <h1>Hello, {name}!</h1>
             <p>Clicked {count} times</p>
-            <button onClick={increment} class="btn-primary">
+            <button onClick={increment}>
                 Click me!
             </button>
         </div>
 }
-
-export default HelloWorld;
 ```
 
 Compile and run:
@@ -155,37 +154,37 @@ alterion build hello.alt --target mobile
 alterion dev hello.alt
 ```
 
+
 ## 📚 Language Features
 
 ### 🧩 Component System
 
 ```alterion
 component TodoApp {
-    todos: array = []
-    newTodo: string = ""
-    
+    todos = []
+    newTodo = ""
+
     addTodo {
-        if (newTodo.trim()) {
+        if (newTodo.trim() != "") {
             todos.push({ text: newTodo, completed: false })
             newTodo = ""
         }
     }
-    
-    toggleTodo(index: number) {
+
+    toggleTodo(index: Int) {
         todos[index].completed = !todos[index].completed
     }
-    
+
     render:
         <div class="todo-app">
             <input 
                 value={newTodo} 
-                onChange={(e) => newTodo = e.target.value}
+                onChange={updateInput}
                 placeholder="Add a todo..."
             />
             <button onClick={addTodo}>Add</button>
-            
             <ul class="todo-list">
-                for todo, index in todos []
+                for todo, index in todos[
                     <TodoItem 
                         todo={todo} 
                         onToggle={() => toggleTodo(index)}
@@ -223,26 +222,27 @@ component DataFetcher {
 }
 ```
 
+
 ### 🔄 Enhanced Control Flow
 
 ```alterion
-function processItems(items: array) {
-    // Enhanced for loops
-    for i (items.length) [
-        console.log(`Processing item ${i}: ${items[i]}`)
+processItems(items) {
+    // Numeric loop
+    for i (items.length)[
+        print("Processing item " + i + ": " + items[i])
     ]
-    
-    // For-in loops
-    for item in items [
+
+    // For-in loop
+    for item in items[
         if (item.active) {
             item.process()
         }
     ]
-    
-    // Range loops
-    for i (0, 100) [
-        if (i % 2 === 0) {
-            console.log(`Even: ${i}`)
+
+    // Range loop
+    for i (0, 100)[
+        if (i % 2 == 0) {
+            print("Even: " + i)
         }
     ]
 }
