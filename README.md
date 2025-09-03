@@ -120,15 +120,8 @@ Create `hello.alt`:
 
 ```alterion
 component HelloWorld {
-<<<<<<< HEAD
     name = "Alterion" // Inferred as String
     count: Int = 0    // Statically declared
-
-=======
-    name = "Alterion"
-    count = 0
-    
->>>>>>> 00e9acf420bcd4c2a8a82f757a2a43a6cf22339a
     increment {
         count += 1
     }
