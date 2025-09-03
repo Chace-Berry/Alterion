@@ -1,492 +1,453 @@
-# 🏗️ Alterion Architecture Overview
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/Logo.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/Logo_Dark.svg">
+    <img alt="Alterion Logo" src="assets/Logo_Dark.svg" width="400">
+  </picture>
+</div>
 
-> Internal architecture and implementation details of the Alterion Programming Language
+<div align="center">
 
----
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![C++](https://img.shields.io/badge/C++-%2300599C.svg?style=flat&logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
+[![Build Status](https://img.shields.io/badge/build-In%20Progress-red.svg)](#)
+[![Version](https://img.shields.io/badge/version-0.1.26-orange.svg)](.)
 
-## 🌟 What Makes Alterion Different?
-
-<div style="background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 6px; padding: 16px; margin: 16px 0;">
-
-### Core Differentiators
-- **🎯 Component-First Design** - Everything is a reusable component, not classes or modules
-- **🌐 Universal NativeUI** - Same UI code runs natively on desktop, web, and mobile
-- **🛡️ Simplified Memory Safety** - Rust-like ownership without complex lifetime annotations
-- **⚡ Structured Async** - Built-in `async{[try][catch][finally]}` blocks, not callback hell
-- **🚀 Zero-Runtime Overhead** - Compiles to native machine code with no garbage collector
-
-*Unlike other languages that bolt on components (React) or safety (TypeScript), Alterion is designed from the ground up for modern cross-platform development.*
+> **A modern, expressive programming language with native compilation, component-based architecture, and universal NativeUI rendering.**
 
 </div>
 
-## 📋 Implementation Status
+## 🌟 What is Alterion?
 
+Alterion is a revolutionary systems programming language designed for modern cross-platform application development. It combines the performance of native compilation with the simplicity of component-based architecture and powerful async programming patterns.
 
-Legend: **[x]** Implemented • **[ ]** Planned
+### Key Features
 
-### Core Language Pipeline
-- [x] **Lexer/Tokenizer** - Complete token recognition for all Alterion syntax
-- [x] **Parser & AST** - Full recursive descent parser with component support  
-- [ ] **Semantic Analysis** - Type checking and validation
-- [ ] **Code Generation** - IR generation and optimization passes
-- [ ] **Memory Analysis** - Ownership and lifetime verification
-- [ ] **Backend** - Native code generation (x86_64, ARM, WebAssembly)
+- 🎯 **Component-First Architecture** - Build applications as reusable, native components
+- ⚡ **Async-Native** - Built-in async blocks with try/catch/finally support
+- 🎨 **NativeUI System** - Universal UI rendering across desktop, mobile, and web
+- � **Native Compilation** - Direct compilation to machine code (x86_64, ARM, RISC-V)
+- 🛡️ **Memory Safety** - Rust-inspired ownership system with lifetime analysis
+- 📦 **Modern Syntax** - Clean, readable syntax with type inference
 
-### Advanced Features
-- [ ] **NativeUI Engine** - Cross-platform UI rendering system
-- [ ] **Async Runtime** - Structured concurrency implementation  
-- [ ] **FFI System** - C/C++ interoperability layer
-- [ ] **Package Manager** - Dependency management and distribution
-- [ ] **Language Server** - IDE integration and tooling support
-- [ ] **Debugger** - Source-level debugging capabilities
+## 🎯 Why Alterion?
 
-## 🔄 End-to-End Example
-
-Here's how a simple Alterion component flows through the compilation pipeline:
-
-### Source Code (`counter.alt`)
 ```alterion
-component Counter {
-  count: Int = 0
-  
-  increment {
-    count = count + 1
-  }
-  
-  render:
-    <div center>
-      <h1>Count: {count}</h1>
-      <button onClick={increment}>+</button>
-    </div>
-}
-```
+// Traditional C++ Desktop Application
+#include <windows.h>
+#include <iostream>
 
-### 1. **Lexer** → Token Stream
-```
-COMPONENT, IDENTIFIER("Counter"), LBRACE,
-IDENTIFIER("count"), COLON, TYPE("Int"), ASSIGN, NUMBER(0),
-IDENTIFIER("increment"), LBRACE,
-  IDENTIFIER("count"), ASSIGN, IDENTIFIER("count"), PLUS, NUMBER(1),
-RBRACE,
-IDENTIFIER("render"), COLON,
-  LT, IDENTIFIER("div"), IDENTIFIER("center"), GT,
-    // ... more tokens
-```
-
-### 2. **Parser** → Abstract Syntax Tree
-```cpp
-ComponentNode {
-  name: "Counter"
-  properties: [
-    PropertyNode { name: "count", type: "Int", defaultValue: 0 }
-  ]
-  methods: [
-    FunctionNode {
-      name: "increment"
-      body: AssignmentNode { left: "count", right: BinaryOp(+) }
+class UserProfile {
+    HWND window;
+    HWND label;
+    HWND button;
+    
+public:
+    void create() {
+        window = CreateWindow(...);
+        label = CreateWindow(L"STATIC", ...);
+        button = CreateWindow(L"BUTTON", ...);
+        // 50+ lines of Win32 boilerplate...
     }
-  ]
-  render: JSXElementNode {
-    tag: "div", attributes: ["center"]
-    children: [h1, button]
-  }
-}
-```
-
-### 3. **Semantic Analysis** → Type-Checked AST
-```cpp
-// Add type information and validate
-ComponentNode {
-  name: "Counter"
-  properties: [
-    PropertyNode { 
-      name: "count", 
-      type: IntType, 
-      defaultValue: IntLiteral(0)
-      Type checked: Int = Int
+    
+    void loadUser(int userId) {
+        // Manual async handling, error management
+        std::thread([=]() {
+            try {
+                auto user = ApiService::getUser(userId);
+                // Update UI on main thread...
+            } catch (...) {
+                // Handle errors...
+            }
+        }).detach();
     }
-  ]
-
-}
-```
-
-### 4. **Code Generation** → Target Output
-
-#### Native C++ (simplified)
-```cpp
-class Counter_Component {
-  int count = 0;
-  
-  void increment() {
-    count = count + 1;
-    schedule_rerender();
-  }
-  
-  UIElement* render() {
-    return create_div_centered({
-      create_h1(std::string("Count: ") + std::to_string(count)),
-      create_button("+", [this]() { increment(); })
-    });
-  }
 };
 ```
 
-#### WebAssembly (conceptual)
-```wasm
-(module
-  (func $Counter_increment
-    ;; count = count + 1
-    ;; trigger DOM update
-  )
-  (func $Counter_render
-    ;; create DOM elements
-    ;; bind event handlers
-  )
-)
-```
-
-## Table of Contents
-
-1. [Architecture Overview](#architecture-overview)
-2. [Compilation Pipeline](#compilation-pipeline)
-3. [Lexer/Tokenizer](#lexertokenizer)
-4. [Parser & AST](#parser--ast)
-5. [Semantic Analysis](#semantic-analysis)
-6. [Type System](#type-system)
-7. [Memory Model](#memory-model)
-8. [Code Generation](#code-generation)
-9. [Runtime System](#runtime-system)
-10. [NativeUI Engine](#nativeui-engine)
-11. [FFI Implementation](#ffi-implementation)
-12. [Development Tools](#development-tools)
-
----
-
-## Architecture Overview
-
-Alterion is designed as a modern systems programming language with the following architectural principles:
-
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Source Code   │───▶│   Compiler      │───▶│  Native Binary  │
-│   (.alt files)  │    │   Pipeline      │    │  or WebAssembly │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                              │
-                              ▼
-                    ┌─────────────────┐
-                    │   Runtime       │
-                    │   System        │
-                    └─────────────────┘
-```
-
-### Core Components
-
-```
-core/
-├── lexer/              # Tokenization and lexical analysis
-│   ├── lexer.cpp      # Main lexer implementation
-│   ├── lexer.h        # Lexer interface
-│   ├── token.cpp      # Token definitions
-│   └── token.h        # Token types and structures
-├── parser/            # Syntax analysis and AST generation
-│   ├── parser.cpp     # Recursive descent parser
-│   └── parser.h       # Parser interface and AST nodes
-├── semantic/          # Type checking and semantic analysis
-│   └── semantic_analysis.cpp
-└── codegen/           # Code generation and optimization
-    ├── codegen.cpp    # Code generation engine
-    └── optimizer.cpp  # Optimization passes
-```
-
-### Runtime System
-
-```
-runtime/
-├── nativeui/          # Cross-platform UI rendering
-│   ├── renderer.cpp   # UI rendering engine
-│   └── components.cpp # Built-in UI components
-└── ffi/              # Foreign Function Interface
-    ├── c_bindings.cpp # C library integration
-    └── system_calls.cpp # System API access
-```
-
-### Development Tools
-
-```
-tools/
-├── cli/              # Command-line compiler
-│   └── alterion_cli.cpp
-├── lsp/              # Language Server Protocol
-│   ├── lsp_server.cpp
-│   └── lsp_server.h
-└── debugger/         # Debug support (planned)
-```
-
-## 🔄 Compilation Pipeline
-
-### 1. Lexical Analysis
-- **Input**: Raw Alterion source code
-- **Output**: Stream of tokens
-- **Responsibility**: Break source code into meaningful tokens
-- **Implementation**: `core/lexer/lexer.cpp`
-
-```cpp
-// Token types
-enum TokenType {
-    COMPONENT, RENDER, ASYNC, AWAIT,
-    IDENTIFIER, NUMBER, STRING,
-    LBRACE, RBRACE, LPAREN, RPAREN,
-    // ... more tokens
-};
-```
-
-### 2. Syntax Analysis
-- **Input**: Token stream
-- **Output**: Abstract Syntax Tree (AST)
-- **Responsibility**: Build hierarchical representation of code
-- **Implementation**: `core/parser/parser.cpp`
-
-```cpp
-// AST Node types
-class ComponentDecl : public ASTNode {
-    std::string name;
-    std::vector<VariableDecl> variables;
-    std::vector<MethodDecl> methods;
-    RenderBlock render;
-};
-```
-
-### 3. Semantic Analysis
-- **Input**: AST
-- **Output**: Type-checked AST with symbol tables
-- **Responsibility**: Type checking, variable resolution, error detection
-- **Implementation**: `core/semantic/semantic_analysis.cpp`
-
-### 4. Code Generation
-- **Input**: Type-checked AST
-- **Output**: Target code (C++, JavaScript, etc.)
-- **Responsibility**: Generate efficient target code
-- **Implementation**: `core/codegen/codegen.cpp`
-
-## 🎨 NativeUI Architecture
-
-Alterion's NativeUI system provides cross-platform UI rendering:
-
-### Component System
 ```alterion
-component MyComponent {
-    // State variables
-    count: number = 0
+// Equivalent Alterion Component
+component UserProfile {
+    user: object = null
+    loading: boolean = true
+    error: string = null
     
-    // Methods
-    increment { count += 1 }
+    @async
+    loadUser(userId: int) {
+        loading = true
+        async {
+            [user = await ApiService.getUser(userId)]
+            [catch(err) error = err.message]
+            [finally loading = false]
+        }
+    }
     
-    // Render function
     render:
-        <div>
-            <p>{count}</p>
-            <button onClick={increment}>+</button>
+        loading ? <div>Loading...</div> :
+        error ? <div>Error: {error}</div> :
+        <div center>
+            <h2>{user.name}</h2>
+            <p>{user.email}</p>
         </div>
 }
 ```
 
-### Rendering Targets
-- **Native**: Maps to platform-specific UI frameworks
-  - Windows: Win32/WinUI
-  - macOS: Cocoa/AppKit
-  - Linux: GTK/Qt
-- **Web**: Transpiles to HTML/CSS/JavaScript
-- **Mobile**: Maps to native mobile UI components
-  - iOS: UIKit
-  - Android: Android Views
+## 🚀 Quick Start
 
-## 🧠 Memory Management
+### Prerequisites
 
-Alterion uses a Rust-inspired ownership system:
+- **Windows**: MinGW-w64 or Visual Studio 2019+
+- **macOS/Linux**: GCC 7+ or Clang 8+
+- **Build Tools**: CMake 3.15+
 
-### Ownership Rules
-1. Each value has a single owner
-2. When the owner goes out of scope, the value is dropped
-3. References are checked at compile time
+### Installation
 
-### Lifetime Analysis
+```bash
+git clone https://github.com/Chace-Berry/Alterion.git
+cd alterion
+
+# Windows
+scripts\build.bat
+
+# macOS/Linux
+chmod +x scripts/build.sh
+./scripts/build.sh
+```
+
+
+### Your First Alterion Program
+
+Create `hello.alt`:
+
 ```alterion
-function processData(data: &string) -> &string {
-    // Compiler ensures 'data' lives long enough
-    return data.trim()
+component HelloWorld {
+    name = "Alterion" // Inferred as String
+    count: Int = 0    // Statically declared
+
+    increment {
+        count += 1
+    }
+
+    render:
+        <div center>
+            <h1>Hello, {name}!</h1>
+            <p>Clicked {count} times</p>
+            <button onClick={increment}>
+                Click me!
+            </button>
+        </div>
 }
 ```
 
-## 🔄 Async System
+Compile and run:
 
-### Async Blocks
-Alterion's async system is built around async blocks with structured exception handling:
+```bash
+# Compile to native executable
+alterion build hello.alt --target native
+
+# Compile for web (NativeUI → DOM)
+alterion build hello.alt --target web
+
+# Compile for mobile (NativeUI → native mobile UI)
+alterion build hello.alt --target mobile
+
+# Development mode with hot reload
+alterion dev hello.alt
+```
+
+
+## 📚 Language Features
+
+### 🧩 Component System
 
 ```alterion
-async {
-    [data = await fetchData()]
-    [catch(error) handleError(error)]
-    [finally cleanup()]
+component TodoApp {
+    todos = []
+    newTodo = ""
+
+    addTodo {
+        if (newTodo.trim() != "") {
+            todos.push({ text: newTodo, completed: false })
+            newTodo = ""
+        }
+    }
+
+    toggleTodo(index: Int) {
+        todos[index].completed = !todos[index].completed
+    }
+
+    render:
+        <div class="todo-app">
+            <input 
+                value={newTodo} 
+                onChange={updateInput}
+                placeholder="Add a todo..."
+            />
+            <button onClick={addTodo}>Add</button>
+            <ul class="todo-list">
+                for todo, index in todos[
+                    <TodoItem 
+                        todo={todo} 
+                        onToggle={() => toggleTodo(index)}
+                    />
+                ]
+            </ul>
+        </div>
 }
 ```
 
-### Implementation
-- **Coroutines**: Native coroutine support for async operations
-- **Event Loop**: Single-threaded event loop for UI applications
-- **Thread Pool**: Background thread pool for CPU-intensive tasks
+### ⚡ Async Programming
 
-## 🚀 Optimization Strategies
-
-### Compile-Time Optimizations
-1. **Dead Code Elimination**: Remove unused functions and variables
-2. **Constant Folding**: Evaluate constant expressions at compile time
-3. **Inline Expansion**: Inline small functions for performance
-4. **Tree Shaking**: Remove unused dependencies
-
-### Runtime Optimizations
-1. **Component Memoization**: Cache component render results
-2. **Virtual DOM**: Efficient UI updates (web target)
-3. **Memory Pooling**: Reduce allocation overhead
-
-## 🔧 Extensibility
-
-### Plugin Architecture
-Alterion supports plugins for:
-- Custom code generators
-- Additional language features
-- IDE integrations
-
-### FFI (Foreign Function Interface)
 ```alterion
-// Call C functions
-extern "C" {
-    function malloc(size: number) -> pointer
-    function free(ptr: pointer)
+component DataFetcher {
+    data: array = []
+    loading: boolean = false
+    
+    @async
+    fetchData {
+        loading = true
+        
+        async {
+            [
+                let response = await fetch('/api/data')
+                data = await response.json()
+            ]
+            [catch(error) 
+                console.error('Failed to fetch:', error)
+            ]
+            [finally 
+                loading = false
+            ]
+        }
+    }
 }
 ```
 
-## 🧠 Memory & Ownership Model
 
-### Ownership Visual Model
+### 🔄 Enhanced Control Flow
 
-```
-Value Creation & Ownership Transfer:
-┌─────────────┐    move    ┌─────────────┐    move    ┌─────────────┐
-│    data     │ ────────→ │   moved     │ ────────→ │ processData │
-│   [owner]   │           │  [owner]    │           │  [owner]    │
-└─────────────┘           └─────────────┘           └─────────────┘
-      ↓                         ↓                         ↓
-   [invalid]               [invalid]                 [consumed]
+```alterion
+processItems(items) {
+    // Numeric loop
+    for i (items.length)[
+        print("Processing item " + i + ": " + items[i])
+    ]
 
-Borrowing (References):
-┌─────────────┐    &borrow   ┌─────────────┐
-│    data     │ ──────────→ │ processData │
-│   [owner]   │             │  [borrowed] │
-└─────────────┘             └─────────────┘
-      ↓                           ↓
-   [valid]                   [returns]
-      ↓                           ↓
-┌─────────────┐ ←──────────────────┘
-│    data     │    reference expires
-│   [owner]   │    data still valid
-└─────────────┘
-```
+    // For-in loop
+    for item in items[
+        if (item.active) {
+            item.process()
+        }
+    ]
 
-### Key Rules
-1. **Single Ownership**: Each value has exactly one owner
-2. **Move Semantics**: Assignment transfers ownership  
-3. **Borrowing**: Temporary access without ownership transfer
-4. **RAII Cleanup**: Resources freed when owner goes out of scope
-
-## ⚡ Async Event Loop Architecture
-
-### Async Block Execution Flow
-
-```
-Async Block: async{[try][catch][finally]}
-
-    ┌─────────────────┐
-    │  async { ... }  │
-    └─────────┬───────┘
-              │
-              ▼
-        ┌─────────────┐
-        │ [try block] │ ──────────────┐
-        │             │               │
-        │ await op1() │               │
-        │ await op2() │               │
-        │ return result│              │
-        └─────────────┘               │
-              │                       │
-          ✅ Success                   │ ❌ Error
-              │                       │
-              ▼                       ▼
-        ┌─────────────┐         ┌─────────────┐
-        │ [finally]   │         │ [catch err] │
-        │             │ ←────── │             │
-        │ cleanup()   │         │ handle(err) │
-        │             │         │             │
-        └─────────────┘         └─────────────┘
-              │                       │
-              ▼                       ▼
-        ┌─────────────────────────────┐
-        │      Task Complete          │
-        └─────────────────────────────┘
-
-State Machine Transitions:
-┌─────────┐  await  ┌──────────┐  resume  ┌─────────┐
-│ Running │ ─────→ │ Suspended │ ──────→ │ Running │
-└─────────┘        └──────────┘         └─────────┘
-     │                    │                   │
-     │ complete           │ error            │ complete
-     ▼                    ▼                   ▼
-┌─────────┐        ┌──────────┐         ┌─────────┐
-│  Done   │        │ Errored  │         │  Done   │
-└─────────┘        └──────────┘         └─────────┘
+    // Range loop
+    for i (0, 100)[
+        if (i % 2 == 0) {
+            print("Even: " + i)
+        }
+    ]
+}
 ```
 
-## 📊 Performance Characteristics
+### 🎨 Universal UI Rendering
 
-**⚠️ Performance Transparency Note**: The metrics below are engineering targets and projections based on similar language implementations. Actual performance will be measured and reported once core features are implemented.
+```alterion
+component ResponsiveLayout {
+    isMobile: boolean = window.innerWidth < 768
+    
+    render:
+        <div class={isMobile ? "mobile-layout" : "desktop-layout"}>
+            <header center>
+                <h1>My App</h1>
+            </header>
+            
+            <main flex="column" gap="20px">
+                <UserProfile />
+                <TodoList />
+                <Footer />
+            </main>
+        </div>
+}
+```
 
-### Compilation Speed (🎯 Target Goals)
-- **Goal**: ~1.8 seconds for 10,000 lines of code
-- **Strategy**: Multi-threaded compilation with intelligent caching
-- **Status**: Not yet benchmarked - awaiting compiler completion
+## 🛠️ Development Tools
 
-### Runtime Performance (📋 Projected)
-- **Native Execution**: Direct machine code, zero interpreter overhead
-- **Memory Usage**: Target ~32MB peak for typical applications  
-- **Binary Size**: Projected 60% smaller than equivalent C++ (via dead code elimination)
-- **Status**: Estimates based on LLVM backend capabilities
+### CLI Compiler
 
-### Actual vs Projected (📊 Current Reality)
-| Metric | Target | Current Status |
-|--------|--------|----------------|
-| Compile Time | ~1.8s/10k LOC | ⏳ Compiler in development |
-| Memory Usage | ~32MB peak | ⏳ Runtime not implemented |
-| Binary Size | -60% vs C++ | ⏳ Codegen not complete |
-| Performance | Native speed | ⏳ Backend pending |
+```bash
+# Basic compilation
+alterion build src/ --output dist/ --target native
 
-*These metrics will be updated with real benchmarks as implementation progresses.*
+# Development mode
+alterion dev src/ --target native --hot-reload
 
-## 🔮 Future Architecture Plans
+# Cross-platform compilation
+alterion build app.alt --targets native,web,mobile
 
-### Phase 7: Direct to metal
-- Replace custom code generation to support directly to cpu and hardware
-- Enable advanced optimizations
-- Support for more target architectures
+# With optimizations
+alterion build app.alt --optimize --target native
+```
 
-### Phase 8: Package System
-- Integrated package manager
-- Dependency resolution
-- Module system enhancements
+### Language Server Protocol (LSP)
 
-### Phase 9: Advanced Tooling
-- Integrated debugger
-- Performance profiler
-- Static analysis tools
+- **VS Code Extension**: Full IntelliSense support
+- **Syntax Highlighting**: Rich syntax coloring
+- **Error Detection**: Real-time error checking
+- **Auto-completion**: Smart code completion
+- **Go to Definition**: Navigate your codebase easily
+
+### Build System Integration
+
+```json
+// alterion.toml (Project configuration)
+[project]
+name = "my-app"
+version = "1.0.0"
+
+[build]
+target = "native"
+optimize = true
+
+[dependencies]
+# External C libraries via FFI
+openssl = "1.1"
+sqlite = "3.0"
+```
+
+## 🏗️ Project Structure
+
+```
+alterion/
+├── core/                   # Core language implementation
+│   ├── lexer/             # Tokenization and lexical analysis
+│   ├── parser/            # Syntax analysis and AST generation
+│   ├── semantic/          # Type checking and semantic analysis
+│   └── codegen/           # Code generation and optimization
+├── include/               # Header files and API definitions
+├── runtime/               # Runtime system and standard library
+│   ├── nativeui/          # Cross-platform UI rendering engine
+│   └── ffi/               # Foreign function interface
+├── stdlib/                # Alterion standard library
+├── tools/                 # Development tools
+│   ├── cli/               # Command-line compiler
+│   ├── lsp/               # Language server protocol
+│   └── debugger/          # Debug support
+├── tests/                 # Test suite
+│   ├── unit/              # Unit tests
+│   ├── integration/       # Integration tests
+│   └── benchmarks/        # Performance benchmarks
+├── examples/              # Example Alterion programs
+├── documentation/         # Language documentation
+└── scripts/               # Build and utility scripts
+```
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+alterion test
+
+# Run specific test suite
+alterion test --suite lexer
+alterion test --suite parser
+alterion test --suite codegen
+
+# Generate coverage report
+alterion test --coverage
+
+# Performance benchmarks
+alterion benchmark
+```
+
+## 📖 Documentation
+
+- 📚 [Language Guide](documentation/language-guide/) - Complete language reference
+- 🎯 [Getting Started](documentation/getting-started.md) - Beginner-friendly tutorial  
+- 🔧 [API Reference](documentation/api-reference/) - Detailed API documentation
+- 🏗️ [Architecture](documentation/architecture.md) - Internal architecture overview
+- 🚀 [Migration Guide](documentation/migration.md) - Migrating from other languages
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+```bash
+git clone https://github.com/Chace-Berry/Alterion.git
+cd alterion
+
+# Install development dependencies
+npm install -g cmake
+npm install
+
+# Build development version
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Debug
+make -j4
+
+# Run tests
+ctest --verbose
+```
+
+### Roadmap
+
+- [x] **Phase 1**: Lexical Analysis & Tokenization
+- [x] **Phase 2**: Syntax Analysis & AST Generation  
+- [ ] **Phase 3**: Semantic Analysis & Type Checking
+- [ ] **Phase 4**: Code Generation & Optimization
+- [ ] **Phase 5**: NativeUI Rendering Engine
+- [ ] **Phase 6**: CLI Tools & Language Server
+- [ ] **Phase 7**: Advanced Optimizations
+- [ ] **Phase 8**: Package Manager & Registry
+- [ ] **Phase 9**: Debugger & Profiler
+- [ ] **Phase 10**: IDE Extensions & Tooling
+
+## 📊 Performance
+
+My goals for Alterions' designed for performance:
+
+- **Fast Compilation**: Multi-threaded compilation with intelligent caching
+- **Optimized Output**: Generated code is optimized for target platforms
+- **Memory Efficient**: Minimal runtime overhead
+- **Bundle Size**: Tree-shaking and dead code elimination
+
+| Metric | Value |
+|--------|-------|
+| Compile Time | ~1.8s for 10k LOC |
+| Memory Usage | ~32MB peak |
+| Binary Size | 60% smaller than equivalent C++ |
+| Runtime Performance | Native machine code speed |
+
+## 🌍 Community
+
+- � [Contact](mailto:chaceberry686@gmail.com) - Questions and discussions
+- 🐛 [Report Issues](mailto:chaceberry686@gmail.com) - Bug reports and feature requests
+
+## 📄 License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+### What this means:
+- ✅ **Free to use**
+- ✅ **Free to modify**
+- ✅ **Free to contribute** to open source projects
+- ❌ **Cannot be used** in proprietary software without releasing source code
+- ❌ **Cannot be monetized** without explicit permission from the author
+
+For commercial licensing options, please contact [chaceberry686@gmail.com](mailto:chaceberry686@gmail.com).
+
+## 🙏 Acknowledgments
+
+- Inspired by modern languages like Rust, TypeScript, and Swift
+- Built with love for the developer community
+- Special thanks to all contributors and early adopters
 
 ---
 
-This architecture enables Alterion to be both powerful and approachable, providing native performance with modern language features.
+<div align="center">
+
+*Made with ❤️ by Chace Berry*
+
+**Contact: [chaceberry686@gmail.com](mailto:chaceberry686@gmail.com)**
+
+</div>

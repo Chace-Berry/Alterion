@@ -68,8 +68,8 @@ public:
 // Equivalent Alterion Component
 component UserProfile {
     user: object = null
-    loading: boolean = true
-    error: string = null
+    loading = true
+    error= null
     
     @async
     loadUser(userId: int) {
@@ -120,9 +120,15 @@ Create `hello.alt`:
 
 ```alterion
 component HelloWorld {
+<<<<<<< HEAD
     name = "Alterion" // Inferred as String
     count: Int = 0    // Statically declared
 
+=======
+    name = "Alterion"
+    count = 0
+    
+>>>>>>> 00e9acf420bcd4c2a8a82f757a2a43a6cf22339a
     increment {
         count += 1
     }
@@ -142,16 +148,16 @@ Compile and run:
 
 ```bash
 # Compile to native executable
-alterion build hello.alt --target native
+alterion build hello.alts --target native
 
 # Compile for web (NativeUI → DOM)
-alterion build hello.alt --target web
+alterion build hello.alts --target web
 
 # Compile for mobile (NativeUI → native mobile UI)
-alterion build hello.alt --target mobile
+alterion build hello.altx --target mobile
 
 # Development mode with hot reload
-alterion dev hello.alt
+alterion dev hello.altx
 ```
 
 
@@ -161,9 +167,15 @@ alterion dev hello.alt
 
 ```alterion
 component TodoApp {
+<<<<<<< HEAD
     todos = []
     newTodo = ""
 
+=======
+    todos= []
+    newTodo= ""
+    
+>>>>>>> 00e9acf420bcd4c2a8a82f757a2a43a6cf22339a
     addTodo {
         if (newTodo.trim() != "") {
             todos.push({ text: newTodo, completed: false })
@@ -199,8 +211,8 @@ component TodoApp {
 
 ```alterion
 component DataFetcher {
-    data: array = []
-    loading: boolean = false
+    data= []
+    loading = false
     
     @async
     fetchData {
