@@ -47,7 +47,7 @@ Here's how a simple Alterion component flows through the compilation pipeline:
 ### Source Code (`counter.alt`)
 ```alterion
 component Counter {
-  count: Int = 0
+  count = 0
   
   increment {
     count = count + 1
@@ -276,7 +276,7 @@ Alterion's NativeUI system provides cross-platform UI rendering:
 ```alterion
 component MyComponent {
     // State variables
-    count: number = 0
+    count = 0
     
     // Methods
     increment { count += 1 }
