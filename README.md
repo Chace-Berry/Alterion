@@ -167,15 +167,8 @@ alterion dev hello.altx
 
 ```alterion
 component TodoApp {
-<<<<<<< HEAD
     todos = []
     newTodo = ""
-
-=======
-    todos= []
-    newTodo= ""
-    
->>>>>>> 00e9acf420bcd4c2a8a82f757a2a43a6cf22339a
     addTodo {
         if (newTodo.trim() != "") {
             todos.push({ text: newTodo, completed: false })
