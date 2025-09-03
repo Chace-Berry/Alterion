@@ -68,8 +68,8 @@ public:
 // Equivalent Alterion Component
 component UserProfile {
     user: object = null
-    loading: boolean = true
-    error: string = null
+    loading = true
+    error= null
     
     @async
     loadUser(userId: int) {
@@ -119,8 +119,8 @@ Create `hello.alt`:
 
 ```alterion
 component HelloWorld {
-    name: string = "Alterion"
-    count: number = 0
+    name = "Alterion"
+    count = 0
     
     increment {
         count += 1
@@ -143,16 +143,16 @@ Compile and run:
 
 ```bash
 # Compile to native executable
-alterion build hello.alt --target native
+alterion build hello.alts --target native
 
 # Compile for web (NativeUI → DOM)
-alterion build hello.alt --target web
+alterion build hello.alts --target web
 
 # Compile for mobile (NativeUI → native mobile UI)
-alterion build hello.alt --target mobile
+alterion build hello.altx --target mobile
 
 # Development mode with hot reload
-alterion dev hello.alt
+alterion dev hello.altx
 ```
 
 ## 📚 Language Features
@@ -161,8 +161,8 @@ alterion dev hello.alt
 
 ```alterion
 component TodoApp {
-    todos: array = []
-    newTodo: string = ""
+    todos= []
+    newTodo= ""
     
     addTodo {
         if (newTodo.trim()) {
@@ -200,8 +200,8 @@ component TodoApp {
 
 ```alterion
 component DataFetcher {
-    data: array = []
-    loading: boolean = false
+    data= []
+    loading = false
     
     @async
     fetchData {
