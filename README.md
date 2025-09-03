@@ -1,9 +1,9 @@
 <div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/Logo.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/Logo_Dark.svg">
-    <img alt="Alterion Logo" src="assets/Logo_Dark.svg" width="400"> 
-  </picture>
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="assets/Logo.svg?v=1">
+        <source media="(prefers-color-scheme: light)" srcset="assets/Logo_Dark.svg?v=1">
+        <img alt="Alterion Logo" src="assets/Logo_Dark.svg?v=1" width="400">
+    </picture>
 </div>
 
 <div align="center">
