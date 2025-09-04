@@ -17,8 +17,6 @@
 </div>
 
 > **Support the development of Alterion:**
-
-</div>
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-orange?logo=buymeacoffee&logoColor=white)](https://buymeacoffee.com/chaceberry)
 
 </div>
