@@ -18,7 +18,7 @@
 
 **Support the development of Alterion:**</br>
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-orange?logo=buymeacoffee&logoColor=white)](https://buymeacoffee.com/chaceberry)
-
+[![GitHub stars](https://img.shields.io/github/stars/Chace-Berry/Alterion-lang?style=social)](https://github.com/Chace-Berry/Alterion-lang/stargazers)
 </div>
 
 > **A modern, expressive programming language with native compilation, component-based architecture, and universal NativeUI rendering.**
