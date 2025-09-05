@@ -1,4 +1,5 @@
 # 🚀 Migration Guide to Alterion
+# ⚠️ **Note:** The features and syntax described below are future plans for Alterion and may not be fully implemented yet.
 
 > Guide for migrating from other programming languages to Alterion
 
@@ -52,17 +53,13 @@ async function fetchUser(id) {
 **Alterion:**
 ```alterion
 @async
-fetchUser(id: number) {
+fetchUser(id) {
     async {
-        [
-            let response = await fetch(`/api/users/${id}`)
-            let user = await response.json()
-            return user
-        ]
-        [catch(error)
-            console.error('Failed to fetch user:', error)
-            return null
-        ]
+        [response = await fetch("/api/users/" + id)]
+        [user = await response.json()]
+        [return user]
+        [catch(error) console.error("Failed to fetch user:", error)]
+        [catch(error) return null]
     }
 }
 ```
@@ -94,7 +91,7 @@ fn process_data(data: &str) -> String {
 
 **Alterion:**
 ```alterion
-function processData(data: &string) -> string {
+processData(data) {
     return data.toUpperCase()
 }
 ```
@@ -113,8 +110,8 @@ fn divide(a: f64, b: f64) -> Result<f64, String> {
 
 **Alterion:**
 ```alterion
-function divide(a: number, b: number) -> result<number, string> {
-    if (b == 0.0) {
+divide(a, b) {
+    if (b == 0) {
         return error("Division by zero")
     } else {
         return ok(a / b)
@@ -161,12 +158,10 @@ public:
 **Alterion:**
 ```alterion
 component UserInterface {
-    count: number = 0
-    
+    count = 0
     increment {
         count += 1
     }
-    
     render:
         <div>
             <p>Count: {count}</p>
@@ -193,10 +188,9 @@ public:
 **Alterion:**
 ```alterion
 component DataProcessor {
-    data: array<number> = []
-    
+    data = []
     processData {
-        let buffer = array<number>(1000)
+        buffer = array(1000)
         // Process data...
         // Automatic cleanup
     }
@@ -232,9 +226,9 @@ def calculate_total(items):
 
 **Alterion:**
 ```alterion
-function calculateTotal(items: array<Item>) -> number {
-    let total = 0
-    for item in items [
+calculateTotal(items) {
+    total = 0
+    for item in items[
         total += item.price * item.quantity
     ]
     return total
@@ -257,10 +251,9 @@ class ShoppingCart:
 **Alterion:**
 ```alterion
 component ShoppingCart {
-    items: array<Item> = []
-    total: number = 0
-    
-    addItem(item: Item) {
+    items = []
+    total = 0
+    addItem(item) {
         items.push(item)
         total += item.price
     }
@@ -303,13 +296,11 @@ public class Calculator {
 **Alterion:**
 ```alterion
 component Calculator {
-    result: number = 0
-    
-    add(value: number) {
+    result = 0
+    add(value) {
         result += value
     }
-    
-    getResult() -> number {
+    getResult() {
         return result
     }
 }
@@ -337,7 +328,7 @@ trait Drawable {
 
 component Circle implements Drawable {
     draw {
-        console.log("Drawing circle")
+        print("Drawing circle")
     }
 }
 ```

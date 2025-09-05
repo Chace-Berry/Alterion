@@ -1,7 +1,7 @@
 #include "cli_tools.h"
 #include "code_generator.h"
-#include "../lexer/lexer_complete.cpp"
-#include "../parser/parser_complete.cpp"
+#include "./lexer/lexer_complete.cpp"
+#include "./parser/parser_complete.cpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>

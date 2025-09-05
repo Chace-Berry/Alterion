@@ -1,4 +1,5 @@
 # 🔧 Alterion API Reference
+# ⚠️ **Note:** The features and syntax described below are future plans for Alterion and may not be fully implemented yet.
 
 > Detailed API documentation for the Alterion Programming Language
 
@@ -9,29 +10,29 @@
 #### Int
 Integer numbers (64-bit signed)
 ```alterion
-age: Int = 25
-count: Int = 0
+age = 25
+count = 0
 ```
 
 #### Float  
 Floating-point numbers (64-bit double precision)
 ```alterion
-pi: Float = 3.14159
-temperature: Float = 98.6
+pi = 3.14159
+temperature = 98.6
 ```
 
 #### Bool
 Boolean values
 ```alterion
-isActive: Bool = true
-isDone: Bool = false
+isActive = true
+isDone = false
 ```
 
 #### String
 Text strings (UTF-8 encoded)
 ```alterion
-name: String = "Alice"
-message: String = "Hello, Alterion!"
+name = "Alice"
+message = "Hello, Alterion!"
 
 // String methods
 length = name.length()        // 5
@@ -43,7 +44,7 @@ trimmed = message.trim()      // removes whitespace
 #### Void
 Represents no return value
 ```alterion
-printMessage(): Void {
+printMessage() {
   print("Hello")
 }
 ```
@@ -51,7 +52,7 @@ printMessage(): Void {
 #### None
 Null/undefined value
 ```alterion
-user: Object = none
+user = none
 if (user == none) {
   print("No user found")
 }
@@ -62,8 +63,8 @@ if (user == none) {
 #### Arrays
 Ordered collections of elements
 ```alterion
-numbers: [Int] = [1, 2, 3, 4, 5]
-names: [String] = ["Alice", "Bob", "Charlie"]
+numbers = [1, 2, 3, 4, 5]
+names = ["Alice", "Bob", "Charlie"]
 
 // Array methods
 length = numbers.length()     // 5
@@ -78,7 +79,7 @@ numbers.removeAt(0)          // [1, 2, 3, 4, 5]
 #### Objects
 Key-value collections
 ```alterion
-user: Object = {
+user = {
   name: "Alice",
   age: 30,
   email: "alice@example.com"
@@ -89,12 +90,27 @@ userName = user.name         // "Alice"
 user.age = 31               // Update value
 ```
 
-## Built-in Functions
 
+Key-value collections, used for structured data and component props.
+```alterion
+user = {
+  name: "Alice",
+  age: 30,
+  email: "alice@example.com"
+}
+```
+
+## Built-in Functions
+Array of any type, e.g. `[Int]`, `[String]`, `[Object]`.
+```alterion
+numbers = [1, 2, 3]
+names = ["Alice", "Bob"]
+```
 ### Console Output
 ```alterion
-print(message: String): Void
-// Outputs message to console
+print(message) {
+  // Outputs message to console
+}
 
 print("Hello, World!")
 print("Number: " + 42.toString())
@@ -103,10 +119,10 @@ print("Number: " + 42.toString())
 ### String Functions
 ```alterion
 // String manipulation
-concat(str1: String, str2: String): String
-substring(str: String, start: Int, end: Int): String
-replace(str: String, search: String, replace: String): String
-split(str: String, delimiter: String): [String]
+concat(str1, str2)
+substring(str, start, end)
+replace(str, search, replace)
+split(str, delimiter)
 
 // Usage examples
 full = concat("Hello", " World")     // "Hello World"
@@ -118,12 +134,15 @@ parts = split("a,b,c", ",")          // ["a", "b", "c"]
 ### Numeric Functions
 ```alterion
 // Math operations
-abs(x: Float): Float          // Absolute value
-sqrt(x: Float): Float         // Square root
-pow(base: Float, exp: Float): Float  // Exponentiation
-floor(x: Float): Int          // Round down
-ceil(x: Float): Int           // Round up
-round(x: Float): Int          // Round to nearest
+x = 3.4
+base = 1.2
+
+abs(x)          // Absolute value
+sqrt(x)         // Square root
+pow(base, exp)  // Exponentiation
+floor(x)        // Round down
+ceil(x)         // Round up
+round(x)        // Round to nearest
 
 // Usage
 result1 = abs(-5.5)          // 5.5
@@ -132,16 +151,17 @@ result3 = pow(2.0, 3.0)      // 8.0
 ```
 
 ### Type Conversion
+age = 25
 ```alterion
 // To String
-toString(value: Any): String
+toString(value)
 
 age = 25
 message = "I am " + age.toString() + " years old"
 
-// To Numbers  
-parseInt(str: String): Int
-parseFloat(str: String): Float
+// To Numbers
+parseInt(value)
+parseFloat(value)
 
 number = parseInt("123")      // 123
 decimal = parseFloat("3.14")  // 3.14
@@ -181,8 +201,8 @@ component MyComponent {
 ```alterion
 component StatefulComponent {
   // State variables automatically trigger re-render
-  count: Int = 0
-  name: String = "Default"
+  count = 0
+  name = "Default"
   
   // Method to update state
   updateCount(newCount: Int) {
@@ -203,63 +223,64 @@ component StatefulComponent {
 ### Async Functions
 ```alterion
 @async
-fetchData(url: String): Future<Object> {
-  response = await httpGet(url)
-  return await response.json()
+fetchData(url) {
+  async {
+    [response = await httpGet(url)]
+    [data = await response.json()]
+    [return data]
+    [catch(err) return null]
+  }
 }
 
-// Usage
 @async
-loadUser() {
-  user = await fetchData("/api/user/123")
-  print(user.name)
+loadUser(userId) {
+  loading = true
+  async {
+    [user = await fetchData("/api/user/" + userId)]
+    [catch(err) error = err.message]
+    [finally loading = false]
+  }
 }
 ```
 
 ### HTTP Client
 ```alterion
 // HTTP methods
-@async httpGet(url: String): Future<Response>
-@async httpPost(url: String, data: Object): Future<Response>
-@async httpPut(url: String, data: Object): Future<Response>
-@async httpDelete(url: String): Future<Response>
+@async httpGet(url)
+@async httpPost(url, data)
+@async httpPut(url, data)
+@async httpDelete(url)
 
 // Response object
 struct Response {
-  status: Int
-  headers: Object
-  
-  @async json(): Future<Object>
-  @async text(): Future<String>
-  @async bytes(): Future<[Int]>
+  status
+  headers
+  @async json()
+  @async text()
+  @async bytes()
 }
 
-// Usage example
 @async
 apiExample() {
-  // GET request
-  response = await httpGet("/api/users")
-  users = await response.json()
-  
-  // POST request  
-  newUser = { name: "Alice", email: "alice@example.com" }
-  createResponse = await httpPost("/api/users", newUser)
-  
-  if (createResponse.status == 201) {
-    print("User created successfully")
+  async {
+    [response = await httpGet("/api/users")]
+    [users = await response.json()]
+    [newUser = { name: "Alice", email: "alice@example.com" }]
+    [createResponse = await httpPost("/api/users", newUser)]
+    [if (createResponse.status == 201) print("User created successfully")]
+    [catch(err) print("API error: " + err.message)]
   }
 }
 ```
 
 ### Timers and Delays
 ```alterion
-@async delay(ms: Int): Future<Void>
-setTimeout(callback: Function, ms: Int): Int
-clearTimeout(id: Int): Void
-setInterval(callback: Function, ms: Int): Int
-clearInterval(id: Int): Void
+@async delay(ms)
+setTimeout(callback, ms)
+clearTimeout(id)
+setInterval(callback, ms)
+clearInterval(id)
 
-// Usage
 @async
 example() {
   print("Starting...")
@@ -267,12 +288,10 @@ example() {
   print("Done!")
 }
 
-// Timer example
 timerId = setTimeout(() => {
   print("Timer fired!")
 }, 2000)
 
-// Cancel timer if needed
 clearTimeout(timerId)
 ```
 

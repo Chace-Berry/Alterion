@@ -1,4 +1,5 @@
 # 📚 Alterion Language Guide
+# ⚠️ **Note:** The features and syntax described below are future plans for Alterion and may not be fully implemented yet.
 
 > Complete language reference for the Alterion Programming Language
 
@@ -9,501 +10,242 @@
 3. [Grammar & Syntax](#grammar--syntax)
 4. [Type System](#type-system)
 5. [Memory Model & Ownership](#memory-model--ownership)
+> Comprehensive reference for the Alterion Programming Language
+
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Syntax Overview](#syntax-overview)
+3. [Components](#components)
+4. [Variables & Types](#variables--types)
+5. [Functions](#functions)
 6. [Control Flow](#control-flow)
 7. [Async Programming](#async-programming)
-8. [Components & UI](#components--ui)
-9. [Functions](#functions)
-10. [Modifiers & Decorators](#modifiers--decorators)
-11. [Error Handling](#error-handling)
-12. [Foreign Function Interface](#foreign-function-interface)
+8. [Ownership & Borrowing](#ownership--borrowing)
+9. [UI & JSX Syntax](#ui--jsx-syntax)
+10. [Error Handling](#error-handling)
+11. [Modules & Imports](#modules--imports)
+12. [Type System](#type-system)
+13. [Advanced Patterns](#advanced-patterns)
 
 ---
 
-## Language Overview
+## Introduction
 
-Alterion is a modern systems programming language with:
-- **Component-First Architecture** - React/JSX-inspired but universal
-- **Gradual Typing** - Dynamic by default, static hints optional
-- **Rust-Inspired Ownership** - Memory safety without garbage collection
-- **Async-Native** - Built-in async blocks with structured concurrency
-- **NativeUI System** - Universal UI rendering across platforms
+Alterion is a modern, component-first language designed for building cross-platform applications with memory safety, async support, and universal UI.
 
-## Lexical Structure
+---
 
-### Keywords
+## Syntax Overview
+
+Alterion uses clean, dynamic assignment and modern control flow:
+
 ```alterion
-async component import extern for if else while return break continue
-yield await throw try catch finally true false null none
-```
+// Dynamic assignment
+name = "Alice"
+age = 25
 
-### Identifiers
-- Pattern: `[A-Za-z_][A-Za-z0-9_]*`
-- Case-sensitive
-- Examples: `myVar`, `ComponentName`, `_private`
+// Static typing (optional)
+age: Int = 25
 
-### Literals
-
-#### Strings
-```alterion
-'single quotes'
-"double quotes"
-"escape sequences: \n \t \\ \""
-```
-
-#### Numbers
-```alterion
-42          // integer
-3.14        // float
-0xFF        // hexadecimal
-0b1010      // binary
-```
-
-#### Booleans
-```alterion
-true
-false
-```
-
-#### Null
-```alterion
-null        // or none
-```
-
-### Operators
-
-#### Arithmetic
-```alterion
-+ - * / %   // basic arithmetic
-**          // exponentiation
-```
-
-#### Comparison
-```alterion
-== != < <= > >=
-```
-
-#### Logical
-```alterion
-&& || !
-```
-
-#### Assignment
-```alterion
-= += -= *= /=
-```
-
-### Punctuation & Symbols
-```alterion
-, . ; :     // punctuation
-{} [] ()    // brackets and blocks
-< >         // angle brackets for UI tags
-! @         // special operators
-```
-
-### Comments
-```alterion
-// Single line comment
-
-/*
-Multi-line
-comment
-*/
-```
-
-## Grammar & Syntax
-
-### Component Declaration
-```alterion
-component ComponentName {
-  property: Type = defaultValue
-  
-  functionName {
-    // function body
-  }
-  
-  render:
-    <ui-element>
-      // UI content
-    </ui-element>
-}
-```
-
-### Control Flow Syntax
-
-#### If Statements
-```alterion
-if (condition)[
-  // true block
-][
-  // else block (optional)
-]
-```
-
-#### Loops
-```alterion
-// Numeric loop
-for i (6)[
-  // loop i from 0 to 5
-]
-
-// Range loop
-for i (start, end)[
-  // loop i from start to end-1
-]
-
-// Iterable loop
-for item in collection[
-  // iterate over collection
-]
-
-// While loop
-while (condition)[
-  // loop body
-]
-```
-
-## Type System
-
-### Primitive Types
-```alterion
-Int         // integer numbers
-Float       // floating point numbers
-Bool        // true/false
-String      // text strings
-Void        // no return value
-None        // null-like type
-```
-
-### Gradual Typing
-```alterion
-// Dynamic (inferred)
-count = 0
-
-// Static hint
-count: Int = 0
-
-// Function with types
-calculateArea(width: Float, height: Float): Float {
-  return width * height
-}
-```
-
-### Composite Types
-```alterion
 // Arrays
-numbers: [Int] = [1, 2, 3]
-
-// Structs (components without render)
-struct Point {
-  x: Float
-  y: Float
-}
+numbers = [1, 2, 3]
 ```
 
-## Memory Model & Ownership
+---
 
-### Single Ownership
+## Components
+
+Components are the building blocks of Alterion apps:
+
 ```alterion
-// Each value has one owner
-data = createData()   // data owns the value
-moved = data         // ownership transferred to moved
-// data is no longer valid
-```
-
-### Borrowing
-```alterion
-// Immutable borrow
-processData(&data)   // borrow without taking ownership
-
-// Mutable borrow
-modifyData(@mut data) // mutable borrow
-```
-
-### Lifetimes
-```alterion
-// Lifetimes are inferred by compiler
-// No explicit lifetime annotations needed in most cases
-```
-
-### RAII (Resource Acquisition Is Initialization)
-```alterion
-// Destructors called automatically at scope exit
-{
-  file = openFile("data.txt")
-  // file automatically closed when leaving scope
-}
-```
-
-## Control Flow
-
-### Standard Control Flow
-```alterion
-// If-else
-if (x > 0)[
-  print("positive")
-][
-  print("non-positive")
-]
-
-// While loop
-while (running)[
-  processEvent()
-]
-
-// Break and continue
-for i (10)[
-  if (i == 5) continue
-  if (i == 8) break
-  print(i)
-]
-```
-
-## Async Programming
-
-### Async Blocks
-```alterion
-async{[
-  // try block
-  data = await fetchData()
-  result = await processData(data)
-  print(result)
-][
-  // catch block (optional)
-  catch(error) {
-    print("Error: " + error.message)
+component MyButton {
+  label = "Click Me"
+  onClick {
+    print("Button clicked!")
   }
-][
-  // finally block (optional)
-  finally {
-    cleanup()
-  }
-]}
-```
-
-### Async Functions
-```alterion
-@async
-fetchUserData(userId: String) {
-  response = await httpGet("/users/" + userId)
-  return await response.json()
-}
-```
-
-## Components & UI
-
-### Component Structure
-```alterion
-component UserProfile {
-  // State
-  user: Object = null
-  loading: Bool = false
-  
-  // Functions
-  @async
-  loadUser(id: String) {
-    loading = true
-    async{[
-      user = await fetchUser(id)
-    ][
-      catch(err) {
-        print("Failed to load user: " + err.message)
-      }
-    ][
-      finally {
-        loading = false
-      }
-    ]}
-  }
-  
-  // UI Render
   render:
-    loading ? 
-      <div center>Loading...</div> :
-      <div>
-        <h1>{user.name}</h1>
-        <p>{user.email}</p>
-      </div>
+    <button onClick={onClick}>{label}</button>
 }
 ```
 
-### NativeUI Tags
-```alterion
-// Centerable divs (solves the CSS problem!)
-<div center>
-  <h1>Centered Content</h1>
-</div>
+---
 
-// Other layout attributes
-<div flex="column" gap="20px">
-  <button onClick={handleClick}>Click me</button>
-  <input value={inputText} onChange={handleChange} />
-</div>
+## Variables & Types
+
+Alterion supports both dynamic and static typing:
+
+```alterion
+// Dynamic
+score = 42
+// Static
+score: Int = 42
+// Type inference
+isActive = true
+// Arrays
+items = ["a", "b", "c"]
 ```
+
+---
 
 ## Functions
 
-### Function Declaration
+Functions can be declared with or without type hints:
+
 ```alterion
-// Simple function
 add(a, b) {
   return a + b
 }
 
-// With type hints
 add(a: Int, b: Int): Int {
   return a + b
 }
+```
 
-// Component methods
-component Calculator {
-  result: Int = 0
-  
-  calculate(a: Int, b: Int) {
-    result = a + b
+---
+
+## Control Flow
+
+### If/Else
+```alterion
+if (x > 0)[
+  print("Positive")
+][
+  print("Non-positive")
+]
+```
+
+### Loops
+```alterion
+for i (10)[
+  print(i)
+]
+
+for item in items[
+  print(item)
+]
+```
+
+---
+
+## Async Programming
+
+Alterion supports async blocks and error handling:
+
+```alterion
+@async
+fetchData(url) {
+  async {
+    [response = await httpGet(url)]
+    [data = await response.json()]
+    [return data]
+    [catch(err) return null]
   }
 }
 ```
 
-## Modifiers & Decorators
+---
 
-### Available Modifiers
+## Ownership & Borrowing
+
+Inspired by Rust, Alterion enforces memory safety:
+
 ```alterion
-@async      // Async function
-@unsafe     // Unsafe operations allowed
-@test       // Test function
-@deprecated // Deprecated warning
+data = createData()
+moved = data // ownership moves
+data.cleanup() // error: 'data' moved
+
+processData(&data) // borrow
+modifyData(@mut data) // mutable borrow
 ```
 
-### Usage Examples
-```alterion
-@async
-@deprecated("Use newApiCall instead")
-oldApiCall() {
-  return await legacyEndpoint()
-}
+---
 
-@test
-testAddition() {
-  assert(add(2, 3) == 5)
-}
+## UI & JSX Syntax
+
+Alterion uses JSX-like tags for UI:
+
+```alterion
+render:
+  <div center>
+    <h1>Hello, {name}!</h1>
+    <button onClick={onClick}>Click</button>
+  </div>
 ```
+
+---
 
 ## Error Handling
 
-### Exception Handling
+Use async blocks for robust error handling:
+
 ```alterion
-// Throwing exceptions
-validateInput(data) {
-  if (!data) {
-    throw "Invalid input data"
-  }
+async {
+  [result = await riskyOperation()]
+  [catch(err) print("Error: " + err.message)]
+  [finally print("Done!")]
 }
-
-// Try-catch-finally
-try {
-  result = riskyOperation()
-} catch(error) {
-  print("Error occurred: " + error)
-  result = defaultValue
-} finally {
-  cleanup()
-}
-```
-
-### Async Error Handling
-```alterion
-async{[
-  data = await fetchData()
-  processData(data)
-][
-  catch(NetworkError err) {
-    print("Network error: " + err.message)
-  }
-  catch(ValidationError err) {
-    print("Validation error: " + err.message)
-  }
-][
-  finally {
-    hideSpinner()
-  }
-]}
-```
-
-## Foreign Function Interface
-
-### C Library Integration
-```alterion
-// Import C functions
-extern sqrt(x: Float): Float from "libm.so"
-extern malloc(size: Int): Pointer from "libc.so"
-
-// Usage
-result = sqrt(16.0)  // returns 4.0
-```
-
-### C++ Integration
-```alterion
-extern processVector(data: [Int], size: Int): Int from "libcpp.so"
 ```
 
 ---
 
-## Example: Complete Counter App
+## Modules & Imports
+
+Import other files or libraries:
 
 ```alterion
-component Counter {
-  count: Int = 0
-  
-  increment {
-    count = count + 1
-  }
-  
-  decrement {
-    count = count - 1
-  }
-  
-  @async
-  reset {
-    async{[
-      // Simulate async operation
-      await delay(100)
-      count = 0
-    ][
-      catch(err) {
-        print("Reset failed: " + err.message)
-      }
-    ]}
-  }
-  
-  render:
-    <div center>
-      <h2>Counter: {count}</h2>
-      <div>
-        <button onClick={increment}>+</button>
-        <button onClick={decrement}>-</button>
-        <button onClick={reset}>Reset</button>
-      </div>
-    </div>
-}
-
-// Usage
-myCounter = Counter()
+import { MyButton, MyForm } from "./components"
+import http from "std/http"
 ```
 
 ---
 
-*This guide covers the complete Alterion language specification. For more examples and tutorials, see the [Getting Started Guide](../getting-started.md).*
-let integer: number = 42
-let float: number = 3.14159
-let hex: number = 0xFF
-let binary: number = 0b1010
-let octal: number = 0o755
+## Type System
 
-// Strings
-let message: string = "Hello, Alterion!"
-let template: string = `Count: ${count}`
-let char: string = 'A'
+Alterion supports:
+- **Type inference**
+- **Static types**
+- **Union types**
+- **Generics**
 
+```alterion
+// Union type
+value: Int | String = "hello"
+
+// Generic function
+identity<T>(x: T): T {
+  return x
+}
+```
+
+---
+
+## Advanced Patterns
+
+### Ownership transfer
+```alterion
+data = createData()
+moved = data // ownership moves
+data.cleanup() // error: 'data' moved
+```
+
+### Borrowing
+```alterion
+processData(&data) // borrow
+modifyData(@mut data) // mutable borrow
+```
+
+### Async with error handling
+```alterion
+async {
+  [result = await fetchData()]
+  [catch(err) print("Failed: " + err.message)]
+  [finally print("Cleanup!")]
+}
+```
+
+---
+
+*For more examples, see the [API Reference](../api-reference/README.md) and [Migration Guide](../migration.md).*
 // Booleans
 let isActive: boolean = true
 let isComplete: boolean = false
