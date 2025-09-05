@@ -1,4 +1,5 @@
 <div align="center">
+
 # ⚠️ **Note:** The features and architecture described below are future plans for Alterion and may not be fully implemented yet.
 
 # 🏗️ Alterion Technical Architecture
