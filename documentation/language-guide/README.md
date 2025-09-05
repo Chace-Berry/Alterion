@@ -2,16 +2,6 @@
 # ⚠️ **Note:** The features and syntax described below are future plans for Alterion and may not be fully implemented yet.
 
 > Complete language reference for the Alterion Programming Language
-
-## Table of Contents
-
-1. [Language Overview](#language-overview)
-2. [Lexical Structure](#lexical-structure)
-3. [Grammar & Syntax](#grammar--syntax)
-4. [Type System](#type-system)
-5. [Memory Model & Ownership](#memory-model--ownership)
-> Comprehensive reference for the Alterion Programming Language
-
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Syntax Overview](#syntax-overview)
