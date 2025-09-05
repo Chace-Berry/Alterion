@@ -1,8 +1,6 @@
 <div align="center">
 # ⚠️ **Note:** The features and architecture described below are future plans for Alterion and may not be fully implemented yet.
 
-# ⚠️ **Note:** The features and architecture described below are future plans for Alterion and may not be fully implemented yet.
-
 # 🏗️ Alterion Technical Architecture
 
 This document provides a technical overview of Alterion's internal design, system structure, and key architectural decisions. It is intended for contributors, advanced users, and those interested in the language's implementation.
