@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const POLL_INTERVAL = 3000; // ms
-// Updated to use a proper API endpoint or public path
-const JSON_PATH = "../../results/parser-results.json"; // or "/results/parser-results.json" if served from public folder
+const POLL_INTERVAL = 3000;
+const JSON_PATH = "/results/lexer-results.json";
 
 function fetchResults(setResults, setError) {
   fetch(JSON_PATH)
