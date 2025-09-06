@@ -31,12 +31,6 @@ if exist build\Debug\lexertest.exe (
         pause
         exit /b 1
     )
-    echo [Showing lexer_test_output.csv...]
-    if exist lexer_test_output.csv (
-        more lexer_test_output.csv
-    ) else (
-        echo [ERROR] lexer_test_output.csv not found!
-    )
 ) else (
     echo [ERROR] build\Debug\lexertest.exe not found!
 )

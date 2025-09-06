@@ -15,8 +15,8 @@ std::ostream& operator<<(std::ostream& os, const Token& token) {
         case TokenType::BraceClose:       os << "BraceClose"; break;
         case TokenType::ParenOpen:        os << "ParenOpen"; break;
         case TokenType::ParenClose:       os << "ParenClose"; break;
-        case TokenType::BracketOpen:      os << "BracketOpen"; break;
-        case TokenType::BracketClose:     os << "BracketClose"; break;
+        case TokenType::SquareBracketOpen:      os << "SquareBracketOpen"; break;
+        case TokenType::SquareBracketClose:     os << "SquareBracketClose"; break;
 
         case TokenType::Comma:            os << "Comma"; break;
         case TokenType::Dot:              os << "Dot"; break;

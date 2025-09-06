@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const POLL_INTERVAL = 3000;
-const JSON_PATH = "https://raw.githubusercontent.com/Chace-Berry/Alterion-lang/main/results-dashboard/public/results/lexer-results.json";
+const JSON_PATH = "/results/lexer-results.json";
 
 function fetchResults(setResults, setError) {
   fetch(JSON_PATH)

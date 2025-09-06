@@ -1,11 +1,1641 @@
 [
   {
     "index": 0,
+    "expectedType": "Identifier",
+    "expectedValue": "emojiVar",
+    "returnedType": "Identifier",
+    "returnedValue": "emojiVar",
+    "line": 2,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 1,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 2,
+    "column": 10,
+    "status": "OK"
+  },
+  {
+    "index": 2,
+    "expectedType": "String",
+    "expectedValue": "\u0000",
+    "returnedType": "String",
+    "returnedValue": "\u0000",
+    "line": 2,
+    "column": 12,
+    "status": "OK"
+  },
+  {
+    "index": 3,
+    "expectedType": "Identifier",
+    "expectedValue": "accented",
+    "returnedType": "Identifier",
+    "returnedValue": "accented",
+    "line": 3,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 4,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 3,
+    "column": 10,
+    "status": "OK"
+  },
+  {
+    "index": 5,
+    "expectedType": "String",
+    "expectedValue": "café",
+    "returnedType": "String",
+    "returnedValue": "café",
+    "line": 3,
+    "column": 12,
+    "status": "OK"
+  },
+  {
+    "index": 6,
+    "expectedType": "AtModifier",
+    "expectedValue": "@CAA",
+    "returnedType": "AtModifier",
+    "returnedValue": "@CAA",
+    "line": 4,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 7,
+    "expectedType": "Colon",
+    "expectedValue": ":",
+    "returnedType": "Colon",
+    "returnedValue": ":",
+    "line": 4,
+    "column": 5,
+    "status": "OK"
+  },
+  {
+    "index": 8,
+    "expectedType": "Number",
+    "expectedValue": "89",
+    "returnedType": "Number",
+    "returnedValue": "89",
+    "line": 4,
+    "column": 6,
+    "status": "OK"
+  },
+  {
+    "index": 9,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 4,
+    "column": 9,
+    "status": "OK"
+  },
+  {
+    "index": 10,
+    "expectedType": "String",
+    "expectedValue": "B5AB",
+    "returnedType": "String",
+    "returnedValue": "B5AB",
+    "line": 4,
+    "column": 11,
+    "status": "OK"
+  },
+  {
+    "index": 11,
+    "expectedType": "Identifier",
+    "expectedValue": "func",
+    "returnedType": "Identifier",
+    "returnedValue": "func",
+    "line": 7,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 12,
+    "expectedType": "Unknown",
+    "expectedValue": "(",
+    "returnedType": "Unknown",
+    "returnedValue": "(",
+    "line": 7,
+    "column": 5,
+    "status": "OK"
+  },
+  {
+    "index": 13,
+    "expectedType": "Unknown",
+    "expectedValue": ")",
+    "returnedType": "Unknown",
+    "returnedValue": ")",
+    "line": 7,
+    "column": 6,
+    "status": "OK"
+  },
+  {
+    "index": 14,
+    "expectedType": "ExpressionStart",
+    "expectedValue": "{",
+    "returnedType": "ExpressionStart",
+    "returnedValue": "{",
+    "line": 7,
+    "column": 8,
+    "status": "OK"
+  },
+  {
+    "index": 15,
+    "expectedType": "SquareBracketOpen",
+    "expectedValue": "[",
+    "returnedType": "SquareBracketOpen",
+    "returnedValue": "[",
+    "line": 7,
+    "column": 10,
+    "status": "OK"
+  },
+  {
+    "index": 16,
+    "expectedType": "Number",
+    "expectedValue": "1",
+    "returnedType": "Number",
+    "returnedValue": "1",
+    "line": 7,
+    "column": 11,
+    "status": "OK"
+  },
+  {
+    "index": 17,
+    "expectedType": "Comma",
+    "expectedValue": ",",
+    "returnedType": "Comma",
+    "returnedValue": ",",
+    "line": 7,
+    "column": 12,
+    "status": "OK"
+  },
+  {
+    "index": 18,
+    "expectedType": "Number",
+    "expectedValue": "2",
+    "returnedType": "Number",
+    "returnedValue": "2",
+    "line": 7,
+    "column": 14,
+    "status": "OK"
+  },
+  {
+    "index": 19,
+    "expectedType": "Comma",
+    "expectedValue": ",",
+    "returnedType": "Comma",
+    "returnedValue": ",",
+    "line": 7,
+    "column": 15,
+    "status": "OK"
+  },
+  {
+    "index": 20,
+    "expectedType": "SquareBracketOpen",
+    "expectedValue": "[",
+    "returnedType": "SquareBracketOpen",
+    "returnedValue": "[",
+    "line": 7,
+    "column": 17,
+    "status": "OK"
+  },
+  {
+    "index": 21,
+    "expectedType": "Number",
+    "expectedValue": "3",
+    "returnedType": "Number",
+    "returnedValue": "3",
+    "line": 7,
+    "column": 18,
+    "status": "OK"
+  },
+  {
+    "index": 22,
+    "expectedType": "Comma",
+    "expectedValue": ",",
+    "returnedType": "Comma",
+    "returnedValue": ",",
+    "line": 7,
+    "column": 19,
+    "status": "OK"
+  },
+  {
+    "index": 23,
+    "expectedType": "Number",
+    "expectedValue": "4",
+    "returnedType": "Number",
+    "returnedValue": "4",
+    "line": 7,
+    "column": 21,
+    "status": "OK"
+  },
+  {
+    "index": 24,
+    "expectedType": "SquareBracketClose",
+    "expectedValue": "]",
+    "returnedType": "SquareBracketClose",
+    "returnedValue": "]",
+    "line": 7,
+    "column": 22,
+    "status": "OK"
+  },
+  {
+    "index": 25,
+    "expectedType": "Comma",
+    "expectedValue": ",",
+    "returnedType": "Comma",
+    "returnedValue": ",",
+    "line": 7,
+    "column": 23,
+    "status": "OK"
+  },
+  {
+    "index": 26,
+    "expectedType": "SquareBracketOpen",
+    "expectedValue": "[",
+    "returnedType": "SquareBracketOpen",
+    "returnedValue": "[",
+    "line": 7,
+    "column": 25,
+    "status": "OK"
+  },
+  {
+    "index": 27,
+    "expectedType": "SquareBracketClose",
+    "expectedValue": "]",
+    "returnedType": "SquareBracketClose",
+    "returnedValue": "]",
+    "line": 7,
+    "column": 26,
+    "status": "OK"
+  },
+  {
+    "index": 28,
+    "expectedType": "SquareBracketClose",
+    "expectedValue": "]",
+    "returnedType": "SquareBracketClose",
+    "returnedValue": "]",
+    "line": 7,
+    "column": 27,
+    "status": "OK"
+  },
+  {
+    "index": 29,
+    "expectedType": "ExpressionEnd",
+    "expectedValue": "}",
+    "returnedType": "ExpressionEnd",
+    "returnedValue": "}",
+    "line": 7,
+    "column": 29,
+    "status": "OK"
+  },
+  {
+    "index": 30,
+    "expectedType": "Keyword",
+    "expectedValue": "if",
+    "returnedType": "Keyword",
+    "returnedValue": "if",
+    "line": 10,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 31,
+    "expectedType": "Unknown",
+    "expectedValue": "(",
+    "returnedType": "Unknown",
+    "returnedValue": "(",
+    "line": 10,
+    "column": 4,
+    "status": "OK"
+  },
+  {
+    "index": 32,
+    "expectedType": "Identifier",
+    "expectedValue": "x",
+    "returnedType": "Identifier",
+    "returnedValue": "x",
+    "line": 10,
+    "column": 5,
+    "status": "OK"
+  },
+  {
+    "index": 33,
+    "expectedType": "Operator",
+    "expectedValue": ">=",
+    "returnedType": "Operator",
+    "returnedValue": ">=",
+    "line": 10,
+    "column": 7,
+    "status": "OK"
+  },
+  {
+    "index": 34,
+    "expectedType": "Number",
+    "expectedValue": "10",
+    "returnedType": "Number",
+    "returnedValue": "10",
+    "line": 10,
+    "column": 10,
+    "status": "OK"
+  },
+  {
+    "index": 35,
+    "expectedType": "Operator",
+    "expectedValue": "&&",
+    "returnedType": "Operator",
+    "returnedValue": "&&",
+    "line": 10,
+    "column": 13,
+    "status": "OK"
+  },
+  {
+    "index": 36,
+    "expectedType": "Identifier",
+    "expectedValue": "y",
+    "returnedType": "Identifier",
+    "returnedValue": "y",
+    "line": 10,
+    "column": 16,
+    "status": "OK"
+  },
+  {
+    "index": 37,
+    "expectedType": "Error",
+    "expectedValue": "!",
+    "returnedType": "Error",
+    "returnedValue": "!",
+    "line": 10,
+    "column": 18,
+    "status": "OK"
+  },
+  {
+    "index": 38,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 10,
+    "column": 19,
+    "status": "OK"
+  },
+  {
+    "index": 39,
+    "expectedType": "Number",
+    "expectedValue": "5",
+    "returnedType": "Number",
+    "returnedValue": "5",
+    "line": 10,
+    "column": 21,
+    "status": "OK"
+  },
+  {
+    "index": 40,
+    "expectedType": "Unknown",
+    "expectedValue": ")",
+    "returnedType": "Unknown",
+    "returnedValue": ")",
+    "line": 10,
+    "column": 22,
+    "status": "OK"
+  },
+  {
+    "index": 41,
+    "expectedType": "ExpressionStart",
+    "expectedValue": "{",
+    "returnedType": "ExpressionStart",
+    "returnedValue": "{",
+    "line": 10,
+    "column": 24,
+    "status": "OK"
+  },
+  {
+    "index": 42,
+    "expectedType": "Keyword",
+    "expectedValue": "return",
+    "returnedType": "Keyword",
+    "returnedValue": "return",
+    "line": 10,
+    "column": 26,
+    "status": "OK"
+  },
+  {
+    "index": 43,
+    "expectedType": "Identifier",
+    "expectedValue": "x",
+    "returnedType": "Identifier",
+    "returnedValue": "x",
+    "line": 10,
+    "column": 33,
+    "status": "OK"
+  },
+  {
+    "index": 44,
+    "expectedType": "Operator",
+    "expectedValue": "+",
+    "returnedType": "Operator",
+    "returnedValue": "+",
+    "line": 10,
+    "column": 35,
+    "status": "OK"
+  },
+  {
+    "index": 45,
+    "expectedType": "Identifier",
+    "expectedValue": "y",
+    "returnedType": "Identifier",
+    "returnedValue": "y",
+    "line": 10,
+    "column": 37,
+    "status": "OK"
+  },
+  {
+    "index": 46,
+    "expectedType": "SemiColon",
+    "expectedValue": ";",
+    "returnedType": "SemiColon",
+    "returnedValue": ";",
+    "line": 10,
+    "column": 38,
+    "status": "OK"
+  },
+  {
+    "index": 47,
+    "expectedType": "ExpressionEnd",
+    "expectedValue": "}",
+    "returnedType": "ExpressionEnd",
+    "returnedValue": "}",
+    "line": 10,
+    "column": 40,
+    "status": "OK"
+  },
+  {
+    "index": 48,
+    "expectedType": "Keyword",
+    "expectedValue": "async",
+    "returnedType": "Keyword",
+    "returnedValue": "async",
+    "line": 11,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 49,
+    "expectedType": "ExpressionStart",
+    "expectedValue": "{",
+    "returnedType": "ExpressionStart",
+    "returnedValue": "{",
+    "line": 11,
+    "column": 7,
+    "status": "OK"
+  },
+  {
+    "index": 50,
+    "expectedType": "Keyword",
+    "expectedValue": "await",
+    "returnedType": "Keyword",
+    "returnedValue": "await",
+    "line": 11,
+    "column": 9,
+    "status": "OK"
+  },
+  {
+    "index": 51,
+    "expectedType": "Identifier",
+    "expectedValue": "fetch",
+    "returnedType": "Identifier",
+    "returnedValue": "fetch",
+    "line": 11,
+    "column": 15,
+    "status": "OK"
+  },
+  {
+    "index": 52,
+    "expectedType": "Unknown",
+    "expectedValue": "(",
+    "returnedType": "Unknown",
+    "returnedValue": "(",
+    "line": 11,
+    "column": 20,
+    "status": "OK"
+  },
+  {
+    "index": 53,
+    "expectedType": "Unknown",
+    "expectedValue": ")",
+    "returnedType": "Unknown",
+    "returnedValue": ")",
+    "line": 11,
+    "column": 21,
+    "status": "OK"
+  },
+  {
+    "index": 54,
+    "expectedType": "ExpressionEnd",
+    "expectedValue": "}",
+    "returnedType": "ExpressionEnd",
+    "returnedValue": "}",
+    "line": 11,
+    "column": 23,
+    "status": "OK"
+  },
+  {
+    "index": 55,
+    "expectedType": "Identifier",
+    "expectedValue": "zero",
+    "returnedType": "Identifier",
+    "returnedValue": "zero",
+    "line": 14,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 56,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 14,
+    "column": 6,
+    "status": "OK"
+  },
+  {
+    "index": 57,
+    "expectedType": "Number",
+    "expectedValue": "0",
+    "returnedType": "Number",
+    "returnedValue": "0",
+    "line": 14,
+    "column": 8,
+    "status": "OK"
+  },
+  {
+    "index": 58,
+    "expectedType": "Identifier",
+    "expectedValue": "float",
+    "returnedType": "Identifier",
+    "returnedValue": "float",
+    "line": 15,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 59,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 15,
+    "column": 7,
+    "status": "OK"
+  },
+  {
+    "index": 60,
+    "expectedType": "Number",
+    "expectedValue": "3.1415",
+    "returnedType": "Number",
+    "returnedValue": "3.1415",
+    "line": 15,
+    "column": 9,
+    "status": "OK"
+  },
+  {
+    "index": 61,
+    "expectedType": "Identifier",
+    "expectedValue": "scientific",
+    "returnedType": "Identifier",
+    "returnedValue": "scientific",
+    "line": 16,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 62,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 16,
+    "column": 12,
+    "status": "OK"
+  },
+  {
+    "index": 63,
+    "expectedType": "Number",
+    "expectedValue": "1e-9",
+    "returnedType": "Number",
+    "returnedValue": "1e-9",
+    "line": 16,
+    "column": 14,
+    "status": "OK"
+  },
+  {
+    "index": 64,
+    "expectedType": "Identifier",
+    "expectedValue": "hex",
+    "returnedType": "Identifier",
+    "returnedValue": "hex",
+    "line": 17,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 65,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 17,
+    "column": 5,
+    "status": "OK"
+  },
+  {
+    "index": 66,
+    "expectedType": "Number",
+    "expectedValue": "0xFF",
+    "returnedType": "Number",
+    "returnedValue": "0xFF",
+    "line": 17,
+    "column": 7,
+    "status": "OK"
+  },
+  {
+    "index": 67,
+    "expectedType": "Identifier",
+    "expectedValue": "bin",
+    "returnedType": "Identifier",
+    "returnedValue": "bin",
+    "line": 18,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 68,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 18,
+    "column": 5,
+    "status": "OK"
+  },
+  {
+    "index": 69,
+    "expectedType": "Number",
+    "expectedValue": "0b1010",
+    "returnedType": "Number",
+    "returnedValue": "0b1010",
+    "line": 18,
+    "column": 7,
+    "status": "OK"
+  },
+  {
+    "index": 70,
+    "expectedType": "Identifier",
+    "expectedValue": "str",
+    "returnedType": "Identifier",
+    "returnedValue": "str",
+    "line": 21,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 71,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 21,
+    "column": 5,
+    "status": "OK"
+  },
+  {
+    "index": 72,
+    "expectedType": "String",
+    "expectedValue": "hello\nworld",
+    "returnedType": "String",
+    "returnedValue": "hello\nworld",
+    "line": 21,
+    "column": 7,
+    "status": "OK"
+  },
+  {
+    "index": 73,
+    "expectedType": "Identifier",
+    "expectedValue": "str2",
+    "returnedType": "Identifier",
+    "returnedValue": "str2",
+    "line": 22,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 74,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 22,
+    "column": 6,
+    "status": "OK"
+  },
+  {
+    "index": 75,
+    "expectedType": "String",
+    "expectedValue": "single quotes",
+    "returnedType": "String",
+    "returnedValue": "single quotes",
+    "line": 22,
+    "column": 8,
+    "status": "OK"
+  },
+  {
+    "index": 76,
+    "expectedType": "Identifier",
+    "expectedValue": "str3",
+    "returnedType": "Identifier",
+    "returnedValue": "str3",
+    "line": 23,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 77,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 23,
+    "column": 6,
+    "status": "OK"
+  },
+  {
+    "index": 78,
+    "expectedType": "String",
+    "expectedValue": "emoji: \u000e",
+    "returnedType": "String",
+    "returnedValue": "emoji: \u000e",
+    "line": 23,
+    "column": 8,
+    "status": "OK"
+  },
+  {
+    "index": 79,
+    "expectedType": "TagOpen",
+    "expectedValue": "div",
+    "returnedType": "TagOpen",
+    "returnedValue": "div",
+    "line": 31,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 80,
+    "expectedType": "AttributeName",
+    "expectedValue": "attr",
+    "returnedType": "AttributeName",
+    "returnedValue": "attr",
+    "line": 31,
+    "column": 6,
+    "status": "OK"
+  },
+  {
+    "index": 81,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 31,
+    "column": 10,
+    "status": "OK"
+  },
+  {
+    "index": 82,
+    "expectedType": "String",
+    "expectedValue": "val",
+    "returnedType": "String",
+    "returnedValue": "val",
+    "line": 31,
+    "column": 11,
+    "status": "OK"
+  },
+  {
+    "index": 83,
+    "expectedType": "Keyword",
+    "expectedValue": "mod",
+    "returnedType": "Keyword",
+    "returnedValue": "mod",
+    "line": 31,
+    "column": 18,
+    "status": "OK"
+  },
+  {
+    "index": 84,
+    "expectedType": "TagEnd",
+    "expectedValue": ">",
+    "returnedType": "TagEnd",
+    "returnedValue": ">",
+    "line": 31,
+    "column": 21,
+    "status": "OK"
+  },
+  {
+    "index": 85,
+    "expectedType": "ExpressionStart",
+    "expectedValue": "{",
+    "returnedType": "ExpressionStart",
+    "returnedValue": "{",
+    "line": 31,
+    "column": 23,
+    "status": "OK"
+  },
+  {
+    "index": 86,
+    "expectedType": "Identifier",
+    "expectedValue": "text",
+    "returnedType": "Identifier",
+    "returnedValue": "text",
+    "line": 31,
+    "column": 23,
+    "status": "OK"
+  },
+  {
+    "index": 87,
+    "expectedType": "ExpressionEnd",
+    "expectedValue": "}",
+    "returnedType": "ExpressionEnd",
+    "returnedValue": "}",
+    "line": 31,
+    "column": 27,
+    "status": "OK"
+  },
+  {
+    "index": 88,
+    "expectedType": "TagClose",
+    "expectedValue": "",
+    "returnedType": "TagClose",
+    "returnedValue": "",
+    "line": 31,
+    "column": 28,
+    "status": "OK"
+  },
+  {
+    "index": 89,
+    "expectedType": "Operator",
+    "expectedValue": "/",
+    "returnedType": "Operator",
+    "returnedValue": "/",
+    "line": 31,
+    "column": 29,
+    "status": "OK"
+  },
+  {
+    "index": 90,
+    "expectedType": "Identifier",
+    "expectedValue": "div",
+    "returnedType": "Identifier",
+    "returnedValue": "div",
+    "line": 31,
+    "column": 30,
+    "status": "OK"
+  },
+  {
+    "index": 91,
+    "expectedType": "Operator",
+    "expectedValue": ">",
+    "returnedType": "Operator",
+    "returnedValue": ">",
+    "line": 31,
+    "column": 33,
+    "status": "OK"
+  },
+  {
+    "index": 92,
+    "expectedType": "ValueBinding",
+    "expectedValue": "!boundVar",
+    "returnedType": "ValueBinding",
+    "returnedValue": "!boundVar",
+    "line": 34,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 93,
+    "expectedType": "AtModifier",
+    "expectedValue": "@decorator",
+    "returnedType": "AtModifier",
+    "returnedValue": "@decorator",
+    "line": 35,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 94,
+    "expectedType": "Keyword",
+    "expectedValue": "for",
+    "returnedType": "Keyword",
+    "returnedValue": "for",
+    "line": 38,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 95,
+    "expectedType": "Unknown",
+    "expectedValue": "(",
+    "returnedType": "Unknown",
+    "returnedValue": "(",
+    "line": 38,
+    "column": 5,
+    "status": "OK"
+  },
+  {
+    "index": 96,
+    "expectedType": "Identifier",
+    "expectedValue": "i",
+    "returnedType": "Identifier",
+    "returnedValue": "i",
+    "line": 38,
+    "column": 6,
+    "status": "OK"
+  },
+  {
+    "index": 97,
+    "expectedType": "Identifier",
+    "expectedValue": "in",
+    "returnedType": "Identifier",
+    "returnedValue": "in",
+    "line": 38,
+    "column": 8,
+    "status": "OK"
+  },
+  {
+    "index": 98,
+    "expectedType": "SquareBracketOpen",
+    "expectedValue": "[",
+    "returnedType": "SquareBracketOpen",
+    "returnedValue": "[",
+    "line": 38,
+    "column": 11,
+    "status": "OK"
+  },
+  {
+    "index": 99,
+    "expectedType": "Number",
+    "expectedValue": "1",
+    "returnedType": "Number",
+    "returnedValue": "1",
+    "line": 38,
+    "column": 12,
+    "status": "OK"
+  },
+  {
+    "index": 100,
+    "expectedType": "Comma",
+    "expectedValue": ",",
+    "returnedType": "Comma",
+    "returnedValue": ",",
+    "line": 38,
+    "column": 13,
+    "status": "OK"
+  },
+  {
+    "index": 101,
+    "expectedType": "Number",
+    "expectedValue": "2",
+    "returnedType": "Number",
+    "returnedValue": "2",
+    "line": 38,
+    "column": 14,
+    "status": "OK"
+  },
+  {
+    "index": 102,
+    "expectedType": "Comma",
+    "expectedValue": ",",
+    "returnedType": "Comma",
+    "returnedValue": ",",
+    "line": 38,
+    "column": 15,
+    "status": "OK"
+  },
+  {
+    "index": 103,
+    "expectedType": "Number",
+    "expectedValue": "3",
+    "returnedType": "Number",
+    "returnedValue": "3",
+    "line": 38,
+    "column": 16,
+    "status": "OK"
+  },
+  {
+    "index": 104,
+    "expectedType": "SquareBracketClose",
+    "expectedValue": "]",
+    "returnedType": "SquareBracketClose",
+    "returnedValue": "]",
+    "line": 38,
+    "column": 17,
+    "status": "OK"
+  },
+  {
+    "index": 105,
+    "expectedType": "Unknown",
+    "expectedValue": ")",
+    "returnedType": "Unknown",
+    "returnedValue": ")",
+    "line": 38,
+    "column": 18,
+    "status": "OK"
+  },
+  {
+    "index": 106,
+    "expectedType": "ExpressionStart",
+    "expectedValue": "{",
+    "returnedType": "ExpressionStart",
+    "returnedValue": "{",
+    "line": 38,
+    "column": 20,
+    "status": "OK"
+  },
+  {
+    "index": 107,
+    "expectedType": "Keyword",
+    "expectedValue": "print",
+    "returnedType": "Keyword",
+    "returnedValue": "print",
+    "line": 38,
+    "column": 22,
+    "status": "OK"
+  },
+  {
+    "index": 108,
+    "expectedType": "Unknown",
+    "expectedValue": "(",
+    "returnedType": "Unknown",
+    "returnedValue": "(",
+    "line": 38,
+    "column": 27,
+    "status": "OK"
+  },
+  {
+    "index": 109,
+    "expectedType": "Identifier",
+    "expectedValue": "i",
+    "returnedType": "Identifier",
+    "returnedValue": "i",
+    "line": 38,
+    "column": 28,
+    "status": "OK"
+  },
+  {
+    "index": 110,
+    "expectedType": "Unknown",
+    "expectedValue": ")",
+    "returnedType": "Unknown",
+    "returnedValue": ")",
+    "line": 38,
+    "column": 29,
+    "status": "OK"
+  },
+  {
+    "index": 111,
+    "expectedType": "SemiColon",
+    "expectedValue": ";",
+    "returnedType": "SemiColon",
+    "returnedValue": ";",
+    "line": 38,
+    "column": 30,
+    "status": "OK"
+  },
+  {
+    "index": 112,
+    "expectedType": "ExpressionEnd",
+    "expectedValue": "}",
+    "returnedType": "ExpressionEnd",
+    "returnedValue": "}",
+    "line": 38,
+    "column": 32,
+    "status": "OK"
+  },
+  {
+    "index": 113,
+    "expectedType": "Keyword",
+    "expectedValue": "async",
+    "returnedType": "Keyword",
+    "returnedValue": "async",
+    "line": 39,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 114,
+    "expectedType": "ExpressionStart",
+    "expectedValue": "{",
+    "returnedType": "ExpressionStart",
+    "returnedValue": "{",
+    "line": 39,
+    "column": 7,
+    "status": "OK"
+  },
+  {
+    "index": 115,
+    "expectedType": "SquareBracketOpen",
+    "expectedValue": "[",
+    "returnedType": "SquareBracketOpen",
+    "returnedValue": "[",
+    "line": 39,
+    "column": 9,
+    "status": "OK"
+  },
+  {
+    "index": 116,
+    "expectedType": "Identifier",
+    "expectedValue": "doAsync",
+    "returnedType": "Identifier",
+    "returnedValue": "doAsync",
+    "line": 39,
+    "column": 10,
+    "status": "OK"
+  },
+  {
+    "index": 117,
+    "expectedType": "Unknown",
+    "expectedValue": "(",
+    "returnedType": "Unknown",
+    "returnedValue": "(",
+    "line": 39,
+    "column": 17,
+    "status": "OK"
+  },
+  {
+    "index": 118,
+    "expectedType": "Unknown",
+    "expectedValue": ")",
+    "returnedType": "Unknown",
+    "returnedValue": ")",
+    "line": 39,
+    "column": 18,
+    "status": "OK"
+  },
+  {
+    "index": 119,
+    "expectedType": "SquareBracketClose",
+    "expectedValue": "]",
+    "returnedType": "SquareBracketClose",
+    "returnedValue": "]",
+    "line": 39,
+    "column": 19,
+    "status": "OK"
+  },
+  {
+    "index": 120,
+    "expectedType": "SquareBracketOpen",
+    "expectedValue": "[",
+    "returnedType": "SquareBracketOpen",
+    "returnedValue": "[",
+    "line": 39,
+    "column": 21,
+    "status": "OK"
+  },
+  {
+    "index": 121,
+    "expectedType": "Identifier",
+    "expectedValue": "handleAsync",
+    "returnedType": "Identifier",
+    "returnedValue": "handleAsync",
+    "line": 39,
+    "column": 22,
+    "status": "OK"
+  },
+  {
+    "index": 122,
+    "expectedType": "Unknown",
+    "expectedValue": "(",
+    "returnedType": "Unknown",
+    "returnedValue": "(",
+    "line": 39,
+    "column": 33,
+    "status": "OK"
+  },
+  {
+    "index": 123,
+    "expectedType": "Unknown",
+    "expectedValue": ")",
+    "returnedType": "Unknown",
+    "returnedValue": ")",
+    "line": 39,
+    "column": 34,
+    "status": "OK"
+  },
+  {
+    "index": 124,
+    "expectedType": "SquareBracketClose",
+    "expectedValue": "]",
+    "returnedType": "SquareBracketClose",
+    "returnedValue": "]",
+    "line": 39,
+    "column": 35,
+    "status": "OK"
+  },
+  {
+    "index": 125,
+    "expectedType": "ExpressionEnd",
+    "expectedValue": "}",
+    "returnedType": "ExpressionEnd",
+    "returnedValue": "}",
+    "line": 39,
+    "column": 37,
+    "status": "OK"
+  },
+  {
+    "index": 126,
+    "expectedType": "Identifier",
+    "expectedValue": "unclosed_string",
+    "returnedType": "Identifier",
+    "returnedValue": "unclosed_string",
+    "line": 42,
+    "column": 1,
+    "status": "OK"
+  },
+  {
+    "index": 127,
+    "expectedType": "Equals",
+    "expectedValue": "=",
+    "returnedType": "Equals",
+    "returnedValue": "=",
+    "line": 42,
+    "column": 17,
+    "status": "OK"
+  },
+  {
+    "index": 128,
+    "expectedType": "String",
+    "expectedValue": "oops\ninvalid_utf = ",
+    "returnedType": "String",
+    "returnedValue": "oops\ninvalid_utf = ",
+    "line": 42,
+    "column": 19,
+    "status": "OK"
+  },
+  {
+    "index": 129,
+    "expectedType": "Unknown",
+    "expectedValue": "\\",
+    "returnedType": "Unknown",
+    "returnedValue": "\\",
+    "line": 43,
+    "column": 16,
+    "status": "OK"
+  },
+  {
+    "index": 130,
+    "expectedType": "Identifier",
+    "expectedValue": "xFF",
+    "returnedType": "Identifier",
+    "returnedValue": "xFF",
+    "line": 43,
+    "column": 17,
+    "status": "OK"
+  },
+  {
+    "index": 131,
+    "expectedType": "String",
+    "expectedValue": "\n\n// Empty array and nested blocks\nempty = []\nnested = { [ [ [ ] ] ] }\n// UI Component Example with full lexer coverage\n\n@component\n<Panel title=",
+    "returnedType": "String",
+    "returnedValue": "\n\n// Empty array and nested blocks\nempty = []\nnested = { [ [ [ ] ] ] }\n// UI Component Example with full lexer coverage\n\n@component\n<Panel title=",
+    "line": 43,
+    "column": 20,
+    "status": "OK"
+  },
+  {
+    "index": 132,
+    "expectedType": "Identifier",
+    "expectedValue": "Welcome",
+    "returnedType": "Identifier",
+    "returnedValue": "Welcome",
+    "line": 51,
+    "column": 15,
+    "status": "OK"
+  },
+  {
+    "index": 133,
+    "expectedType": "Unknown",
+    "expectedValue": "\u0000",
+    "returnedType": "Unknown",
+    "returnedValue": "\u0000",
+    "line": 51,
+    "column": 23,
+    "status": "OK"
+  },
+  {
+    "index": 134,
+    "expectedType": "String",
+    "expectedValue": " theme=",
+    "returnedType": "String",
+    "returnedValue": " theme=",
+    "line": 51,
+    "column": 24,
+    "status": "OK"
+  },
+  {
+    "index": 135,
+    "expectedType": "Identifier",
+    "expectedValue": "dark",
+    "returnedType": "Identifier",
+    "returnedValue": "dark",
+    "line": 51,
+    "column": 33,
+    "status": "OK"
+  },
+  {
+    "index": 136,
+    "expectedType": "String",
+    "expectedValue": " @responsive>\n   <Header>\n      {async {\n         [loadUser()] [loadSettings()]\n      }}\n      <Avatar src=",
+    "returnedType": "String",
+    "returnedValue": " @responsive>\n   <Header>\n      {async {\n         [loadUser()] [loadSettings()]\n      }}\n      <Avatar src=",
+    "line": 51,
+    "column": 37,
+    "status": "OK"
+  },
+  {
+    "index": 137,
+    "expectedType": "Identifier",
+    "expectedValue": "user",
+    "returnedType": "Identifier",
+    "returnedValue": "user",
+    "line": 56,
+    "column": 20,
+    "status": "OK"
+  },
+  {
+    "index": 138,
+    "expectedType": "Dot",
+    "expectedValue": ".",
+    "returnedType": "Dot",
+    "returnedValue": ".",
+    "line": 56,
+    "column": 24,
+    "status": "OK"
+  },
+  {
+    "index": 139,
+    "expectedType": "Identifier",
+    "expectedValue": "png",
+    "returnedType": "Identifier",
+    "returnedValue": "png",
+    "line": 56,
+    "column": 25,
+    "status": "OK"
+  },
+  {
+    "index": 140,
+    "expectedType": "String",
+    "expectedValue": " alt=",
+    "returnedType": "String",
+    "returnedValue": " alt=",
+    "line": 56,
+    "column": 28,
+    "status": "OK"
+  },
+  {
+    "index": 141,
+    "expectedType": "Identifier",
+    "expectedValue": "d",
+    "returnedType": "Identifier",
+    "returnedValue": "d",
+    "line": 56,
+    "column": 35,
+    "status": "OK"
+  },
+  {
+    "index": 142,
+    "expectedType": "String",
+    "expectedValue": " />\n      <span>{userName}</span>\n   </Header>\n   <Content>\n      <List>\n         {for (item in items) {\n            <ListItem key={item.id}>\n               {item.name} - {item.value}\n            </ListItem>\n         }}\n      </List>\n      <Button @primary onClick={handleClick}>Click Me</Button>\n      <StatusBar>\n         {status ? ",
+    "returnedType": "String",
+    "returnedValue": " />\n      <span>{userName}</span>\n   </Header>\n   <Content>\n      <List>\n         {for (item in items) {\n            <ListItem key={item.id}>\n               {item.name} - {item.value}\n            </ListItem>\n         }}\n      </List>\n      <Button @primary onClick={handleClick}>Click Me</Button>\n      <StatusBar>\n         {status ? ",
+    "line": 56,
+    "column": 36,
+    "status": "OK"
+  },
+  {
+    "index": 143,
+    "expectedType": "Unknown",
+    "expectedValue": "\u0005",
+    "returnedType": "Unknown",
+    "returnedValue": "\u0005",
+    "line": 69,
+    "column": 21,
+    "status": "OK"
+  },
+  {
+    "index": 144,
+    "expectedType": "Identifier",
+    "expectedValue": "Success",
+    "returnedType": "Identifier",
+    "returnedValue": "Success",
+    "line": 69,
+    "column": 23,
+    "status": "OK"
+  },
+  {
+    "index": 145,
+    "expectedType": "String",
+    "expectedValue": " : ",
+    "returnedType": "String",
+    "returnedValue": " : ",
+    "line": 69,
+    "column": 30,
+    "status": "OK"
+  },
+  {
+    "index": 146,
+    "expectedType": "Identifier",
+    "expectedValue": "L",
+    "returnedType": "Identifier",
+    "returnedValue": "L",
+    "line": 69,
+    "column": 35,
+    "status": "OK"
+  },
+  {
+    "index": 147,
+    "expectedType": "Identifier",
+    "expectedValue": "Error",
+    "returnedType": "Identifier",
+    "returnedValue": "Error",
+    "line": 69,
+    "column": 37,
+    "status": "OK"
+  },
+  {
+    "index": 148,
+    "expectedType": "String",
+    "expectedValue": "}\n      </StatusBar>\n   </Content>\n   <Footer>\n      <span>© 2025 Café</span>\n   </Footer>\n</Panel>\n\n// Async function and UTF-8 test\nasync { [fetchData()] [process(",
+    "returnedType": "String",
+    "returnedValue": "}\n      </StatusBar>\n   </Content>\n   <Footer>\n      <span>© 2025 Café</span>\n   </Footer>\n</Panel>\n\n// Async function and UTF-8 test\nasync { [fetchData()] [process(",
+    "line": 69,
+    "column": 42,
+    "status": "OK"
+  },
+  {
+    "index": 149,
+    "expectedType": "Number",
+    "expectedValue": "40",
+    "returnedType": "Number",
+    "returnedValue": "40",
+    "line": 78,
+    "column": 33,
+    "status": "OK"
+  },
+  {
+    "index": 150,
+    "expectedType": "Operator",
+    "expectedValue": "==",
+    "returnedType": "Operator",
+    "returnedValue": "==",
+    "line": 78,
+    "column": 35,
+    "status": "OK"
+  },
+  {
+    "index": 151,
+    "expectedType": "Identifier",
+    "expectedValue": "K5",
+    "returnedType": "Identifier",
+    "returnedValue": "K5",
+    "line": 78,
+    "column": 37,
+    "status": "OK"
+  },
+  {
+    "index": 152,
+    "expectedType": "String",
+    "expectedValue": ")] }\nemojiVar = ",
+    "returnedType": "String",
+    "returnedValue": ")] }\nemojiVar = ",
+    "line": 78,
+    "column": 39,
+    "status": "OK"
+  },
+  {
+    "index": 153,
+    "expectedType": "Unknown",
+    "expectedValue": "\u000e",
+    "returnedType": "Unknown",
+    "returnedValue": "\u000e",
+    "line": 79,
+    "column": 13,
+    "status": "OK"
+  },
+  {
+    "index": 154,
+    "expectedType": "String",
+    "expectedValue": "\naccented = ",
+    "returnedType": "String",
+    "returnedValue": "\naccented = ",
+    "line": 79,
+    "column": 14,
+    "status": "OK"
+  },
+  {
+    "index": 155,
+    "expectedType": "Identifier",
+    "expectedValue": "café",
+    "returnedType": "Identifier",
+    "returnedValue": "café",
+    "line": 80,
+    "column": 13,
+    "status": "OK"
+  },
+  {
+    "index": 156,
+    "expectedType": "String",
+    "expectedValue": "\n@CAA:89 = ",
+    "returnedType": "String",
+    "returnedValue": "\n@CAA:89 = ",
+    "line": 80,
+    "column": 17,
+    "status": "OK"
+  },
+  {
+    "index": 157,
+    "expectedType": "Identifier",
+    "expectedValue": "B5AB",
+    "returnedType": "Identifier",
+    "returnedValue": "B5AB",
+    "line": 81,
+    "column": 12,
+    "status": "OK"
+  },
+  {
+    "index": 158,
+    "expectedType": "String",
+    "expectedValue": "\n\n// Edge cases\nemptyArr = []\nnested = { [ [ [ ] ] ] }\nstr = ",
+    "returnedType": "String",
+    "returnedValue": "\n\n// Edge cases\nemptyArr = []\nnested = { [ [ [ ] ] ] }\nstr = ",
+    "line": 81,
+    "column": 16,
+    "status": "OK"
+  },
+  {
+    "index": 159,
+    "expectedType": "Identifier",
+    "expectedValue": "hello",
+    "returnedType": "Identifier",
+    "returnedValue": "hello",
+    "line": 86,
+    "column": 8,
+    "status": "OK"
+  },
+  {
+    "index": 160,
+    "expectedType": "Unknown",
+    "expectedValue": "\\",
+    "returnedType": "Unknown",
+    "returnedValue": "\\",
+    "line": 86,
+    "column": 13,
+    "status": "OK"
+  },
+  {
+    "index": 161,
+    "expectedType": "Identifier",
+    "expectedValue": "nworld",
+    "returnedType": "Identifier",
+    "returnedValue": "nworld",
+    "line": 86,
+    "column": 14,
+    "status": "OK"
+  },
+  {
+    "index": 162,
+    "expectedType": "String",
+    "expectedValue": "\nnum = 42\nfloat = 3.14\nbin = 0b1010\nhex = 0xFF\n",
+    "returnedType": "String",
+    "returnedValue": "\nnum = 42\nfloat = 3.14\nbin = 0b1010\nhex = 0xFF\n",
+    "line": 86,
+    "column": 20,
+    "status": "OK"
+  },
+  {
+    "index": 163,
     "expectedType": "EOFToken",
     "expectedValue": "",
     "returnedType": "EOFToken",
     "returnedValue": "",
-    "line": 1,
+    "line": 91,
     "column": 1,
     "status": "OK"
   }

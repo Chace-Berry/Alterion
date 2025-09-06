@@ -1,28 +1,90 @@
-const x = 42;
-let y = x + 1;
-if (y > 10) {
-  print("y is big!");
-}
+// UTF-8 identifiers and strings
+emojiVar = "😀"
+accented = "café"
+русский = "тест"
 
-function greet(name) {
-  print("Hello, " + name);
-}
+// Brackets and nesting
+func() { [1, 2, [3, 4], []] }
 
-// Attribute test
+// Keywords and operators
+if (x >= 10 && y != 5) { return x + y; }
+async { await fetch() }
+
+// Numbers and edge cases
+zero = 0
+float = 3.1415
+scientific = 1e-9
+hex = 0xFF
+bin = 0b1010
+
+// Strings and escapes
+str = "hello\nworld"
+str2 = 'single quotes'
+str3 = "emoji: 😎"
+
+// Comments
+// This is a single-line comment
+/* Multi-line
+   comment */
+
+// Tag/JSX-like syntax
+<div attr="val" @mod>{text}</div>
+
+// Value binding and at-modifier
+!boundVar
 @decorator
-class MyClass {
-  constructor() {
-    this.value = 0;
-  }
-}
 
-// UTF-8 test
-const emoji = "😀";
-const accented = "café";
+// Control flow and async blocks
+for (i in [1,2,3]) { print(i); }
+async { [doAsync()] [handleAsync()] }
+
+// Error cases
+unclosed_string = "oops
+invalid_utf = "\xFF"
+
+// Empty array and nested blocks
+empty = []
+nested = { [ [ [ ] ] ] }
+// UI Component Example with full lexer coverage
+
+@component
+<Panel title="Welcome 😀" theme="dark" @responsive>
+   <Header>
+      {async {
+         [loadUser()] [loadSettings()]
+      }}
+      <Avatar src="user.png" alt="👤" />
+      <span>{userName}</span>
+   </Header>
+   <Content>
+      <List>
+         {for (item in items) {
+            <ListItem key={item.id}>
+               {item.name} - {item.value}
+            </ListItem>
+         }}
+      </List>
+      <Button @primary onClick={handleClick}>Click Me</Button>
+      <StatusBar>
+         {status ? "✅ Success" : "❌ Error"}
+      </StatusBar>
+   </Content>
+   <Footer>
+      <span>© 2025 Café</span>
+   </Footer>
+</Panel>
+
+// Async function and UTF-8 test
+async { [fetchData()] [process("данные")] }
+emojiVar = "😎"
+accented = "café"
+русский = "тест"
 
 // Edge cases
-let _private = 123;
-let $dollar = 456;
-let spaced = "a b c";
-let empty = "";
-let special = "!@#%^&*()";
+emptyArr = []
+nested = { [ [ [ ] ] ] }
+str = "hello\nworld"
+num = 42
+float = 3.14
+bin = 0b1010
+hex = 0xFF

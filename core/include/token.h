@@ -66,8 +66,8 @@ enum class TokenType
     SemiColon,         // ;
     ParenOpen,         // (
     ParenClose,        // )
-    BracketOpen,       // [
-    BracketClose,      // ]
+    SquareBracketOpen,       // [
+    SquareBracketClose,      // ]
     Comma,             // ,
     Dot,               // .
 
@@ -176,8 +176,8 @@ private:
             case TokenType::BraceClose: return "BRACE_CLOSE";
             case TokenType::ParenOpen: return "PAREN_OPEN";
             case TokenType::ParenClose: return "PAREN_CLOSE";
-            case TokenType::BracketOpen: return "BRACKET_OPEN";
-            case TokenType::BracketClose: return "BRACKET_CLOSE";
+            case TokenType::SquareBracketOpen: return "SQUARE_BRACKET_OPEN";
+            case TokenType::SquareBracketClose: return "BRACKET_CLOSE";
             case TokenType::EOFToken: return "EOF";
             default: return "UNKNOWN";
         }

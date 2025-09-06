@@ -43,8 +43,8 @@ std::string tokenTypeToString(TokenType type) {
         case TokenType::SemiColon: return "SemiColon";
         case TokenType::ParenOpen: return "ParenOpen";
         case TokenType::ParenClose: return "ParenClose";
-        case TokenType::BracketOpen: return "BracketOpen";
-        case TokenType::BracketClose: return "BracketClose";
+        case TokenType::SquareBracketOpen: return "SquareBracketOpen";
+        case TokenType::SquareBracketClose: return "SquareBracketClose";
         case TokenType::Comma: return "Comma";
         case TokenType::Dot: return "Dot";
         case TokenType::AtModifier: return "AtModifier";
@@ -95,7 +95,7 @@ void computeExpected(const Token& token, std::string& expectedType, std::string&
     } else if (token.type == TokenType::ExpressionStart || token.type == TokenType::ExpressionEnd) {
         expectedType = tokenTypeToString(token.type);
         expectedValue = token.value;
-    } else if (token.type == TokenType::Equals || token.type == TokenType::BraceOpen || token.type == TokenType::BraceClose || token.type == TokenType::Colon || token.type == TokenType::SemiColon || token.type == TokenType::ParenOpen || token.type == TokenType::ParenClose || token.type == TokenType::BracketOpen || token.type == TokenType::BracketClose || token.type == TokenType::Comma || token.type == TokenType::Dot) {
+    } else if (token.type == TokenType::Equals || token.type == TokenType::BraceOpen || token.type == TokenType::BraceClose || token.type == TokenType::Colon || token.type == TokenType::SemiColon || token.type == TokenType::ParenOpen || token.type == TokenType::ParenClose || token.type == TokenType::SquareBracketOpen || token.type == TokenType::SquareBracketClose || token.type == TokenType::Comma || token.type == TokenType::Dot) {
         expectedType = tokenTypeToString(token.type);
         expectedValue = token.value;
     } else if (token.type == TokenType::AtModifier) {
@@ -116,20 +116,36 @@ void computeExpected(const Token& token, std::string& expectedType, std::string&
     } else if (token.type == TokenType::Error || token.type == TokenType::ErrorRecovery) {
         expectedType = tokenTypeToString(token.type);
         expectedValue = token.value;
+    } else if (token.type == TokenType::SquareBracketOpen) {
+        expectedType = "SquareBracketOpen";
+        expectedValue = token.value;
+    } else if (token.type == TokenType::SquareBracketClose) {
+        expectedType = "SquareBracketClose";
+        expectedValue = token.value;
     }
 }
 
-// Helper to escape HTML entities
-std::string htmlEscape(const std::string& s) {
+// Helper to escape JSON string values
+std::string jsonEscape(const std::string& s) {
     std::string result;
-    for (char c : s) {
+    for (unsigned char c : s) {
         switch (c) {
-            case '<': result += "&lt;"; break;
-            case '>': result += "&gt;"; break;
-            case '&': result += "&amp;"; break;
-            case '"': result += "&quot;"; break;
-            case '\'': result += "&#39;"; break;
-            default: result += c; break;
+            case '"': result += "\\\""; break;
+            case '\\': result += "\\\\"; break;
+            case '\b': result += "\\b"; break;
+            case '\f': result += "\\f"; break;
+            case '\n': result += "\\n"; break;
+            case '\r': result += "\\r"; break;
+            case '\t': result += "\\t"; break;
+            default:
+                if (c < 0x20) {
+                    char buf[8];
+                    snprintf(buf, sizeof(buf), "\\u%04x", c);
+                    result += buf;
+                } else {
+                    result += c;
+                }
+                break;
         }
     }
     return result;
@@ -137,9 +153,9 @@ std::string htmlEscape(const std::string& s) {
 
 int main() {
     
-    std::ifstream file("examples/lexer-code-test.alt");
+    std::ifstream file("examples/lexer-app-test.alt");
     if (!file) {
-        std::cerr << "Failed to open examples/lexer-code-test.alt" << std::endl;
+        std::cerr << "Failed to open examples/lexer-app-test.alt" << std::endl;
         return 1;
     }
     std::string input((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
@@ -173,16 +189,16 @@ int main() {
         std::string returnedType = tokenTypeToString(token.type);
         std::string returnedValue = token.value;
         std::string status = (expectedType == returnedType && expectedValue == returnedValue) ? "OK" : "DIFF";
-            json << "  {\n"
-                 << "    \"index\": " << i << ",\n"
-                 << "    \"expectedType\": \"" << htmlEscape(expectedType) << "\",\n"
-                 << "    \"expectedValue\": \"" << htmlEscape(expectedValue) << "\",\n"
-                 << "    \"returnedType\": \"" << htmlEscape(returnedType) << "\",\n"
-                 << "    \"returnedValue\": \"" << htmlEscape(returnedValue) << "\",\n"
-                 << "    \"line\": " << token.line << ",\n"
-                 << "    \"column\": " << token.column << ",\n"
-                 << "    \"status\": \"" << status << "\"\n"
-                 << "  }" << (i < actualTokens.size() - 1 ? "," : "") << "\n"; 
+        json << "  {\n"
+             << "    \"index\": " << i << ",\n"
+             << "    \"expectedType\": \"" << jsonEscape(expectedType) << "\",\n"
+             << "    \"expectedValue\": \"" << jsonEscape(expectedValue) << "\",\n"
+             << "    \"returnedType\": \"" << jsonEscape(returnedType) << "\",\n"
+             << "    \"returnedValue\": \"" << jsonEscape(returnedValue) << "\",\n"
+             << "    \"line\": " << token.line << ",\n"
+             << "    \"column\": " << token.column << ",\n"
+             << "    \"status\": \"" << jsonEscape(status) << "\"\n"
+             << "  }" << (i < actualTokens.size() - 1 ? "," : "") << "\n"; 
     }
         json << "]\n";
         json.close();

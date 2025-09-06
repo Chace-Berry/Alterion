@@ -220,7 +220,7 @@ bool Lexer::isOperatorStartChar(char c) const {
     return c == '=' || c == '!' || c == '<' || c == '>' || c == '&' || 
            c == '|' || c == '-' || c == '+' || c == '*' || c == '/' || 
            c == '%' || c == '^' || c == '~' || c == ':' || c == '.' || 
-           c == ',' || c == ';';
+           c == ',' || c == ';' || c == '[' || c == ']';
 }
 
 // Lexes a number literal (decimal, hex, binary, float, scientific notation).
@@ -364,8 +364,8 @@ Token Lexer::processOperator() {
         case ')': return Token(TokenType::ParenClose, ")", startLine, startColumn);
         case '{': return Token(TokenType::BraceOpen, "{", startLine, startColumn);
         case '}': return Token(TokenType::BraceClose, "}", startLine, startColumn);
-        case '[': return Token(TokenType::BracketOpen, "[", startLine, startColumn);
-        case ']': return Token(TokenType::BracketClose, "]", startLine, startColumn);
+        case '[': return Token(TokenType::SquareBracketOpen, "[", startLine, startColumn);
+        case ']': return Token(TokenType::SquareBracketClose, "]", startLine, startColumn);
         case ':': return Token(TokenType::Colon, ":", startLine, startColumn);
         case ';': return Token(TokenType::SemiColon, ";", startLine, startColumn);
         case ',': return Token(TokenType::Comma, ",", startLine, startColumn);
@@ -413,7 +413,7 @@ Token Lexer::processTagEnd() {
         advance();
     }
     
-    if (state == LexerState::ALTXContent) {
+    if (state == LexerState::ALTXAttribute) {
         exitState();
     }
     
@@ -427,14 +427,11 @@ Token Lexer::processTextContent() {
     
     while (!eof()) {
         char c = peek();
-        unsigned char uc = static_cast<unsigned char>(c);
-        // Only treat ASCII whitespace as delimiter
-        if (c == '<' || c == '{' || (uc <= 127 && std::isspace(uc))) {
+        if (c == '<' || c == '{') {
             break;
         }
         text += advance();
     }
-    
     return Token(TokenType::Text, text, startLine, startColumn);
 }
 
@@ -732,8 +729,8 @@ std::string Lexer::getTokenTypeName(TokenType type) const {
         case TokenType::SemiColon: return "SemiColon";
         case TokenType::ParenOpen: return "ParenOpen";
         case TokenType::ParenClose: return "ParenClose";
-        case TokenType::BracketOpen: return "BracketOpen";
-        case TokenType::BracketClose: return "BracketClose";
+        case TokenType::SquareBracketOpen: return "BracketOpen";
+        case TokenType::SquareBracketClose: return "BracketClose";
         case TokenType::Comma: return "Comma";
         case TokenType::Dot: return "Dot";
         case TokenType::AtModifier: return "AtModifier";

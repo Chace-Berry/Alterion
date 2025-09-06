@@ -7,6 +7,7 @@ on:
 
 jobs:
   run-lexxer:
+
     runs-on: windows-latest
     steps:
       - name: Checkout repository
