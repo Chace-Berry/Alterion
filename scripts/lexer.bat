@@ -22,7 +22,7 @@ if errorlevel 1 (
 
 cd ..
 
-REM Run lexertest from build\Debug directory
+REM
 if exist build\Debug\lexertest.exe (
     echo [Running lexertest.exe...]
     build\Debug\lexertest.exe

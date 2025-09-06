@@ -14,5 +14,5 @@ jobs:
       - name: Run lexxer.bat
         run: |
           cd scripts
-          ./lexxer.bat
+          lexxer.bat
         shell: cmd
