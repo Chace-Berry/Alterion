@@ -1,9 +1,3 @@
-// Example Alterion code demonstrating all features
-// This will be compiled to TypeScript React components
-
-import { useState, useEffect } from "react";
-import { ApiService } from "./services/api";
-
 // Simple component with state
 component Counter {
     count: number = 0

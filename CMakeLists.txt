@@ -12,9 +12,7 @@ option(BUILD_EXAMPLES "Build examples" ON)
 
 # Include directories
 include_directories(include)
-
-# Core language implementation
-add_subdirectory(core)
+include_directories(${CMAKE_SOURCE_DIR}/core/include)
 
 # Runtime system
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/runtime/CMakeLists.txt")
@@ -46,7 +44,7 @@ endif()
 set(ALTERION_SOURCES
     core/lexer/lexer.cpp
     core/lexer/token.cpp
-    core/parser/parser_enhanced.cpp
+    core/parser/parser.cpp
 )
 
 # Check if additional source files exist
@@ -63,6 +61,19 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tools/cli/main.cpp")
 endif()
 
 add_executable(alterion ${ALTERION_SOURCES})
+
+# Lexer unit test executable
+add_executable(lexertest
+    tests/unit/lexertest.cpp
+    core/lexer/lexer.cpp
+    core/lexer/token.cpp
+)
+target_include_directories(lexertest PRIVATE ${CMAKE_SOURCE_DIR}/core/include)
+
+# Optionally add to test suite
+if(BUILD_TESTS)
+    add_test(NAME LexerTest COMMAND lexertest)
+endif()
 
 # Installation
 install(TARGETS alterion DESTINATION bin)

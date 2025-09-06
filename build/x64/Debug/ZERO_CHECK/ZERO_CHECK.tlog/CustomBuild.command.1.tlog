@@ -1,0 +1,10 @@
+^C:\USERS\CHACE\DOCUMENTS\ALTERION\BUILD\CMAKEFILES\8B4322E09FFDCE79F97A0978A103637F\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/chace/Documents/Alterion -BC:/Users/chace/Documents/Alterion/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/chace/Documents/Alterion/build/Alterion.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

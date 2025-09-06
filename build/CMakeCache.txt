@@ -23,8 +23,26 @@ AlterionParser_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 AlterionParser_SOURCE_DIR:STATIC=C:/Users/chace/Documents/Alterion
 
+//Value Computed by CMake
+Alterion_BINARY_DIR:STATIC=C:/Users/chace/Documents/Alterion/build
+
+//Value Computed by CMake
+Alterion_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+Alterion_SOURCE_DIR:STATIC=C:/Users/chace/Documents/Alterion
+
+//Build examples
+BUILD_EXAMPLES:BOOL=ON
+
 //Builds the googlemock subproject
 BUILD_GMOCK:BOOL=OFF
+
+//Build tests
+BUILD_TESTS:BOOL=ON
+
+//Build development tools
+BUILD_TOOLS:BOOL=ON
 
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/lib.exe
@@ -172,16 +190,16 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=AlterionParser
+CMAKE_PROJECT_NAME:STATIC=Alterion
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION:STATIC=1.16.0
+CMAKE_PROJECT_VERSION:STATIC=2.6.0
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_MAJOR:STATIC=1
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=2
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_MINOR:STATIC=16
+CMAKE_PROJECT_VERSION_MINOR:STATIC=6
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION_PATCH:STATIC=0
@@ -460,7 +478,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib
