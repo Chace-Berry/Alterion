@@ -1,0 +1,28 @@
+const x = 42;
+let y = x + 1;
+if (y > 10) {
+  print("y is big!");
+}
+
+function greet(name) {
+  print("Hello, " + name);
+}
+
+// Attribute test
+@decorator
+class MyClass {
+  constructor() {
+    this.value = 0;
+  }
+}
+
+// UTF-8 test
+const emoji = "😀";
+const accented = "café";
+
+// Edge cases
+let _private = 123;
+let $dollar = 456;
+let spaced = "a b c";
+let empty = "";
+let special = "!@#%^&*()";

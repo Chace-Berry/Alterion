@@ -136,10 +136,10 @@ std::string htmlEscape(const std::string& s) {
 }
 
 int main() {
-    // Read input from demo_app.alt
-    std::ifstream file("examples/demo_app.alt");
+    
+    std::ifstream file("examples/lexer-code-test.alt");
     if (!file) {
-        std::cerr << "Failed to open examples/demo_app.alt" << std::endl;
+        std::cerr << "Failed to open examples/lexer-code-test.alt" << std::endl;
         return 1;
     }
     std::string input((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
@@ -150,14 +150,13 @@ int main() {
     std::vector<Token> actualTokens = lexer.tokenize();
     std::cout << "[DEBUG] Token count: " << actualTokens.size() << "\n";
 
-    // Create results directory if it doesn't exist
+
     std::filesystem::create_directories("results");
 
-    // Generate unique filename with timestamp
     auto now = std::chrono::system_clock::now();
     std::time_t now_time = std::chrono::system_clock::to_time_t(now);
     char filename[128];
-        std::strftime(filename, sizeof(filename), "results-dahsboard/public/results/lexer-results.json", std::localtime(&now_time));
+        std::strftime(filename, sizeof(filename), "results-dashboard/public/results/lexer-results.json", std::localtime(&now_time));
 
     // Output HTML
         std::ofstream json(filename);
@@ -166,7 +165,7 @@ int main() {
             return 2;
         }
         std::cout << "[DEBUG] Writing JSON to " << filename << "...\n";
-        json << "[\n"; // Start of JSON array
+        json << "[\n"; 
     for (size_t i = 0; i < actualTokens.size(); ++i) {
         const Token& token = actualTokens[i];
         std::string expectedType, expectedValue;
@@ -183,9 +182,9 @@ int main() {
                  << "    \"line\": " << token.line << ",\n"
                  << "    \"column\": " << token.column << ",\n"
                  << "    \"status\": \"" << status << "\"\n"
-                 << "  }" << (i < actualTokens.size() - 1 ? "," : "") << "\n"; // Comma if not last element
+                 << "  }" << (i < actualTokens.size() - 1 ? "," : "") << "\n"; 
     }
-        json << "]\n"; // End of JSON array
+        json << "]\n";
         json.close();
     std::cout << "Lexer test complete. Output written to " << filename << "\n";
     return 0;

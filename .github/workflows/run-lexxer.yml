@@ -7,7 +7,7 @@ on:
 
 jobs:
   run-lexxer:
-    runs-on: Windows Server 2025 image
+    runs-on: windows-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
