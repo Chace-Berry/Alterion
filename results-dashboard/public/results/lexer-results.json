@@ -161,9 +161,9 @@
   },
   {
     "index": 16,
-    "expectedType": "Unknown",
+    "expectedType": "Operator",
     "expectedValue": "@",
-    "returnedType": "Unknown",
+    "returnedType": "Operator",
     "returnedValue": "@",
     "line": 7,
     "column": 5,
@@ -211,9 +211,9 @@
   },
   {
     "index": 21,
-    "expectedType": "Unknown",
+    "expectedType": "BraceOpen",
     "expectedValue": "{",
-    "returnedType": "Unknown",
+    "returnedType": "BraceOpen",
     "returnedValue": "{",
     "line": 8,
     "column": 20,
@@ -231,9 +231,9 @@
   },
   {
     "index": 23,
-    "expectedType": "Unknown",
+    "expectedType": "BraceOpen",
     "expectedValue": "{",
-    "returnedType": "Unknown",
+    "returnedType": "BraceOpen",
     "returnedValue": "{",
     "line": 9,
     "column": 13,
@@ -381,9 +381,9 @@
   },
   {
     "index": 38,
-    "expectedType": "Unknown",
+    "expectedType": "BraceOpen",
     "expectedValue": "{",
-    "returnedType": "Unknown",
+    "returnedType": "BraceOpen",
     "returnedValue": "{",
     "line": 11,
     "column": 26,
@@ -721,9 +721,9 @@
   },
   {
     "index": 72,
-    "expectedType": "Unknown",
+    "expectedType": "Operator",
     "expectedValue": "?",
-    "returnedType": "Unknown",
+    "returnedType": "Operator",
     "returnedValue": "?",
     "line": 15,
     "column": 43,
@@ -801,9 +801,9 @@
   },
   {
     "index": 80,
-    "expectedType": "Unknown",
+    "expectedType": "BraceClose",
     "expectedValue": "}",
-    "returnedType": "Unknown",
+    "returnedType": "BraceClose",
     "returnedValue": "}",
     "line": 17,
     "column": 9,
@@ -961,9 +961,9 @@
   },
   {
     "index": 96,
-    "expectedType": "Unknown",
+    "expectedType": "BraceClose",
     "expectedValue": "}",
-    "returnedType": "Unknown",
+    "returnedType": "BraceClose",
     "returnedValue": "}",
     "line": 21,
     "column": 5,
@@ -1111,9 +1111,9 @@
   },
   {
     "index": 111,
-    "expectedType": "Unknown",
+    "expectedType": "BraceOpen",
     "expectedValue": "{",
-    "returnedType": "Unknown",
+    "returnedType": "BraceOpen",
     "returnedValue": "{",
     "line": 26,
     "column": 27,
@@ -1241,9 +1241,9 @@
   },
   {
     "index": 124,
-    "expectedType": "Unknown",
+    "expectedType": "BraceClose",
     "expectedValue": "}",
-    "returnedType": "Unknown",
+    "returnedType": "BraceClose",
     "returnedValue": "}",
     "line": 30,
     "column": 5,
@@ -1651,9 +1651,9 @@
   },
   {
     "index": 165,
-    "expectedType": "Unknown",
+    "expectedType": "Operator",
     "expectedValue": "?",
-    "returnedType": "Unknown",
+    "returnedType": "Operator",
     "returnedValue": "?",
     "line": 37,
     "column": 30,
@@ -1751,9 +1751,9 @@
   },
   {
     "index": 175,
-    "expectedType": "Unknown",
+    "expectedType": "BraceOpen",
     "expectedValue": "{",
-    "returnedType": "Unknown",
+    "returnedType": "BraceOpen",
     "returnedValue": "{",
     "line": 37,
     "column": 105,
@@ -1841,6 +1841,16 @@
   },
   {
     "index": 184,
+    "expectedType": "BraceClose",
+    "expectedValue": "}",
+    "returnedType": "BraceClose",
+    "returnedValue": "}",
+    "line": 37,
+    "column": 129,
+    "status": "OK"
+  },
+  {
+    "index": 185,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -1850,7 +1860,7 @@
     "status": "OK"
   },
   {
-    "index": 185,
+    "index": 186,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -1860,7 +1870,7 @@
     "status": "OK"
   },
   {
-    "index": 186,
+    "index": 187,
     "expectedType": "Identifier",
     "expectedValue": "header",
     "returnedType": "Identifier",
@@ -1870,7 +1880,7 @@
     "status": "OK"
   },
   {
-    "index": 187,
+    "index": 188,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -1880,7 +1890,7 @@
     "status": "OK"
   },
   {
-    "index": 188,
+    "index": 189,
     "expectedType": "TagOpen",
     "expectedValue": "main",
     "returnedType": "TagOpen",
@@ -1890,7 +1900,7 @@
     "status": "OK"
   },
   {
-    "index": 189,
+    "index": 190,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -1900,7 +1910,7 @@
     "status": "OK"
   },
   {
-    "index": 190,
+    "index": 191,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -1910,7 +1920,7 @@
     "status": "OK"
   },
   {
-    "index": 191,
+    "index": 192,
     "expectedType": "String",
     "expectedValue": "width:100%;max-width:1200px;margin:32px auto;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0 16px;box-sizing:border-box",
     "returnedType": "String",
@@ -1920,7 +1930,7 @@
     "status": "OK"
   },
   {
-    "index": 192,
+    "index": 193,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -1930,7 +1940,7 @@
     "status": "OK"
   },
   {
-    "index": 193,
+    "index": 194,
     "expectedType": "TagOpen",
     "expectedValue": "div",
     "returnedType": "TagOpen",
@@ -1940,7 +1950,7 @@
     "status": "OK"
   },
   {
-    "index": 194,
+    "index": 195,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -1950,7 +1960,7 @@
     "status": "OK"
   },
   {
-    "index": 195,
+    "index": 196,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -1960,7 +1970,7 @@
     "status": "OK"
   },
   {
-    "index": 196,
+    "index": 197,
     "expectedType": "String",
     "expectedValue": "display:flex;flex-direction:row;gap:24px;align-items:center;margin-bottom:24px;flex-wrap:wrap;justify-content:center",
     "returnedType": "String",
@@ -1970,7 +1980,7 @@
     "status": "OK"
   },
   {
-    "index": 197,
+    "index": 198,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -1980,7 +1990,7 @@
     "status": "OK"
   },
   {
-    "index": 198,
+    "index": 199,
     "expectedType": "TagOpen",
     "expectedValue": "div",
     "returnedType": "TagOpen",
@@ -1990,7 +2000,7 @@
     "status": "OK"
   },
   {
-    "index": 199,
+    "index": 200,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -2000,7 +2010,7 @@
     "status": "OK"
   },
   {
-    "index": 200,
+    "index": 201,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -2010,7 +2020,7 @@
     "status": "OK"
   },
   {
-    "index": 201,
+    "index": 202,
     "expectedType": "String",
     "expectedValue": "background:#fff;padding:16px 24px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);text-align:center",
     "returnedType": "String",
@@ -2020,7 +2030,7 @@
     "status": "OK"
   },
   {
-    "index": 202,
+    "index": 203,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -2030,7 +2040,7 @@
     "status": "OK"
   },
   {
-    "index": 203,
+    "index": 204,
     "expectedType": "TagOpen",
     "expectedValue": "div",
     "returnedType": "TagOpen",
@@ -2040,7 +2050,7 @@
     "status": "OK"
   },
   {
-    "index": 204,
+    "index": 205,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -2050,7 +2060,7 @@
     "status": "OK"
   },
   {
-    "index": 205,
+    "index": 206,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -2060,7 +2070,7 @@
     "status": "OK"
   },
   {
-    "index": 206,
+    "index": 207,
     "expectedType": "String",
     "expectedValue": "font-size:2rem;font-weight:bold;color:#2e7d32",
     "returnedType": "String",
@@ -2070,7 +2080,7 @@
     "status": "OK"
   },
   {
-    "index": 207,
+    "index": 208,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -2080,7 +2090,7 @@
     "status": "OK"
   },
   {
-    "index": 208,
+    "index": 209,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -2090,7 +2100,7 @@
     "status": "OK"
   },
   {
-    "index": 209,
+    "index": 210,
     "expectedType": "Identifier",
     "expectedValue": "results",
     "returnedType": "Identifier",
@@ -2100,7 +2110,7 @@
     "status": "OK"
   },
   {
-    "index": 210,
+    "index": 211,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -2110,7 +2120,7 @@
     "status": "OK"
   },
   {
-    "index": 211,
+    "index": 212,
     "expectedType": "Identifier",
     "expectedValue": "filter",
     "returnedType": "Identifier",
@@ -2120,7 +2130,7 @@
     "status": "OK"
   },
   {
-    "index": 212,
+    "index": 213,
     "expectedType": "ParenOpen",
     "expectedValue": "(",
     "returnedType": "ParenOpen",
@@ -2130,7 +2140,7 @@
     "status": "OK"
   },
   {
-    "index": 213,
+    "index": 214,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -2140,7 +2150,7 @@
     "status": "OK"
   },
   {
-    "index": 214,
+    "index": 215,
     "expectedType": "Arrow",
     "expectedValue": "=>",
     "returnedType": "Arrow",
@@ -2150,7 +2160,7 @@
     "status": "OK"
   },
   {
-    "index": 215,
+    "index": 216,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -2160,7 +2170,7 @@
     "status": "OK"
   },
   {
-    "index": 216,
+    "index": 217,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -2170,7 +2180,7 @@
     "status": "OK"
   },
   {
-    "index": 217,
+    "index": 218,
     "expectedType": "Identifier",
     "expectedValue": "status",
     "returnedType": "Identifier",
@@ -2180,7 +2190,7 @@
     "status": "OK"
   },
   {
-    "index": 218,
+    "index": 219,
     "expectedType": "Operator",
     "expectedValue": "==",
     "returnedType": "Operator",
@@ -2190,7 +2200,7 @@
     "status": "OK"
   },
   {
-    "index": 219,
+    "index": 220,
     "expectedType": "String",
     "expectedValue": "OK",
     "returnedType": "String",
@@ -2200,7 +2210,7 @@
     "status": "OK"
   },
   {
-    "index": 220,
+    "index": 221,
     "expectedType": "ParenClose",
     "expectedValue": ")",
     "returnedType": "ParenClose",
@@ -2210,7 +2220,7 @@
     "status": "OK"
   },
   {
-    "index": 221,
+    "index": 222,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -2220,7 +2230,7 @@
     "status": "OK"
   },
   {
-    "index": 222,
+    "index": 223,
     "expectedType": "Identifier",
     "expectedValue": "length",
     "returnedType": "Identifier",
@@ -2230,7 +2240,7 @@
     "status": "OK"
   },
   {
-    "index": 223,
+    "index": 224,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -2240,7 +2250,7 @@
     "status": "OK"
   },
   {
-    "index": 224,
+    "index": 225,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -2250,7 +2260,7 @@
     "status": "OK"
   },
   {
-    "index": 225,
+    "index": 226,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -2260,7 +2270,7 @@
     "status": "OK"
   },
   {
-    "index": 226,
+    "index": 227,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -2270,7 +2280,7 @@
     "status": "OK"
   },
   {
-    "index": 227,
+    "index": 228,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -2280,7 +2290,7 @@
     "status": "OK"
   },
   {
-    "index": 228,
+    "index": 229,
     "expectedType": "TagOpen",
     "expectedValue": "div",
     "returnedType": "TagOpen",
@@ -2290,7 +2300,7 @@
     "status": "OK"
   },
   {
-    "index": 229,
+    "index": 230,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -2300,7 +2310,7 @@
     "status": "OK"
   },
   {
-    "index": 230,
+    "index": 231,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -2310,7 +2320,7 @@
     "status": "OK"
   },
   {
-    "index": 231,
+    "index": 232,
     "expectedType": "String",
     "expectedValue": "font-size:0.9rem;color:#666",
     "returnedType": "String",
@@ -2320,7 +2330,7 @@
     "status": "OK"
   },
   {
-    "index": 232,
+    "index": 233,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -2330,7 +2340,7 @@
     "status": "OK"
   },
   {
-    "index": 233,
+    "index": 234,
     "expectedType": "Identifier",
     "expectedValue": "PASS",
     "returnedType": "Identifier",
@@ -2340,7 +2350,7 @@
     "status": "OK"
   },
   {
-    "index": 234,
+    "index": 235,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -2350,7 +2360,7 @@
     "status": "OK"
   },
   {
-    "index": 235,
+    "index": 236,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -2360,7 +2370,7 @@
     "status": "OK"
   },
   {
-    "index": 236,
+    "index": 237,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -2370,7 +2380,7 @@
     "status": "OK"
   },
   {
-    "index": 237,
+    "index": 238,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -2380,7 +2390,7 @@
     "status": "OK"
   },
   {
-    "index": 238,
+    "index": 239,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -2390,7 +2400,7 @@
     "status": "OK"
   },
   {
-    "index": 239,
+    "index": 240,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -2400,7 +2410,7 @@
     "status": "OK"
   },
   {
-    "index": 240,
+    "index": 241,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -2410,7 +2420,7 @@
     "status": "OK"
   },
   {
-    "index": 241,
+    "index": 242,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -2420,7 +2430,7 @@
     "status": "OK"
   },
   {
-    "index": 242,
+    "index": 243,
     "expectedType": "TagOpen",
     "expectedValue": "div",
     "returnedType": "TagOpen",
@@ -2430,7 +2440,7 @@
     "status": "OK"
   },
   {
-    "index": 243,
+    "index": 244,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -2440,7 +2450,7 @@
     "status": "OK"
   },
   {
-    "index": 244,
+    "index": 245,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -2450,7 +2460,7 @@
     "status": "OK"
   },
   {
-    "index": 245,
+    "index": 246,
     "expectedType": "String",
     "expectedValue": "background:#fff;padding:16px 24px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);text-align:center",
     "returnedType": "String",
@@ -2460,7 +2470,7 @@
     "status": "OK"
   },
   {
-    "index": 246,
+    "index": 247,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -2470,7 +2480,7 @@
     "status": "OK"
   },
   {
-    "index": 247,
+    "index": 248,
     "expectedType": "TagOpen",
     "expectedValue": "div",
     "returnedType": "TagOpen",
@@ -2480,7 +2490,7 @@
     "status": "OK"
   },
   {
-    "index": 248,
+    "index": 249,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -2490,7 +2500,7 @@
     "status": "OK"
   },
   {
-    "index": 249,
+    "index": 250,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -2500,7 +2510,7 @@
     "status": "OK"
   },
   {
-    "index": 250,
+    "index": 251,
     "expectedType": "String",
     "expectedValue": "font-size:2rem;font-weight:bold;color:#c0392b",
     "returnedType": "String",
@@ -2510,7 +2520,7 @@
     "status": "OK"
   },
   {
-    "index": 251,
+    "index": 252,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -2520,7 +2530,7 @@
     "status": "OK"
   },
   {
-    "index": 252,
+    "index": 253,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -2530,7 +2540,7 @@
     "status": "OK"
   },
   {
-    "index": 253,
+    "index": 254,
     "expectedType": "Identifier",
     "expectedValue": "results",
     "returnedType": "Identifier",
@@ -2540,7 +2550,7 @@
     "status": "OK"
   },
   {
-    "index": 254,
+    "index": 255,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -2550,7 +2560,7 @@
     "status": "OK"
   },
   {
-    "index": 255,
+    "index": 256,
     "expectedType": "Identifier",
     "expectedValue": "filter",
     "returnedType": "Identifier",
@@ -2560,7 +2570,7 @@
     "status": "OK"
   },
   {
-    "index": 256,
+    "index": 257,
     "expectedType": "ParenOpen",
     "expectedValue": "(",
     "returnedType": "ParenOpen",
@@ -2570,7 +2580,7 @@
     "status": "OK"
   },
   {
-    "index": 257,
+    "index": 258,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -2580,7 +2590,7 @@
     "status": "OK"
   },
   {
-    "index": 258,
+    "index": 259,
     "expectedType": "Arrow",
     "expectedValue": "=>",
     "returnedType": "Arrow",
@@ -2590,7 +2600,7 @@
     "status": "OK"
   },
   {
-    "index": 259,
+    "index": 260,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -2600,7 +2610,7 @@
     "status": "OK"
   },
   {
-    "index": 260,
+    "index": 261,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -2610,7 +2620,7 @@
     "status": "OK"
   },
   {
-    "index": 261,
+    "index": 262,
     "expectedType": "Identifier",
     "expectedValue": "status",
     "returnedType": "Identifier",
@@ -2620,7 +2630,7 @@
     "status": "OK"
   },
   {
-    "index": 262,
+    "index": 263,
     "expectedType": "Operator",
     "expectedValue": "==",
     "returnedType": "Operator",
@@ -2630,7 +2640,7 @@
     "status": "OK"
   },
   {
-    "index": 263,
+    "index": 264,
     "expectedType": "String",
     "expectedValue": "DIFF",
     "returnedType": "String",
@@ -2640,7 +2650,7 @@
     "status": "OK"
   },
   {
-    "index": 264,
+    "index": 265,
     "expectedType": "ParenClose",
     "expectedValue": ")",
     "returnedType": "ParenClose",
@@ -2650,7 +2660,7 @@
     "status": "OK"
   },
   {
-    "index": 265,
+    "index": 266,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -2660,7 +2670,7 @@
     "status": "OK"
   },
   {
-    "index": 266,
+    "index": 267,
     "expectedType": "Identifier",
     "expectedValue": "length",
     "returnedType": "Identifier",
@@ -2670,7 +2680,7 @@
     "status": "OK"
   },
   {
-    "index": 267,
+    "index": 268,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -2680,7 +2690,7 @@
     "status": "OK"
   },
   {
-    "index": 268,
+    "index": 269,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -2690,7 +2700,7 @@
     "status": "OK"
   },
   {
-    "index": 269,
+    "index": 270,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -2700,7 +2710,7 @@
     "status": "OK"
   },
   {
-    "index": 270,
+    "index": 271,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -2710,7 +2720,7 @@
     "status": "OK"
   },
   {
-    "index": 271,
+    "index": 272,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -2720,7 +2730,7 @@
     "status": "OK"
   },
   {
-    "index": 272,
+    "index": 273,
     "expectedType": "TagOpen",
     "expectedValue": "div",
     "returnedType": "TagOpen",
@@ -2730,7 +2740,7 @@
     "status": "OK"
   },
   {
-    "index": 273,
+    "index": 274,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -2740,7 +2750,7 @@
     "status": "OK"
   },
   {
-    "index": 274,
+    "index": 275,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -2750,7 +2760,7 @@
     "status": "OK"
   },
   {
-    "index": 275,
+    "index": 276,
     "expectedType": "String",
     "expectedValue": "font-size:0.9rem;color:#666",
     "returnedType": "String",
@@ -2760,7 +2770,7 @@
     "status": "OK"
   },
   {
-    "index": 276,
+    "index": 277,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -2770,7 +2780,7 @@
     "status": "OK"
   },
   {
-    "index": 277,
+    "index": 278,
     "expectedType": "Identifier",
     "expectedValue": "DIFF",
     "returnedType": "Identifier",
@@ -2780,7 +2790,7 @@
     "status": "OK"
   },
   {
-    "index": 278,
+    "index": 279,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -2790,7 +2800,7 @@
     "status": "OK"
   },
   {
-    "index": 279,
+    "index": 280,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -2800,7 +2810,7 @@
     "status": "OK"
   },
   {
-    "index": 280,
+    "index": 281,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -2810,7 +2820,7 @@
     "status": "OK"
   },
   {
-    "index": 281,
+    "index": 282,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -2820,7 +2830,7 @@
     "status": "OK"
   },
   {
-    "index": 282,
+    "index": 283,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -2830,7 +2840,7 @@
     "status": "OK"
   },
   {
-    "index": 283,
+    "index": 284,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -2840,7 +2850,7 @@
     "status": "OK"
   },
   {
-    "index": 284,
+    "index": 285,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -2850,7 +2860,7 @@
     "status": "OK"
   },
   {
-    "index": 285,
+    "index": 286,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -2860,7 +2870,7 @@
     "status": "OK"
   },
   {
-    "index": 286,
+    "index": 287,
     "expectedType": "TagOpen",
     "expectedValue": "button",
     "returnedType": "TagOpen",
@@ -2870,7 +2880,7 @@
     "status": "OK"
   },
   {
-    "index": 287,
+    "index": 288,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -2880,7 +2890,7 @@
     "status": "OK"
   },
   {
-    "index": 288,
+    "index": 289,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -2890,7 +2900,7 @@
     "status": "OK"
   },
   {
-    "index": 289,
+    "index": 290,
     "expectedType": "String",
     "expectedValue": "padding:12px 28px;font-weight:bold;font-size:1.1rem;border-radius:8px;border:none;background:{showDiffsOnly ? '#ff6b6b' : '#38b2ac'};color:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.1);cursor:pointer;transition:all 0.2s ease;transform:translateY(0)",
     "returnedType": "String",
@@ -2900,7 +2910,7 @@
     "status": "OK"
   },
   {
-    "index": 290,
+    "index": 291,
     "expectedType": "AttributeName",
     "expectedValue": "onClick",
     "returnedType": "AttributeName",
@@ -2910,7 +2920,7 @@
     "status": "OK"
   },
   {
-    "index": 291,
+    "index": 292,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -2920,7 +2930,7 @@
     "status": "OK"
   },
   {
-    "index": 292,
+    "index": 293,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -2930,7 +2940,7 @@
     "status": "OK"
   },
   {
-    "index": 293,
+    "index": 294,
     "expectedType": "ParenOpen",
     "expectedValue": "(",
     "returnedType": "ParenOpen",
@@ -2940,7 +2950,7 @@
     "status": "OK"
   },
   {
-    "index": 294,
+    "index": 295,
     "expectedType": "ParenClose",
     "expectedValue": ")",
     "returnedType": "ParenClose",
@@ -2950,7 +2960,7 @@
     "status": "OK"
   },
   {
-    "index": 295,
+    "index": 296,
     "expectedType": "Arrow",
     "expectedValue": "=>",
     "returnedType": "Arrow",
@@ -2960,7 +2970,7 @@
     "status": "OK"
   },
   {
-    "index": 296,
+    "index": 297,
     "expectedType": "Identifier",
     "expectedValue": "showDiffsOnly",
     "returnedType": "Identifier",
@@ -2970,7 +2980,7 @@
     "status": "OK"
   },
   {
-    "index": 297,
+    "index": 298,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -2980,7 +2990,7 @@
     "status": "OK"
   },
   {
-    "index": 298,
+    "index": 299,
     "expectedType": "ValueBinding",
     "expectedValue": "!showDiffsOnly",
     "returnedType": "ValueBinding",
@@ -2990,7 +3000,7 @@
     "status": "OK"
   },
   {
-    "index": 299,
+    "index": 300,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -3000,7 +3010,7 @@
     "status": "OK"
   },
   {
-    "index": 300,
+    "index": 301,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -3010,7 +3020,7 @@
     "status": "OK"
   },
   {
-    "index": 301,
+    "index": 302,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -3020,7 +3030,7 @@
     "status": "OK"
   },
   {
-    "index": 302,
+    "index": 303,
     "expectedType": "Identifier",
     "expectedValue": "showDiffsOnly",
     "returnedType": "Identifier",
@@ -3030,17 +3040,17 @@
     "status": "OK"
   },
   {
-    "index": 303,
-    "expectedType": "Unknown",
+    "index": 304,
+    "expectedType": "Operator",
     "expectedValue": "?",
-    "returnedType": "Unknown",
+    "returnedType": "Operator",
     "returnedValue": "?",
     "line": 50,
     "column": 40,
     "status": "OK"
   },
   {
-    "index": 304,
+    "index": 305,
     "expectedType": "String",
     "expectedValue": "Show All Results",
     "returnedType": "String",
@@ -3050,7 +3060,7 @@
     "status": "OK"
   },
   {
-    "index": 305,
+    "index": 306,
     "expectedType": "Colon",
     "expectedValue": ":",
     "returnedType": "Colon",
@@ -3060,7 +3070,7 @@
     "status": "OK"
   },
   {
-    "index": 306,
+    "index": 307,
     "expectedType": "String",
     "expectedValue": "Show Only DIFFs",
     "returnedType": "String",
@@ -3070,7 +3080,7 @@
     "status": "OK"
   },
   {
-    "index": 307,
+    "index": 308,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -3080,7 +3090,7 @@
     "status": "OK"
   },
   {
-    "index": 308,
+    "index": 309,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -3090,7 +3100,7 @@
     "status": "OK"
   },
   {
-    "index": 309,
+    "index": 310,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -3100,7 +3110,7 @@
     "status": "OK"
   },
   {
-    "index": 310,
+    "index": 311,
     "expectedType": "Identifier",
     "expectedValue": "button",
     "returnedType": "Identifier",
@@ -3110,7 +3120,7 @@
     "status": "OK"
   },
   {
-    "index": 311,
+    "index": 312,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3120,7 +3130,7 @@
     "status": "OK"
   },
   {
-    "index": 312,
+    "index": 313,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -3130,7 +3140,7 @@
     "status": "OK"
   },
   {
-    "index": 313,
+    "index": 314,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -3140,7 +3150,7 @@
     "status": "OK"
   },
   {
-    "index": 314,
+    "index": 315,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -3150,7 +3160,7 @@
     "status": "OK"
   },
   {
-    "index": 315,
+    "index": 316,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3160,7 +3170,7 @@
     "status": "OK"
   },
   {
-    "index": 316,
+    "index": 317,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -3170,7 +3180,7 @@
     "status": "OK"
   },
   {
-    "index": 317,
+    "index": 318,
     "expectedType": "Identifier",
     "expectedValue": "error",
     "returnedType": "Identifier",
@@ -3180,17 +3190,17 @@
     "status": "OK"
   },
   {
-    "index": 318,
-    "expectedType": "Unknown",
+    "index": 319,
+    "expectedType": "Operator",
     "expectedValue": "?",
-    "returnedType": "Unknown",
+    "returnedType": "Operator",
     "returnedValue": "?",
     "line": 53,
     "column": 24,
     "status": "OK"
   },
   {
-    "index": 319,
+    "index": 320,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -3200,7 +3210,7 @@
     "status": "OK"
   },
   {
-    "index": 320,
+    "index": 321,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -3210,7 +3220,7 @@
     "status": "OK"
   },
   {
-    "index": 321,
+    "index": 322,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -3220,7 +3230,7 @@
     "status": "OK"
   },
   {
-    "index": 322,
+    "index": 323,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -3230,7 +3240,7 @@
     "status": "OK"
   },
   {
-    "index": 323,
+    "index": 324,
     "expectedType": "String",
     "expectedValue": "background:#ffebee;color:#c62828;padding:16px 24px;border-radius:8px;margin-bottom:24px;width:100%;max-width:600px;text-align:center;border:1px solid #ffcdd2",
     "returnedType": "String",
@@ -3240,7 +3250,7 @@
     "status": "OK"
   },
   {
-    "index": 324,
+    "index": 325,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3250,7 +3260,7 @@
     "status": "OK"
   },
   {
-    "index": 325,
+    "index": 326,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -3260,7 +3270,7 @@
     "status": "OK"
   },
   {
-    "index": 326,
+    "index": 327,
     "expectedType": "Identifier",
     "expectedValue": "strong",
     "returnedType": "Identifier",
@@ -3270,7 +3280,7 @@
     "status": "OK"
   },
   {
-    "index": 327,
+    "index": 328,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3280,7 +3290,7 @@
     "status": "OK"
   },
   {
-    "index": 328,
+    "index": 329,
     "expectedType": "Identifier",
     "expectedValue": "Error",
     "returnedType": "Identifier",
@@ -3290,7 +3300,7 @@
     "status": "OK"
   },
   {
-    "index": 329,
+    "index": 330,
     "expectedType": "Identifier",
     "expectedValue": "loading",
     "returnedType": "Identifier",
@@ -3300,7 +3310,7 @@
     "status": "OK"
   },
   {
-    "index": 330,
+    "index": 331,
     "expectedType": "Identifier",
     "expectedValue": "results",
     "returnedType": "Identifier",
@@ -3310,7 +3320,7 @@
     "status": "OK"
   },
   {
-    "index": 331,
+    "index": 332,
     "expectedType": "Colon",
     "expectedValue": ":",
     "returnedType": "Colon",
@@ -3320,7 +3330,7 @@
     "status": "OK"
   },
   {
-    "index": 332,
+    "index": 333,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -3330,7 +3340,7 @@
     "status": "OK"
   },
   {
-    "index": 333,
+    "index": 334,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -3340,7 +3350,7 @@
     "status": "OK"
   },
   {
-    "index": 334,
+    "index": 335,
     "expectedType": "Identifier",
     "expectedValue": "strong",
     "returnedType": "Identifier",
@@ -3350,7 +3360,7 @@
     "status": "OK"
   },
   {
-    "index": 335,
+    "index": 336,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3360,17 +3370,17 @@
     "status": "OK"
   },
   {
-    "index": 336,
-    "expectedType": "Unknown",
+    "index": 337,
+    "expectedType": "BraceOpen",
     "expectedValue": "{",
-    "returnedType": "Unknown",
+    "returnedType": "BraceOpen",
     "returnedValue": "{",
     "line": 53,
     "column": 237,
     "status": "OK"
   },
   {
-    "index": 337,
+    "index": 338,
     "expectedType": "Identifier",
     "expectedValue": "error",
     "returnedType": "Identifier",
@@ -3380,7 +3390,7 @@
     "status": "OK"
   },
   {
-    "index": 338,
+    "index": 339,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -3390,7 +3400,7 @@
     "status": "OK"
   },
   {
-    "index": 339,
+    "index": 340,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -3400,7 +3410,7 @@
     "status": "OK"
   },
   {
-    "index": 340,
+    "index": 341,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -3410,7 +3420,7 @@
     "status": "OK"
   },
   {
-    "index": 341,
+    "index": 342,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -3420,7 +3430,7 @@
     "status": "OK"
   },
   {
-    "index": 342,
+    "index": 343,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3430,7 +3440,7 @@
     "status": "OK"
   },
   {
-    "index": 343,
+    "index": 344,
     "expectedType": "Colon",
     "expectedValue": ":",
     "returnedType": "Colon",
@@ -3440,7 +3450,7 @@
     "status": "OK"
   },
   {
-    "index": 344,
+    "index": 345,
     "expectedType": "Keyword",
     "expectedValue": "null",
     "returnedType": "Keyword",
@@ -3450,17 +3460,17 @@
     "status": "OK"
   },
   {
-    "index": 345,
-    "expectedType": "Unknown",
+    "index": 346,
+    "expectedType": "BraceClose",
     "expectedValue": "}",
-    "returnedType": "Unknown",
+    "returnedType": "BraceClose",
     "returnedValue": "}",
     "line": 53,
     "column": 257,
     "status": "OK"
   },
   {
-    "index": 346,
+    "index": 347,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -3470,7 +3480,7 @@
     "status": "OK"
   },
   {
-    "index": 347,
+    "index": 348,
     "expectedType": "Identifier",
     "expectedValue": "results",
     "returnedType": "Identifier",
@@ -3480,7 +3490,7 @@
     "status": "OK"
   },
   {
-    "index": 348,
+    "index": 349,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -3490,7 +3500,7 @@
     "status": "OK"
   },
   {
-    "index": 349,
+    "index": 350,
     "expectedType": "Identifier",
     "expectedValue": "length",
     "returnedType": "Identifier",
@@ -3500,7 +3510,7 @@
     "status": "OK"
   },
   {
-    "index": 350,
+    "index": 351,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3510,7 +3520,7 @@
     "status": "OK"
   },
   {
-    "index": 351,
+    "index": 352,
     "expectedType": "Number",
     "expectedValue": "0",
     "returnedType": "Number",
@@ -3520,17 +3530,17 @@
     "status": "OK"
   },
   {
-    "index": 352,
-    "expectedType": "Unknown",
+    "index": 353,
+    "expectedType": "Operator",
     "expectedValue": "?",
-    "returnedType": "Unknown",
+    "returnedType": "Operator",
     "returnedValue": "?",
     "line": 54,
     "column": 37,
     "status": "OK"
   },
   {
-    "index": 353,
+    "index": 354,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -3540,7 +3550,7 @@
     "status": "OK"
   },
   {
-    "index": 354,
+    "index": 355,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -3550,7 +3560,7 @@
     "status": "OK"
   },
   {
-    "index": 355,
+    "index": 356,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -3560,7 +3570,7 @@
     "status": "OK"
   },
   {
-    "index": 356,
+    "index": 357,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -3570,7 +3580,7 @@
     "status": "OK"
   },
   {
-    "index": 357,
+    "index": 358,
     "expectedType": "String",
     "expectedValue": "width:100%;max-width:900px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.1);overflow:hidden",
     "returnedType": "String",
@@ -3580,7 +3590,7 @@
     "status": "OK"
   },
   {
-    "index": 358,
+    "index": 359,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3590,7 +3600,7 @@
     "status": "OK"
   },
   {
-    "index": 359,
+    "index": 360,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -3600,7 +3610,7 @@
     "status": "OK"
   },
   {
-    "index": 360,
+    "index": 361,
     "expectedType": "Identifier",
     "expectedValue": "table",
     "returnedType": "Identifier",
@@ -3610,7 +3620,7 @@
     "status": "OK"
   },
   {
-    "index": 361,
+    "index": 362,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -3620,7 +3630,7 @@
     "status": "OK"
   },
   {
-    "index": 362,
+    "index": 363,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -3630,7 +3640,7 @@
     "status": "OK"
   },
   {
-    "index": 363,
+    "index": 364,
     "expectedType": "String",
     "expectedValue": "border-collapse:collapse;width:100%;min-width:800px;color:#111;table-layout:fixed",
     "returnedType": "String",
@@ -3640,7 +3650,7 @@
     "status": "OK"
   },
   {
-    "index": 364,
+    "index": 365,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3650,7 +3660,7 @@
     "status": "OK"
   },
   {
-    "index": 365,
+    "index": 366,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -3660,7 +3670,7 @@
     "status": "OK"
   },
   {
-    "index": 366,
+    "index": 367,
     "expectedType": "Identifier",
     "expectedValue": "thead",
     "returnedType": "Identifier",
@@ -3670,7 +3680,7 @@
     "status": "OK"
   },
   {
-    "index": 367,
+    "index": 368,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3680,7 +3690,7 @@
     "status": "OK"
   },
   {
-    "index": 368,
+    "index": 369,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -3690,7 +3700,7 @@
     "status": "OK"
   },
   {
-    "index": 369,
+    "index": 370,
     "expectedType": "Identifier",
     "expectedValue": "tr",
     "returnedType": "Identifier",
@@ -3700,7 +3710,7 @@
     "status": "OK"
   },
   {
-    "index": 370,
+    "index": 371,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -3710,7 +3720,7 @@
     "status": "OK"
   },
   {
-    "index": 371,
+    "index": 372,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -3720,7 +3730,7 @@
     "status": "OK"
   },
   {
-    "index": 372,
+    "index": 373,
     "expectedType": "String",
     "expectedValue": "background:#f8f9fa",
     "returnedType": "String",
@@ -3730,7 +3740,7 @@
     "status": "OK"
   },
   {
-    "index": 373,
+    "index": 374,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3740,7 +3750,7 @@
     "status": "OK"
   },
   {
-    "index": 374,
+    "index": 375,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -3750,7 +3760,7 @@
     "status": "OK"
   },
   {
-    "index": 375,
+    "index": 376,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -3760,7 +3770,7 @@
     "status": "OK"
   },
   {
-    "index": 376,
+    "index": 377,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -3770,7 +3780,7 @@
     "status": "OK"
   },
   {
-    "index": 377,
+    "index": 378,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -3780,7 +3790,7 @@
     "status": "OK"
   },
   {
-    "index": 378,
+    "index": 379,
     "expectedType": "String",
     "expectedValue": "padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef",
     "returnedType": "String",
@@ -3790,7 +3800,7 @@
     "status": "OK"
   },
   {
-    "index": 379,
+    "index": 380,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3800,7 +3810,7 @@
     "status": "OK"
   },
   {
-    "index": 380,
+    "index": 381,
     "expectedType": "Identifier",
     "expectedValue": "Index",
     "returnedType": "Identifier",
@@ -3810,7 +3820,7 @@
     "status": "OK"
   },
   {
-    "index": 381,
+    "index": 382,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -3820,7 +3830,7 @@
     "status": "OK"
   },
   {
-    "index": 382,
+    "index": 383,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -3830,7 +3840,7 @@
     "status": "OK"
   },
   {
-    "index": 383,
+    "index": 384,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -3840,7 +3850,7 @@
     "status": "OK"
   },
   {
-    "index": 384,
+    "index": 385,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3850,28 +3860,28 @@
     "status": "OK"
   },
   {
-    "index": 385,
+    "index": 386,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
     "returnedValue": "<",
     "line": 59,
     "column": 33,
-    "status": "OK"
-  },
-  {
-    "index": 386,
-    "expectedType": "Identifier",
-    "expectedValue": "th",
-    "returnedType": "Identifier",
-    "returnedValue": "th",
-    "line": 59,
-    "column": 34,
     "status": "OK"
   },
   {
     "index": 387,
     "expectedType": "Identifier",
+    "expectedValue": "th",
+    "returnedType": "Identifier",
+    "returnedValue": "th",
+    "line": 59,
+    "column": 34,
+    "status": "OK"
+  },
+  {
+    "index": 388,
+    "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
     "returnedValue": "style",
@@ -3880,7 +3890,7 @@
     "status": "OK"
   },
   {
-    "index": 388,
+    "index": 389,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -3890,7 +3900,7 @@
     "status": "OK"
   },
   {
-    "index": 389,
+    "index": 390,
     "expectedType": "String",
     "expectedValue": "padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef",
     "returnedType": "String",
@@ -3900,28 +3910,28 @@
     "status": "OK"
   },
   {
-    "index": 390,
+    "index": 391,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
     "returnedValue": ">",
     "line": 59,
     "column": 141,
-    "status": "OK"
-  },
-  {
-    "index": 391,
-    "expectedType": "Identifier",
-    "expectedValue": "Expected",
-    "returnedType": "Identifier",
-    "returnedValue": "Expected",
-    "line": 59,
-    "column": 142,
     "status": "OK"
   },
   {
     "index": 392,
     "expectedType": "Identifier",
+    "expectedValue": "Expected",
+    "returnedType": "Identifier",
+    "returnedValue": "Expected",
+    "line": 59,
+    "column": 142,
+    "status": "OK"
+  },
+  {
+    "index": 393,
+    "expectedType": "Identifier",
     "expectedValue": "Type",
     "returnedType": "Identifier",
     "returnedValue": "Type",
@@ -3930,7 +3940,7 @@
     "status": "OK"
   },
   {
-    "index": 393,
+    "index": 394,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -3940,7 +3950,7 @@
     "status": "OK"
   },
   {
-    "index": 394,
+    "index": 395,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -3950,7 +3960,7 @@
     "status": "OK"
   },
   {
-    "index": 395,
+    "index": 396,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -3960,7 +3970,7 @@
     "status": "OK"
   },
   {
-    "index": 396,
+    "index": 397,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -3970,7 +3980,7 @@
     "status": "OK"
   },
   {
-    "index": 397,
+    "index": 398,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -3980,7 +3990,7 @@
     "status": "OK"
   },
   {
-    "index": 398,
+    "index": 399,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -3990,7 +4000,7 @@
     "status": "OK"
   },
   {
-    "index": 399,
+    "index": 400,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -4000,7 +4010,7 @@
     "status": "OK"
   },
   {
-    "index": 400,
+    "index": 401,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -4010,7 +4020,7 @@
     "status": "OK"
   },
   {
-    "index": 401,
+    "index": 402,
     "expectedType": "String",
     "expectedValue": "padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef",
     "returnedType": "String",
@@ -4020,7 +4030,7 @@
     "status": "OK"
   },
   {
-    "index": 402,
+    "index": 403,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4030,7 +4040,7 @@
     "status": "OK"
   },
   {
-    "index": 403,
+    "index": 404,
     "expectedType": "Identifier",
     "expectedValue": "Expected",
     "returnedType": "Identifier",
@@ -4040,7 +4050,7 @@
     "status": "OK"
   },
   {
-    "index": 404,
+    "index": 405,
     "expectedType": "Identifier",
     "expectedValue": "Value",
     "returnedType": "Identifier",
@@ -4050,7 +4060,7 @@
     "status": "OK"
   },
   {
-    "index": 405,
+    "index": 406,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4060,7 +4070,7 @@
     "status": "OK"
   },
   {
-    "index": 406,
+    "index": 407,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -4070,7 +4080,7 @@
     "status": "OK"
   },
   {
-    "index": 407,
+    "index": 408,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -4080,7 +4090,7 @@
     "status": "OK"
   },
   {
-    "index": 408,
+    "index": 409,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4090,7 +4100,7 @@
     "status": "OK"
   },
   {
-    "index": 409,
+    "index": 410,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4100,7 +4110,7 @@
     "status": "OK"
   },
   {
-    "index": 410,
+    "index": 411,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -4110,7 +4120,7 @@
     "status": "OK"
   },
   {
-    "index": 411,
+    "index": 412,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -4120,7 +4130,7 @@
     "status": "OK"
   },
   {
-    "index": 412,
+    "index": 413,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -4130,7 +4140,7 @@
     "status": "OK"
   },
   {
-    "index": 413,
+    "index": 414,
     "expectedType": "String",
     "expectedValue": "padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef",
     "returnedType": "String",
@@ -4140,7 +4150,7 @@
     "status": "OK"
   },
   {
-    "index": 414,
+    "index": 415,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4150,7 +4160,7 @@
     "status": "OK"
   },
   {
-    "index": 415,
+    "index": 416,
     "expectedType": "Identifier",
     "expectedValue": "Returned",
     "returnedType": "Identifier",
@@ -4160,7 +4170,7 @@
     "status": "OK"
   },
   {
-    "index": 416,
+    "index": 417,
     "expectedType": "Identifier",
     "expectedValue": "Type",
     "returnedType": "Identifier",
@@ -4170,7 +4180,7 @@
     "status": "OK"
   },
   {
-    "index": 417,
+    "index": 418,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4180,7 +4190,7 @@
     "status": "OK"
   },
   {
-    "index": 418,
+    "index": 419,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -4190,7 +4200,7 @@
     "status": "OK"
   },
   {
-    "index": 419,
+    "index": 420,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -4200,7 +4210,7 @@
     "status": "OK"
   },
   {
-    "index": 420,
+    "index": 421,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4210,7 +4220,7 @@
     "status": "OK"
   },
   {
-    "index": 421,
+    "index": 422,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4220,7 +4230,7 @@
     "status": "OK"
   },
   {
-    "index": 422,
+    "index": 423,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -4230,7 +4240,7 @@
     "status": "OK"
   },
   {
-    "index": 423,
+    "index": 424,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -4240,7 +4250,7 @@
     "status": "OK"
   },
   {
-    "index": 424,
+    "index": 425,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -4250,7 +4260,7 @@
     "status": "OK"
   },
   {
-    "index": 425,
+    "index": 426,
     "expectedType": "String",
     "expectedValue": "padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef",
     "returnedType": "String",
@@ -4260,7 +4270,7 @@
     "status": "OK"
   },
   {
-    "index": 426,
+    "index": 427,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4270,7 +4280,7 @@
     "status": "OK"
   },
   {
-    "index": 427,
+    "index": 428,
     "expectedType": "Identifier",
     "expectedValue": "Returned",
     "returnedType": "Identifier",
@@ -4280,7 +4290,7 @@
     "status": "OK"
   },
   {
-    "index": 428,
+    "index": 429,
     "expectedType": "Identifier",
     "expectedValue": "Value",
     "returnedType": "Identifier",
@@ -4290,7 +4300,7 @@
     "status": "OK"
   },
   {
-    "index": 429,
+    "index": 430,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4300,7 +4310,7 @@
     "status": "OK"
   },
   {
-    "index": 430,
+    "index": 431,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -4310,7 +4320,7 @@
     "status": "OK"
   },
   {
-    "index": 431,
+    "index": 432,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -4320,7 +4330,7 @@
     "status": "OK"
   },
   {
-    "index": 432,
+    "index": 433,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4330,7 +4340,7 @@
     "status": "OK"
   },
   {
-    "index": 433,
+    "index": 434,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4340,7 +4350,7 @@
     "status": "OK"
   },
   {
-    "index": 434,
+    "index": 435,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -4350,7 +4360,7 @@
     "status": "OK"
   },
   {
-    "index": 435,
+    "index": 436,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -4360,7 +4370,7 @@
     "status": "OK"
   },
   {
-    "index": 436,
+    "index": 437,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -4370,7 +4380,7 @@
     "status": "OK"
   },
   {
-    "index": 437,
+    "index": 438,
     "expectedType": "String",
     "expectedValue": "padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef",
     "returnedType": "String",
@@ -4380,7 +4390,7 @@
     "status": "OK"
   },
   {
-    "index": 438,
+    "index": 439,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4390,7 +4400,7 @@
     "status": "OK"
   },
   {
-    "index": 439,
+    "index": 440,
     "expectedType": "Identifier",
     "expectedValue": "Line",
     "returnedType": "Identifier",
@@ -4400,7 +4410,7 @@
     "status": "OK"
   },
   {
-    "index": 440,
+    "index": 441,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4410,7 +4420,7 @@
     "status": "OK"
   },
   {
-    "index": 441,
+    "index": 442,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -4420,7 +4430,7 @@
     "status": "OK"
   },
   {
-    "index": 442,
+    "index": 443,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -4430,7 +4440,7 @@
     "status": "OK"
   },
   {
-    "index": 443,
+    "index": 444,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4440,7 +4450,7 @@
     "status": "OK"
   },
   {
-    "index": 444,
+    "index": 445,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4450,7 +4460,7 @@
     "status": "OK"
   },
   {
-    "index": 445,
+    "index": 446,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -4460,7 +4470,7 @@
     "status": "OK"
   },
   {
-    "index": 446,
+    "index": 447,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -4470,7 +4480,7 @@
     "status": "OK"
   },
   {
-    "index": 447,
+    "index": 448,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -4480,7 +4490,7 @@
     "status": "OK"
   },
   {
-    "index": 448,
+    "index": 449,
     "expectedType": "String",
     "expectedValue": "padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef",
     "returnedType": "String",
@@ -4490,7 +4500,7 @@
     "status": "OK"
   },
   {
-    "index": 449,
+    "index": 450,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4500,7 +4510,7 @@
     "status": "OK"
   },
   {
-    "index": 450,
+    "index": 451,
     "expectedType": "Identifier",
     "expectedValue": "Column",
     "returnedType": "Identifier",
@@ -4510,7 +4520,7 @@
     "status": "OK"
   },
   {
-    "index": 451,
+    "index": 452,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4520,7 +4530,7 @@
     "status": "OK"
   },
   {
-    "index": 452,
+    "index": 453,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -4530,7 +4540,7 @@
     "status": "OK"
   },
   {
-    "index": 453,
+    "index": 454,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -4540,7 +4550,7 @@
     "status": "OK"
   },
   {
-    "index": 454,
+    "index": 455,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4550,7 +4560,7 @@
     "status": "OK"
   },
   {
-    "index": 455,
+    "index": 456,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4560,7 +4570,7 @@
     "status": "OK"
   },
   {
-    "index": 456,
+    "index": 457,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -4570,7 +4580,7 @@
     "status": "OK"
   },
   {
-    "index": 457,
+    "index": 458,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -4580,7 +4590,7 @@
     "status": "OK"
   },
   {
-    "index": 458,
+    "index": 459,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -4590,7 +4600,7 @@
     "status": "OK"
   },
   {
-    "index": 459,
+    "index": 460,
     "expectedType": "String",
     "expectedValue": "padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef",
     "returnedType": "String",
@@ -4600,7 +4610,7 @@
     "status": "OK"
   },
   {
-    "index": 460,
+    "index": 461,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4610,7 +4620,7 @@
     "status": "OK"
   },
   {
-    "index": 461,
+    "index": 462,
     "expectedType": "Identifier",
     "expectedValue": "Status",
     "returnedType": "Identifier",
@@ -4620,7 +4630,7 @@
     "status": "OK"
   },
   {
-    "index": 462,
+    "index": 463,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4630,7 +4640,7 @@
     "status": "OK"
   },
   {
-    "index": 463,
+    "index": 464,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -4640,7 +4650,7 @@
     "status": "OK"
   },
   {
-    "index": 464,
+    "index": 465,
     "expectedType": "Identifier",
     "expectedValue": "th",
     "returnedType": "Identifier",
@@ -4650,7 +4660,7 @@
     "status": "OK"
   },
   {
-    "index": 465,
+    "index": 466,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4660,7 +4670,7 @@
     "status": "OK"
   },
   {
-    "index": 466,
+    "index": 467,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4670,7 +4680,7 @@
     "status": "OK"
   },
   {
-    "index": 467,
+    "index": 468,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -4680,7 +4690,7 @@
     "status": "OK"
   },
   {
-    "index": 468,
+    "index": 469,
     "expectedType": "Identifier",
     "expectedValue": "tr",
     "returnedType": "Identifier",
@@ -4690,7 +4700,7 @@
     "status": "OK"
   },
   {
-    "index": 469,
+    "index": 470,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4700,7 +4710,7 @@
     "status": "OK"
   },
   {
-    "index": 470,
+    "index": 471,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4710,7 +4720,7 @@
     "status": "OK"
   },
   {
-    "index": 471,
+    "index": 472,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -4720,7 +4730,7 @@
     "status": "OK"
   },
   {
-    "index": 472,
+    "index": 473,
     "expectedType": "Identifier",
     "expectedValue": "thead",
     "returnedType": "Identifier",
@@ -4730,7 +4740,7 @@
     "status": "OK"
   },
   {
-    "index": 473,
+    "index": 474,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4740,7 +4750,7 @@
     "status": "OK"
   },
   {
-    "index": 474,
+    "index": 475,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4750,7 +4760,7 @@
     "status": "OK"
   },
   {
-    "index": 475,
+    "index": 476,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -4760,7 +4770,7 @@
     "status": "OK"
   },
   {
-    "index": 476,
+    "index": 477,
     "expectedType": "Identifier",
     "expectedValue": "table",
     "returnedType": "Identifier",
@@ -4770,7 +4780,7 @@
     "status": "OK"
   },
   {
-    "index": 477,
+    "index": 478,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4780,7 +4790,7 @@
     "status": "OK"
   },
   {
-    "index": 478,
+    "index": 479,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4790,7 +4800,7 @@
     "status": "OK"
   },
   {
-    "index": 479,
+    "index": 480,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -4800,7 +4810,7 @@
     "status": "OK"
   },
   {
-    "index": 480,
+    "index": 481,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -4810,7 +4820,7 @@
     "status": "OK"
   },
   {
-    "index": 481,
+    "index": 482,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -4820,7 +4830,7 @@
     "status": "OK"
   },
   {
-    "index": 482,
+    "index": 483,
     "expectedType": "String",
     "expectedValue": "max-height:440px;overflow-y:auto;width:100%",
     "returnedType": "String",
@@ -4830,7 +4840,7 @@
     "status": "OK"
   },
   {
-    "index": 483,
+    "index": 484,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4840,7 +4850,7 @@
     "status": "OK"
   },
   {
-    "index": 484,
+    "index": 485,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4850,7 +4860,7 @@
     "status": "OK"
   },
   {
-    "index": 485,
+    "index": 486,
     "expectedType": "Identifier",
     "expectedValue": "table",
     "returnedType": "Identifier",
@@ -4860,7 +4870,7 @@
     "status": "OK"
   },
   {
-    "index": 486,
+    "index": 487,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -4870,7 +4880,7 @@
     "status": "OK"
   },
   {
-    "index": 487,
+    "index": 488,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -4880,7 +4890,7 @@
     "status": "OK"
   },
   {
-    "index": 488,
+    "index": 489,
     "expectedType": "String",
     "expectedValue": "border-collapse:collapse;width:100%;min-width:800px;color:#111;table-layout:fixed",
     "returnedType": "String",
@@ -4890,7 +4900,7 @@
     "status": "OK"
   },
   {
-    "index": 489,
+    "index": 490,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4900,7 +4910,7 @@
     "status": "OK"
   },
   {
-    "index": 490,
+    "index": 491,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -4910,7 +4920,7 @@
     "status": "OK"
   },
   {
-    "index": 491,
+    "index": 492,
     "expectedType": "Identifier",
     "expectedValue": "tbody",
     "returnedType": "Identifier",
@@ -4920,7 +4930,7 @@
     "status": "OK"
   },
   {
-    "index": 492,
+    "index": 493,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -4930,17 +4940,17 @@
     "status": "OK"
   },
   {
-    "index": 493,
-    "expectedType": "Unknown",
+    "index": 494,
+    "expectedType": "BraceOpen",
     "expectedValue": "{",
-    "returnedType": "Unknown",
+    "returnedType": "BraceOpen",
     "returnedValue": "{",
     "line": 72,
     "column": 33,
     "status": "OK"
   },
   {
-    "index": 494,
+    "index": 495,
     "expectedType": "ParenOpen",
     "expectedValue": "(",
     "returnedType": "ParenOpen",
@@ -4950,7 +4960,7 @@
     "status": "OK"
   },
   {
-    "index": 495,
+    "index": 496,
     "expectedType": "Identifier",
     "expectedValue": "showDiffsOnly",
     "returnedType": "Identifier",
@@ -4960,17 +4970,17 @@
     "status": "OK"
   },
   {
-    "index": 496,
-    "expectedType": "Unknown",
+    "index": 497,
+    "expectedType": "Operator",
     "expectedValue": "?",
-    "returnedType": "Unknown",
+    "returnedType": "Operator",
     "returnedValue": "?",
     "line": 72,
     "column": 49,
     "status": "OK"
   },
   {
-    "index": 497,
+    "index": 498,
     "expectedType": "Identifier",
     "expectedValue": "results",
     "returnedType": "Identifier",
@@ -4980,7 +4990,7 @@
     "status": "OK"
   },
   {
-    "index": 498,
+    "index": 499,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -4990,7 +5000,7 @@
     "status": "OK"
   },
   {
-    "index": 499,
+    "index": 500,
     "expectedType": "Identifier",
     "expectedValue": "filter",
     "returnedType": "Identifier",
@@ -5000,7 +5010,7 @@
     "status": "OK"
   },
   {
-    "index": 500,
+    "index": 501,
     "expectedType": "ParenOpen",
     "expectedValue": "(",
     "returnedType": "ParenOpen",
@@ -5010,7 +5020,7 @@
     "status": "OK"
   },
   {
-    "index": 501,
+    "index": 502,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -5020,7 +5030,7 @@
     "status": "OK"
   },
   {
-    "index": 502,
+    "index": 503,
     "expectedType": "Arrow",
     "expectedValue": "=>",
     "returnedType": "Arrow",
@@ -5030,7 +5040,7 @@
     "status": "OK"
   },
   {
-    "index": 503,
+    "index": 504,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -5040,7 +5050,7 @@
     "status": "OK"
   },
   {
-    "index": 504,
+    "index": 505,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -5050,7 +5060,7 @@
     "status": "OK"
   },
   {
-    "index": 505,
+    "index": 506,
     "expectedType": "Identifier",
     "expectedValue": "status",
     "returnedType": "Identifier",
@@ -5060,7 +5070,7 @@
     "status": "OK"
   },
   {
-    "index": 506,
+    "index": 507,
     "expectedType": "Operator",
     "expectedValue": "==",
     "returnedType": "Operator",
@@ -5070,7 +5080,7 @@
     "status": "OK"
   },
   {
-    "index": 507,
+    "index": 508,
     "expectedType": "String",
     "expectedValue": "DIFF",
     "returnedType": "String",
@@ -5080,7 +5090,7 @@
     "status": "OK"
   },
   {
-    "index": 508,
+    "index": 509,
     "expectedType": "ParenClose",
     "expectedValue": ")",
     "returnedType": "ParenClose",
@@ -5090,7 +5100,7 @@
     "status": "OK"
   },
   {
-    "index": 509,
+    "index": 510,
     "expectedType": "Colon",
     "expectedValue": ":",
     "returnedType": "Colon",
@@ -5100,7 +5110,7 @@
     "status": "OK"
   },
   {
-    "index": 510,
+    "index": 511,
     "expectedType": "Identifier",
     "expectedValue": "results",
     "returnedType": "Identifier",
@@ -5110,7 +5120,7 @@
     "status": "OK"
   },
   {
-    "index": 511,
+    "index": 512,
     "expectedType": "ParenClose",
     "expectedValue": ")",
     "returnedType": "ParenClose",
@@ -5120,7 +5130,7 @@
     "status": "OK"
   },
   {
-    "index": 512,
+    "index": 513,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -5130,7 +5140,7 @@
     "status": "OK"
   },
   {
-    "index": 513,
+    "index": 514,
     "expectedType": "Identifier",
     "expectedValue": "map",
     "returnedType": "Identifier",
@@ -5140,7 +5150,7 @@
     "status": "OK"
   },
   {
-    "index": 514,
+    "index": 515,
     "expectedType": "ParenOpen",
     "expectedValue": "(",
     "returnedType": "ParenOpen",
@@ -5150,7 +5160,7 @@
     "status": "OK"
   },
   {
-    "index": 515,
+    "index": 516,
     "expectedType": "ParenOpen",
     "expectedValue": "(",
     "returnedType": "ParenOpen",
@@ -5160,7 +5170,7 @@
     "status": "OK"
   },
   {
-    "index": 516,
+    "index": 517,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -5170,7 +5180,7 @@
     "status": "OK"
   },
   {
-    "index": 517,
+    "index": 518,
     "expectedType": "Comma",
     "expectedValue": ",",
     "returnedType": "Comma",
@@ -5180,7 +5190,7 @@
     "status": "OK"
   },
   {
-    "index": 518,
+    "index": 519,
     "expectedType": "Identifier",
     "expectedValue": "i",
     "returnedType": "Identifier",
@@ -5190,7 +5200,7 @@
     "status": "OK"
   },
   {
-    "index": 519,
+    "index": 520,
     "expectedType": "ParenClose",
     "expectedValue": ")",
     "returnedType": "ParenClose",
@@ -5200,7 +5210,7 @@
     "status": "OK"
   },
   {
-    "index": 520,
+    "index": 521,
     "expectedType": "Arrow",
     "expectedValue": "=>",
     "returnedType": "Arrow",
@@ -5210,7 +5220,7 @@
     "status": "OK"
   },
   {
-    "index": 521,
+    "index": 522,
     "expectedType": "Operator",
     "expectedValue": "<",
     "returnedType": "Operator",
@@ -5220,7 +5230,7 @@
     "status": "OK"
   },
   {
-    "index": 522,
+    "index": 523,
     "expectedType": "Identifier",
     "expectedValue": "tr",
     "returnedType": "Identifier",
@@ -5230,7 +5240,7 @@
     "status": "OK"
   },
   {
-    "index": 523,
+    "index": 524,
     "expectedType": "Identifier",
     "expectedValue": "key",
     "returnedType": "Identifier",
@@ -5240,7 +5250,7 @@
     "status": "OK"
   },
   {
-    "index": 524,
+    "index": 525,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -5250,17 +5260,17 @@
     "status": "OK"
   },
   {
-    "index": 525,
-    "expectedType": "Unknown",
+    "index": 526,
+    "expectedType": "BraceOpen",
     "expectedValue": "{",
-    "returnedType": "Unknown",
+    "returnedType": "BraceOpen",
     "returnedValue": "{",
     "line": 73,
     "column": 45,
     "status": "OK"
   },
   {
-    "index": 526,
+    "index": 527,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -5270,7 +5280,7 @@
     "status": "OK"
   },
   {
-    "index": 527,
+    "index": 528,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -5280,7 +5290,7 @@
     "status": "OK"
   },
   {
-    "index": 528,
+    "index": 529,
     "expectedType": "Identifier",
     "expectedValue": "index",
     "returnedType": "Identifier",
@@ -5290,27 +5300,27 @@
     "status": "OK"
   },
   {
-    "index": 529,
-    "expectedType": "Unknown",
+    "index": 530,
+    "expectedType": "Operator",
     "expectedValue": "?",
-    "returnedType": "Unknown",
+    "returnedType": "Operator",
     "returnedValue": "?",
     "line": 73,
     "column": 54,
     "status": "OK"
   },
   {
-    "index": 530,
-    "expectedType": "Unknown",
+    "index": 531,
+    "expectedType": "Operator",
     "expectedValue": "?",
-    "returnedType": "Unknown",
+    "returnedType": "Operator",
     "returnedValue": "?",
     "line": 73,
     "column": 55,
     "status": "OK"
   },
   {
-    "index": 531,
+    "index": 532,
     "expectedType": "Identifier",
     "expectedValue": "i",
     "returnedType": "Identifier",
@@ -5320,7 +5330,7 @@
     "status": "OK"
   },
   {
-    "index": 532,
+    "index": 533,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -5330,7 +5340,7 @@
     "status": "OK"
   },
   {
-    "index": 533,
+    "index": 534,
     "expectedType": "Identifier",
     "expectedValue": "style",
     "returnedType": "Identifier",
@@ -5340,7 +5350,7 @@
     "status": "OK"
   },
   {
-    "index": 534,
+    "index": 535,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -5350,7 +5360,7 @@
     "status": "OK"
   },
   {
-    "index": 535,
+    "index": 536,
     "expectedType": "String",
     "expectedValue": "background:{r.status == 'DIFF' ? '#ffebee' : '#e8f5e8'};border-bottom:1px solid #e9ecef;color:#111",
     "returnedType": "String",
@@ -5360,7 +5370,7 @@
     "status": "OK"
   },
   {
-    "index": 536,
+    "index": 537,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -5370,7 +5380,7 @@
     "status": "OK"
   },
   {
-    "index": 537,
+    "index": 538,
     "expectedType": "TagOpen",
     "expectedValue": "td",
     "returnedType": "TagOpen",
@@ -5380,7 +5390,7 @@
     "status": "OK"
   },
   {
-    "index": 538,
+    "index": 539,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -5390,7 +5400,7 @@
     "status": "OK"
   },
   {
-    "index": 539,
+    "index": 540,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -5400,7 +5410,7 @@
     "status": "OK"
   },
   {
-    "index": 540,
+    "index": 541,
     "expectedType": "String",
     "expectedValue": "padding:12px;font-weight:500",
     "returnedType": "String",
@@ -5410,7 +5420,7 @@
     "status": "OK"
   },
   {
-    "index": 541,
+    "index": 542,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -5420,7 +5430,7 @@
     "status": "OK"
   },
   {
-    "index": 542,
+    "index": 543,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -5430,7 +5440,7 @@
     "status": "OK"
   },
   {
-    "index": 543,
+    "index": 544,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -5440,7 +5450,7 @@
     "status": "OK"
   },
   {
-    "index": 544,
+    "index": 545,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -5450,7 +5460,7 @@
     "status": "OK"
   },
   {
-    "index": 545,
+    "index": 546,
     "expectedType": "Identifier",
     "expectedValue": "index",
     "returnedType": "Identifier",
@@ -5460,7 +5470,7 @@
     "status": "OK"
   },
   {
-    "index": 546,
+    "index": 547,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -5470,7 +5480,7 @@
     "status": "OK"
   },
   {
-    "index": 547,
+    "index": 548,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -5480,7 +5490,7 @@
     "status": "OK"
   },
   {
-    "index": 548,
+    "index": 549,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -5490,7 +5500,7 @@
     "status": "OK"
   },
   {
-    "index": 549,
+    "index": 550,
     "expectedType": "Identifier",
     "expectedValue": "td",
     "returnedType": "Identifier",
@@ -5500,7 +5510,7 @@
     "status": "OK"
   },
   {
-    "index": 550,
+    "index": 551,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -5510,7 +5520,7 @@
     "status": "OK"
   },
   {
-    "index": 551,
+    "index": 552,
     "expectedType": "TagOpen",
     "expectedValue": "td",
     "returnedType": "TagOpen",
@@ -5520,7 +5530,7 @@
     "status": "OK"
   },
   {
-    "index": 552,
+    "index": 553,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -5530,7 +5540,7 @@
     "status": "OK"
   },
   {
-    "index": 553,
+    "index": 554,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -5540,7 +5550,7 @@
     "status": "OK"
   },
   {
-    "index": 554,
+    "index": 555,
     "expectedType": "String",
     "expectedValue": "padding:12px;font-family:monospace",
     "returnedType": "String",
@@ -5550,7 +5560,7 @@
     "status": "OK"
   },
   {
-    "index": 555,
+    "index": 556,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -5560,7 +5570,7 @@
     "status": "OK"
   },
   {
-    "index": 556,
+    "index": 557,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -5570,7 +5580,7 @@
     "status": "OK"
   },
   {
-    "index": 557,
+    "index": 558,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -5580,7 +5590,7 @@
     "status": "OK"
   },
   {
-    "index": 558,
+    "index": 559,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -5590,7 +5600,7 @@
     "status": "OK"
   },
   {
-    "index": 559,
+    "index": 560,
     "expectedType": "Identifier",
     "expectedValue": "expectedType",
     "returnedType": "Identifier",
@@ -5600,7 +5610,7 @@
     "status": "OK"
   },
   {
-    "index": 560,
+    "index": 561,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -5610,7 +5620,7 @@
     "status": "OK"
   },
   {
-    "index": 561,
+    "index": 562,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -5620,7 +5630,7 @@
     "status": "OK"
   },
   {
-    "index": 562,
+    "index": 563,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -5630,7 +5640,7 @@
     "status": "OK"
   },
   {
-    "index": 563,
+    "index": 564,
     "expectedType": "Identifier",
     "expectedValue": "td",
     "returnedType": "Identifier",
@@ -5640,7 +5650,7 @@
     "status": "OK"
   },
   {
-    "index": 564,
+    "index": 565,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -5650,7 +5660,7 @@
     "status": "OK"
   },
   {
-    "index": 565,
+    "index": 566,
     "expectedType": "TagOpen",
     "expectedValue": "td",
     "returnedType": "TagOpen",
@@ -5660,7 +5670,7 @@
     "status": "OK"
   },
   {
-    "index": 566,
+    "index": 567,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -5670,7 +5680,7 @@
     "status": "OK"
   },
   {
-    "index": 567,
+    "index": 568,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -5680,7 +5690,7 @@
     "status": "OK"
   },
   {
-    "index": 568,
+    "index": 569,
     "expectedType": "String",
     "expectedValue": "padding:12px;font-family:monospace;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap",
     "returnedType": "String",
@@ -5690,7 +5700,7 @@
     "status": "OK"
   },
   {
-    "index": 569,
+    "index": 570,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -5700,7 +5710,7 @@
     "status": "OK"
   },
   {
-    "index": 570,
+    "index": 571,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -5710,7 +5720,7 @@
     "status": "OK"
   },
   {
-    "index": 571,
+    "index": 572,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -5720,7 +5730,7 @@
     "status": "OK"
   },
   {
-    "index": 572,
+    "index": 573,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -5730,7 +5740,7 @@
     "status": "OK"
   },
   {
-    "index": 573,
+    "index": 574,
     "expectedType": "Identifier",
     "expectedValue": "expectedValue",
     "returnedType": "Identifier",
@@ -5740,7 +5750,7 @@
     "status": "OK"
   },
   {
-    "index": 574,
+    "index": 575,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -5750,7 +5760,7 @@
     "status": "OK"
   },
   {
-    "index": 575,
+    "index": 576,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -5760,7 +5770,7 @@
     "status": "OK"
   },
   {
-    "index": 576,
+    "index": 577,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -5770,7 +5780,7 @@
     "status": "OK"
   },
   {
-    "index": 577,
+    "index": 578,
     "expectedType": "Identifier",
     "expectedValue": "td",
     "returnedType": "Identifier",
@@ -5780,7 +5790,7 @@
     "status": "OK"
   },
   {
-    "index": 578,
+    "index": 579,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -5790,7 +5800,7 @@
     "status": "OK"
   },
   {
-    "index": 579,
+    "index": 580,
     "expectedType": "TagOpen",
     "expectedValue": "td",
     "returnedType": "TagOpen",
@@ -5800,7 +5810,7 @@
     "status": "OK"
   },
   {
-    "index": 580,
+    "index": 581,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -5810,7 +5820,7 @@
     "status": "OK"
   },
   {
-    "index": 581,
+    "index": 582,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -5820,7 +5830,7 @@
     "status": "OK"
   },
   {
-    "index": 582,
+    "index": 583,
     "expectedType": "String",
     "expectedValue": "padding:12px;font-family:monospace",
     "returnedType": "String",
@@ -5830,7 +5840,7 @@
     "status": "OK"
   },
   {
-    "index": 583,
+    "index": 584,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -5840,7 +5850,7 @@
     "status": "OK"
   },
   {
-    "index": 584,
+    "index": 585,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -5850,7 +5860,7 @@
     "status": "OK"
   },
   {
-    "index": 585,
+    "index": 586,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -5860,7 +5870,7 @@
     "status": "OK"
   },
   {
-    "index": 586,
+    "index": 587,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -5870,7 +5880,7 @@
     "status": "OK"
   },
   {
-    "index": 587,
+    "index": 588,
     "expectedType": "Identifier",
     "expectedValue": "returnedType",
     "returnedType": "Identifier",
@@ -5880,7 +5890,7 @@
     "status": "OK"
   },
   {
-    "index": 588,
+    "index": 589,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -5890,7 +5900,7 @@
     "status": "OK"
   },
   {
-    "index": 589,
+    "index": 590,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -5900,7 +5910,7 @@
     "status": "OK"
   },
   {
-    "index": 590,
+    "index": 591,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -5910,7 +5920,7 @@
     "status": "OK"
   },
   {
-    "index": 591,
+    "index": 592,
     "expectedType": "Identifier",
     "expectedValue": "td",
     "returnedType": "Identifier",
@@ -5920,7 +5930,7 @@
     "status": "OK"
   },
   {
-    "index": 592,
+    "index": 593,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -5930,7 +5940,7 @@
     "status": "OK"
   },
   {
-    "index": 593,
+    "index": 594,
     "expectedType": "TagOpen",
     "expectedValue": "td",
     "returnedType": "TagOpen",
@@ -5940,7 +5950,7 @@
     "status": "OK"
   },
   {
-    "index": 594,
+    "index": 595,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -5950,7 +5960,7 @@
     "status": "OK"
   },
   {
-    "index": 595,
+    "index": 596,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -5960,7 +5970,7 @@
     "status": "OK"
   },
   {
-    "index": 596,
+    "index": 597,
     "expectedType": "String",
     "expectedValue": "padding:12px;font-family:monospace;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap",
     "returnedType": "String",
@@ -5970,7 +5980,7 @@
     "status": "OK"
   },
   {
-    "index": 597,
+    "index": 598,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -5980,7 +5990,7 @@
     "status": "OK"
   },
   {
-    "index": 598,
+    "index": 599,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -5990,7 +6000,7 @@
     "status": "OK"
   },
   {
-    "index": 599,
+    "index": 600,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -6000,7 +6010,7 @@
     "status": "OK"
   },
   {
-    "index": 600,
+    "index": 601,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -6010,7 +6020,7 @@
     "status": "OK"
   },
   {
-    "index": 601,
+    "index": 602,
     "expectedType": "Identifier",
     "expectedValue": "returnedValue",
     "returnedType": "Identifier",
@@ -6020,7 +6030,7 @@
     "status": "OK"
   },
   {
-    "index": 602,
+    "index": 603,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -6030,7 +6040,7 @@
     "status": "OK"
   },
   {
-    "index": 603,
+    "index": 604,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -6040,7 +6050,7 @@
     "status": "OK"
   },
   {
-    "index": 604,
+    "index": 605,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -6050,7 +6060,7 @@
     "status": "OK"
   },
   {
-    "index": 605,
+    "index": 606,
     "expectedType": "Identifier",
     "expectedValue": "td",
     "returnedType": "Identifier",
@@ -6060,7 +6070,7 @@
     "status": "OK"
   },
   {
-    "index": 606,
+    "index": 607,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -6070,7 +6080,7 @@
     "status": "OK"
   },
   {
-    "index": 607,
+    "index": 608,
     "expectedType": "TagOpen",
     "expectedValue": "td",
     "returnedType": "TagOpen",
@@ -6080,7 +6090,7 @@
     "status": "OK"
   },
   {
-    "index": 608,
+    "index": 609,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -6090,7 +6100,7 @@
     "status": "OK"
   },
   {
-    "index": 609,
+    "index": 610,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -6100,7 +6110,7 @@
     "status": "OK"
   },
   {
-    "index": 610,
+    "index": 611,
     "expectedType": "String",
     "expectedValue": "padding:12px",
     "returnedType": "String",
@@ -6110,7 +6120,7 @@
     "status": "OK"
   },
   {
-    "index": 611,
+    "index": 612,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -6120,7 +6130,7 @@
     "status": "OK"
   },
   {
-    "index": 612,
+    "index": 613,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -6130,7 +6140,7 @@
     "status": "OK"
   },
   {
-    "index": 613,
+    "index": 614,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -6140,7 +6150,7 @@
     "status": "OK"
   },
   {
-    "index": 614,
+    "index": 615,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -6150,7 +6160,7 @@
     "status": "OK"
   },
   {
-    "index": 615,
+    "index": 616,
     "expectedType": "Identifier",
     "expectedValue": "line",
     "returnedType": "Identifier",
@@ -6160,7 +6170,7 @@
     "status": "OK"
   },
   {
-    "index": 616,
+    "index": 617,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -6170,7 +6180,7 @@
     "status": "OK"
   },
   {
-    "index": 617,
+    "index": 618,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -6180,7 +6190,7 @@
     "status": "OK"
   },
   {
-    "index": 618,
+    "index": 619,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -6190,7 +6200,7 @@
     "status": "OK"
   },
   {
-    "index": 619,
+    "index": 620,
     "expectedType": "Identifier",
     "expectedValue": "td",
     "returnedType": "Identifier",
@@ -6200,7 +6210,7 @@
     "status": "OK"
   },
   {
-    "index": 620,
+    "index": 621,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -6210,7 +6220,7 @@
     "status": "OK"
   },
   {
-    "index": 621,
+    "index": 622,
     "expectedType": "TagOpen",
     "expectedValue": "td",
     "returnedType": "TagOpen",
@@ -6220,7 +6230,7 @@
     "status": "OK"
   },
   {
-    "index": 622,
+    "index": 623,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -6230,7 +6240,7 @@
     "status": "OK"
   },
   {
-    "index": 623,
+    "index": 624,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -6240,7 +6250,7 @@
     "status": "OK"
   },
   {
-    "index": 624,
+    "index": 625,
     "expectedType": "String",
     "expectedValue": "padding:12px",
     "returnedType": "String",
@@ -6250,7 +6260,7 @@
     "status": "OK"
   },
   {
-    "index": 625,
+    "index": 626,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -6260,7 +6270,7 @@
     "status": "OK"
   },
   {
-    "index": 626,
+    "index": 627,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -6270,7 +6280,7 @@
     "status": "OK"
   },
   {
-    "index": 627,
+    "index": 628,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -6280,7 +6290,7 @@
     "status": "OK"
   },
   {
-    "index": 628,
+    "index": 629,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -6290,7 +6300,7 @@
     "status": "OK"
   },
   {
-    "index": 629,
+    "index": 630,
     "expectedType": "Identifier",
     "expectedValue": "column",
     "returnedType": "Identifier",
@@ -6300,7 +6310,7 @@
     "status": "OK"
   },
   {
-    "index": 630,
+    "index": 631,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -6310,7 +6320,7 @@
     "status": "OK"
   },
   {
-    "index": 631,
+    "index": 632,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -6320,7 +6330,7 @@
     "status": "OK"
   },
   {
-    "index": 632,
+    "index": 633,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -6330,7 +6340,7 @@
     "status": "OK"
   },
   {
-    "index": 633,
+    "index": 634,
     "expectedType": "Identifier",
     "expectedValue": "td",
     "returnedType": "Identifier",
@@ -6340,7 +6350,7 @@
     "status": "OK"
   },
   {
-    "index": 634,
+    "index": 635,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -6350,7 +6360,7 @@
     "status": "OK"
   },
   {
-    "index": 635,
+    "index": 636,
     "expectedType": "TagOpen",
     "expectedValue": "td",
     "returnedType": "TagOpen",
@@ -6360,7 +6370,7 @@
     "status": "OK"
   },
   {
-    "index": 636,
+    "index": 637,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -6370,7 +6380,7 @@
     "status": "OK"
   },
   {
-    "index": 637,
+    "index": 638,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -6380,7 +6390,7 @@
     "status": "OK"
   },
   {
-    "index": 638,
+    "index": 639,
     "expectedType": "String",
     "expectedValue": "padding:12px;font-weight:bold;color:{r.status == 'DIFF' ? '#c0392b' : '#2e7d32'}",
     "returnedType": "String",
@@ -6390,7 +6400,7 @@
     "status": "OK"
   },
   {
-    "index": 639,
+    "index": 640,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -6400,7 +6410,7 @@
     "status": "OK"
   },
   {
-    "index": 640,
+    "index": 641,
     "expectedType": "TagOpen",
     "expectedValue": "span",
     "returnedType": "TagOpen",
@@ -6410,7 +6420,7 @@
     "status": "OK"
   },
   {
-    "index": 641,
+    "index": 642,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -6420,7 +6430,7 @@
     "status": "OK"
   },
   {
-    "index": 642,
+    "index": 643,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -6430,7 +6440,7 @@
     "status": "OK"
   },
   {
-    "index": 643,
+    "index": 644,
     "expectedType": "String",
     "expectedValue": "padding:4px 8px;border-radius:4px;font-size:0.875rem;background:{r.status == 'DIFF' ? '#ffcdd2' : '#c8e6c9'};color:#111",
     "returnedType": "String",
@@ -6440,7 +6450,7 @@
     "status": "OK"
   },
   {
-    "index": 644,
+    "index": 645,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -6450,7 +6460,7 @@
     "status": "OK"
   },
   {
-    "index": 645,
+    "index": 646,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -6460,7 +6470,7 @@
     "status": "OK"
   },
   {
-    "index": 646,
+    "index": 647,
     "expectedType": "Identifier",
     "expectedValue": "r",
     "returnedType": "Identifier",
@@ -6470,7 +6480,7 @@
     "status": "OK"
   },
   {
-    "index": 647,
+    "index": 648,
     "expectedType": "Dot",
     "expectedValue": ".",
     "returnedType": "Dot",
@@ -6480,7 +6490,7 @@
     "status": "OK"
   },
   {
-    "index": 648,
+    "index": 649,
     "expectedType": "Identifier",
     "expectedValue": "status",
     "returnedType": "Identifier",
@@ -6490,7 +6500,7 @@
     "status": "OK"
   },
   {
-    "index": 649,
+    "index": 650,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -6500,7 +6510,7 @@
     "status": "OK"
   },
   {
-    "index": 650,
+    "index": 651,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -6510,7 +6520,7 @@
     "status": "OK"
   },
   {
-    "index": 651,
+    "index": 652,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -6520,7 +6530,7 @@
     "status": "OK"
   },
   {
-    "index": 652,
+    "index": 653,
     "expectedType": "Identifier",
     "expectedValue": "span",
     "returnedType": "Identifier",
@@ -6530,7 +6540,7 @@
     "status": "OK"
   },
   {
-    "index": 653,
+    "index": 654,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -6540,7 +6550,7 @@
     "status": "OK"
   },
   {
-    "index": 654,
+    "index": 655,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -6550,7 +6560,7 @@
     "status": "OK"
   },
   {
-    "index": 655,
+    "index": 656,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -6560,7 +6570,7 @@
     "status": "OK"
   },
   {
-    "index": 656,
+    "index": 657,
     "expectedType": "Identifier",
     "expectedValue": "td",
     "returnedType": "Identifier",
@@ -6570,7 +6580,7 @@
     "status": "OK"
   },
   {
-    "index": 657,
+    "index": 658,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -6580,7 +6590,7 @@
     "status": "OK"
   },
   {
-    "index": 658,
+    "index": 659,
     "expectedType": "TagClose",
     "expectedValue": "tr",
     "returnedType": "TagClose",
@@ -6590,7 +6600,7 @@
     "status": "OK"
   },
   {
-    "index": 659,
+    "index": 660,
     "expectedType": "ParenClose",
     "expectedValue": ")",
     "returnedType": "ParenClose",
@@ -6600,17 +6610,17 @@
     "status": "OK"
   },
   {
-    "index": 660,
-    "expectedType": "Unknown",
+    "index": 661,
+    "expectedType": "BraceClose",
     "expectedValue": "}",
-    "returnedType": "Unknown",
+    "returnedType": "BraceClose",
     "returnedValue": "}",
     "line": 85,
     "column": 34,
     "status": "OK"
   },
   {
-    "index": 661,
+    "index": 662,
     "expectedType": "TagClose",
     "expectedValue": "tbody",
     "returnedType": "TagClose",
@@ -6620,7 +6630,7 @@
     "status": "OK"
   },
   {
-    "index": 662,
+    "index": 663,
     "expectedType": "TagClose",
     "expectedValue": "table",
     "returnedType": "TagClose",
@@ -6630,7 +6640,7 @@
     "status": "OK"
   },
   {
-    "index": 663,
+    "index": 664,
     "expectedType": "TagClose",
     "expectedValue": "div",
     "returnedType": "TagClose",
@@ -6640,7 +6650,7 @@
     "status": "OK"
   },
   {
-    "index": 664,
+    "index": 665,
     "expectedType": "TagClose",
     "expectedValue": "div",
     "returnedType": "TagClose",
@@ -6650,7 +6660,7 @@
     "status": "OK"
   },
   {
-    "index": 665,
+    "index": 666,
     "expectedType": "Colon",
     "expectedValue": ":",
     "returnedType": "Colon",
@@ -6660,7 +6670,7 @@
     "status": "OK"
   },
   {
-    "index": 666,
+    "index": 667,
     "expectedType": "TagOpen",
     "expectedValue": "div",
     "returnedType": "TagOpen",
@@ -6670,7 +6680,7 @@
     "status": "OK"
   },
   {
-    "index": 667,
+    "index": 668,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -6680,7 +6690,7 @@
     "status": "OK"
   },
   {
-    "index": 668,
+    "index": 669,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -6690,7 +6700,7 @@
     "status": "OK"
   },
   {
-    "index": 669,
+    "index": 670,
     "expectedType": "String",
     "expectedValue": "margin-top:64px;color:#888;font-size:1.2rem;text-align:center;padding:32px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1)",
     "returnedType": "String",
@@ -6700,7 +6710,7 @@
     "status": "OK"
   },
   {
-    "index": 670,
+    "index": 671,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -6710,7 +6720,7 @@
     "status": "OK"
   },
   {
-    "index": 671,
+    "index": 672,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -6720,7 +6730,7 @@
     "status": "OK"
   },
   {
-    "index": 672,
+    "index": 673,
     "expectedType": "Identifier",
     "expectedValue": "error",
     "returnedType": "Identifier",
@@ -6730,17 +6740,17 @@
     "status": "OK"
   },
   {
-    "index": 673,
-    "expectedType": "Unknown",
+    "index": 674,
+    "expectedType": "Operator",
     "expectedValue": "?",
-    "returnedType": "Unknown",
+    "returnedType": "Operator",
     "returnedValue": "?",
     "line": 89,
     "column": 192,
     "status": "OK"
   },
   {
-    "index": 674,
+    "index": 675,
     "expectedType": "String",
     "expectedValue": "Failed to load results",
     "returnedType": "String",
@@ -6750,7 +6760,7 @@
     "status": "OK"
   },
   {
-    "index": 675,
+    "index": 676,
     "expectedType": "Colon",
     "expectedValue": ":",
     "returnedType": "Colon",
@@ -6760,7 +6770,7 @@
     "status": "OK"
   },
   {
-    "index": 676,
+    "index": 677,
     "expectedType": "String",
     "expectedValue": "No results found",
     "returnedType": "String",
@@ -6770,7 +6780,7 @@
     "status": "OK"
   },
   {
-    "index": 677,
+    "index": 678,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -6780,7 +6790,7 @@
     "status": "OK"
   },
   {
-    "index": 678,
+    "index": 679,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -6790,7 +6800,7 @@
     "status": "OK"
   },
   {
-    "index": 679,
+    "index": 680,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -6800,7 +6810,7 @@
     "status": "OK"
   },
   {
-    "index": 680,
+    "index": 681,
     "expectedType": "Identifier",
     "expectedValue": "div",
     "returnedType": "Identifier",
@@ -6810,7 +6820,7 @@
     "status": "OK"
   },
   {
-    "index": 681,
+    "index": 682,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -6820,17 +6830,17 @@
     "status": "OK"
   },
   {
-    "index": 682,
-    "expectedType": "Unknown",
+    "index": 683,
+    "expectedType": "BraceClose",
     "expectedValue": "}",
-    "returnedType": "Unknown",
+    "returnedType": "BraceClose",
     "returnedValue": "}",
     "line": 89,
     "column": 246,
     "status": "OK"
   },
   {
-    "index": 683,
+    "index": 684,
     "expectedType": "TagClose",
     "expectedValue": "main",
     "returnedType": "TagClose",
@@ -6840,7 +6850,7 @@
     "status": "OK"
   },
   {
-    "index": 684,
+    "index": 685,
     "expectedType": "TagOpen",
     "expectedValue": "footer",
     "returnedType": "TagOpen",
@@ -6850,7 +6860,7 @@
     "status": "OK"
   },
   {
-    "index": 685,
+    "index": 686,
     "expectedType": "AttributeName",
     "expectedValue": "style",
     "returnedType": "AttributeName",
@@ -6860,7 +6870,7 @@
     "status": "OK"
   },
   {
-    "index": 686,
+    "index": 687,
     "expectedType": "Equals",
     "expectedValue": "=",
     "returnedType": "Equals",
@@ -6870,7 +6880,7 @@
     "status": "OK"
   },
   {
-    "index": 687,
+    "index": 688,
     "expectedType": "String",
     "expectedValue": "width:100%;background:#343a40;color:#fff;text-align:center;padding:16px 0;font-size:1rem;letter-spacing:1px;margin-top:auto",
     "returnedType": "String",
@@ -6880,7 +6890,7 @@
     "status": "OK"
   },
   {
-    "index": 688,
+    "index": 689,
     "expectedType": "TagEnd",
     "expectedValue": ">",
     "returnedType": "TagEnd",
@@ -6890,7 +6900,7 @@
     "status": "OK"
   },
   {
-    "index": 689,
+    "index": 690,
     "expectedType": "Operator",
     "expectedValue": "&",
     "returnedType": "Operator",
@@ -6900,7 +6910,7 @@
     "status": "OK"
   },
   {
-    "index": 690,
+    "index": 691,
     "expectedType": "Keyword",
     "expectedValue": "copy",
     "returnedType": "Keyword",
@@ -6910,7 +6920,7 @@
     "status": "OK"
   },
   {
-    "index": 691,
+    "index": 692,
     "expectedType": "SemiColon",
     "expectedValue": ";",
     "returnedType": "SemiColon",
@@ -6920,7 +6930,7 @@
     "status": "OK"
   },
   {
-    "index": 692,
+    "index": 693,
     "expectedType": "ExpressionStart",
     "expectedValue": "{",
     "returnedType": "ExpressionStart",
@@ -6930,7 +6940,7 @@
     "status": "OK"
   },
   {
-    "index": 693,
+    "index": 694,
     "expectedType": "Identifier",
     "expectedValue": "year",
     "returnedType": "Identifier",
@@ -6940,7 +6950,7 @@
     "status": "OK"
   },
   {
-    "index": 694,
+    "index": 695,
     "expectedType": "ParenOpen",
     "expectedValue": "(",
     "returnedType": "ParenOpen",
@@ -6950,7 +6960,7 @@
     "status": "OK"
   },
   {
-    "index": 695,
+    "index": 696,
     "expectedType": "ParenClose",
     "expectedValue": ")",
     "returnedType": "ParenClose",
@@ -6960,7 +6970,7 @@
     "status": "OK"
   },
   {
-    "index": 696,
+    "index": 697,
     "expectedType": "ExpressionEnd",
     "expectedValue": "}",
     "returnedType": "ExpressionEnd",
@@ -6970,7 +6980,7 @@
     "status": "OK"
   },
   {
-    "index": 697,
+    "index": 698,
     "expectedType": "Identifier",
     "expectedValue": "Alterion",
     "returnedType": "Identifier",
@@ -6980,7 +6990,7 @@
     "status": "OK"
   },
   {
-    "index": 698,
+    "index": 699,
     "expectedType": "Identifier",
     "expectedValue": "Test",
     "returnedType": "Identifier",
@@ -6990,7 +7000,7 @@
     "status": "OK"
   },
   {
-    "index": 699,
+    "index": 700,
     "expectedType": "Identifier",
     "expectedValue": "Dashboard",
     "returnedType": "Identifier",
@@ -7000,7 +7010,7 @@
     "status": "OK"
   },
   {
-    "index": 700,
+    "index": 701,
     "expectedType": "TagClose",
     "expectedValue": "",
     "returnedType": "TagClose",
@@ -7010,7 +7020,7 @@
     "status": "OK"
   },
   {
-    "index": 701,
+    "index": 702,
     "expectedType": "Operator",
     "expectedValue": "/",
     "returnedType": "Operator",
@@ -7020,7 +7030,7 @@
     "status": "OK"
   },
   {
-    "index": 702,
+    "index": 703,
     "expectedType": "Identifier",
     "expectedValue": "footer",
     "returnedType": "Identifier",
@@ -7030,7 +7040,7 @@
     "status": "OK"
   },
   {
-    "index": 703,
+    "index": 704,
     "expectedType": "Operator",
     "expectedValue": ">",
     "returnedType": "Operator",
@@ -7040,7 +7050,7 @@
     "status": "OK"
   },
   {
-    "index": 704,
+    "index": 705,
     "expectedType": "TagClose",
     "expectedValue": "div",
     "returnedType": "TagClose",
@@ -7050,17 +7060,17 @@
     "status": "OK"
   },
   {
-    "index": 705,
-    "expectedType": "Unknown",
+    "index": 706,
+    "expectedType": "BraceClose",
     "expectedValue": "}",
-    "returnedType": "Unknown",
+    "returnedType": "BraceClose",
     "returnedValue": "}",
     "line": 93,
     "column": 1,
     "status": "OK"
   },
   {
-    "index": 706,
+    "index": 707,
     "expectedType": "EOFToken",
     "expectedValue": "",
     "returnedType": "EOFToken",

@@ -189,7 +189,7 @@ bool Lexer::isOperatorStartChar(char c) const {
     return c == '=' || c == '!' || c == '<' || c == '>' || c == '&' || 
            c == '|' || c == '-' || c == '+' || c == '*' || c == '/' || 
            c == '%' || c == '^' || c == '~' || c == ':' || c == '.' || 
-           c == ',' || c == ';' || c == '[' || c == ']';
+           c == ',' || c == ';' || c == '[' || c == ']' || c == '$' || c == '#' || c == '?' || c == '@' || c == '{' || c == '}';
 }
 
 
@@ -340,6 +340,7 @@ Token Lexer::processOperator() {
         case '+': case '-': case '*': case '/': case '%':
         case '<': case '>': case '!': case '&': case '|':
         case '^': case '~':
+        case '#': case '$': case '?': case '@':
             return Token(TokenType::Operator, std::string(1, op), startLine, startColumn);
         case '(': return Token(TokenType::ParenOpen, "(", startLine, startColumn);
         case ')': return Token(TokenType::ParenClose, ")", startLine, startColumn);
