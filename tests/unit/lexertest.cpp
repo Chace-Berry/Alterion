@@ -34,6 +34,7 @@ std::string tokenTypeToString(TokenType type) {
         case TokenType::AttributeName: return "AttributeName";
         case TokenType::AttributeValue: return "AttributeValue";
         case TokenType::Text: return "Text";
+        case TokenType::Comment: return "Comment";
         case TokenType::ExpressionStart: return "ExpressionStart";
         case TokenType::ExpressionEnd: return "ExpressionEnd";
         case TokenType::Equals: return "Equals";
@@ -66,63 +67,122 @@ void computeExpected(const Token& token, std::string& expectedType, std::string&
         "move", "copy", "ref", "deref", "owned", "borrowed", "shared", "weak", "true", "false", "null", "none", "undefined", "this", "super", "self", "Self", "match", "case", "default",
         "let", "const", "var", "new", "delete", "as", "is", "typeof", "print", "println"
     };
-    expectedType = tokenTypeToString(token.type);
-    expectedValue = token.value;
+
+    // Predict expected type for comments
+    if (token.type == TokenType::Comment) {
+        expectedType = "Comment";
+        expectedValue = token.value;
+        return;
+    }
+
+    // Predict expected type for keywords
     if (keywords.count(token.value)) {
         expectedType = "Keyword";
         expectedValue = token.value;
-    } else if (token.type == TokenType::Number) {
+        return;
+    }
+
+    // Predict expected type for numbers
+    if (token.type == TokenType::Number) {
         expectedType = "Number";
         expectedValue = token.value;
-    } else if (token.type == TokenType::String) {
+        return;
+    }
+
+    // Predict expected type for strings
+    if (token.type == TokenType::String) {
         expectedType = "String";
         expectedValue = token.value;
-    } else if (token.type == TokenType::Identifier) {
+        return;
+    }
+
+    // Predict expected type for identifiers
+    if (token.type == TokenType::Identifier) {
         expectedType = "Identifier";
         expectedValue = token.value;
-    } else if (token.type == TokenType::Operator || token.type == TokenType::Arrow) {
+        return;
+    }
+
+    // Predict expected type for operators and arrows
+    if (token.type == TokenType::Operator || token.type == TokenType::Arrow) {
         expectedType = tokenTypeToString(token.type);
         expectedValue = token.value;
-    } else if (token.type == TokenType::TagOpen || token.type == TokenType::TagClose || token.type == TokenType::TagSelfClose || token.type == TokenType::TagEnd) {
+        return;
+    }
+
+    // Predict expected type for tags
+    if (token.type == TokenType::TagOpen || token.type == TokenType::TagClose || token.type == TokenType::TagSelfClose || token.type == TokenType::TagEnd) {
         expectedType = tokenTypeToString(token.type);
         expectedValue = token.value;
-    } else if (token.type == TokenType::AttributeName || token.type == TokenType::AttributeValue) {
+        return;
+    }
+
+    // Predict expected type for attributes
+    if (token.type == TokenType::AttributeName || token.type == TokenType::AttributeValue) {
         expectedType = tokenTypeToString(token.type);
         expectedValue = token.value;
-    } else if (token.type == TokenType::Text) {
+        return;
+    }
+
+    // Predict expected type for text
+    if (token.type == TokenType::Text) {
         expectedType = "Text";
         expectedValue = token.value;
-    } else if (token.type == TokenType::ExpressionStart || token.type == TokenType::ExpressionEnd) {
+        return;
+    }
+
+    // Predict expected type for expressions
+    if (token.type == TokenType::ExpressionStart || token.type == TokenType::ExpressionEnd) {
         expectedType = tokenTypeToString(token.type);
         expectedValue = token.value;
-    } else if (token.type == TokenType::Equals || token.type == TokenType::BraceOpen || token.type == TokenType::BraceClose || token.type == TokenType::Colon || token.type == TokenType::SemiColon || token.type == TokenType::ParenOpen || token.type == TokenType::ParenClose || token.type == TokenType::SquareBracketOpen || token.type == TokenType::SquareBracketClose || token.type == TokenType::Comma || token.type == TokenType::Dot) {
+        return;
+    }
+
+    // Predict expected type for punctuation
+    if (token.type == TokenType::Equals || token.type == TokenType::BraceOpen || token.type == TokenType::BraceClose || token.type == TokenType::Colon || token.type == TokenType::SemiColon || token.type == TokenType::ParenOpen || token.type == TokenType::ParenClose || token.type == TokenType::SquareBracketOpen || token.type == TokenType::SquareBracketClose || token.type == TokenType::Comma || token.type == TokenType::Dot) {
         expectedType = tokenTypeToString(token.type);
         expectedValue = token.value;
-    } else if (token.type == TokenType::AtModifier) {
+        return;
+    }
+
+    // Predict expected type for at-modifier
+    if (token.type == TokenType::AtModifier) {
         expectedType = "AtModifier";
         expectedValue = token.value;
-    } else if (token.type == TokenType::ValueBinding) {
+        return;
+    }
+
+    // Predict expected type for value binding
+    if (token.type == TokenType::ValueBinding) {
         expectedType = "ValueBinding";
         expectedValue = token.value;
-    } else if (token.type == TokenType::StyleProperty) {
+        return;
+    }
+
+    // Predict expected type for style property
+    if (token.type == TokenType::StyleProperty) {
         expectedType = "StyleProperty";
         expectedValue = token.value;
-    } else if (token.type == TokenType::EOFToken) {
+        return;
+    }
+
+    // Predict expected type for EOF
+    if (token.type == TokenType::EOFToken) {
         expectedType = "EOFToken";
         expectedValue = "";
-    } else if (token.type == TokenType::Unknown) {
-        expectedType = "Unknown";
-        expectedValue = token.value;
-    } else if (token.type == TokenType::Error || token.type == TokenType::ErrorRecovery) {
+        return;
+    }
+
+    // Predict expected type for errors
+    if (token.type == TokenType::Error || token.type == TokenType::ErrorRecovery) {
         expectedType = tokenTypeToString(token.type);
         expectedValue = token.value;
-    } else if (token.type == TokenType::SquareBracketOpen) {
-        expectedType = "SquareBracketOpen";
-        expectedValue = token.value;
-    } else if (token.type == TokenType::SquareBracketClose) {
-        expectedType = "SquareBracketClose";
-        expectedValue = token.value;
+        return;
     }
+
+    // Fallback for unknowns
+    expectedType = "Unknown";
+    expectedValue = token.value;
 }
 
 // Helper to escape JSON string values
@@ -172,21 +232,26 @@ int main() {
     auto now = std::chrono::system_clock::now();
     std::time_t now_time = std::chrono::system_clock::to_time_t(now);
     char filename[128];
-        std::strftime(filename, sizeof(filename), "results-dashboard/public/results/lexer-results.json", std::localtime(&now_time));
+    std::strftime(filename, sizeof(filename), "results-dashboard/public/results/lexer-results.json", std::localtime(&now_time));
 
     // Output HTML
-        std::ofstream json(filename);
-        if (!json) {
-            std::cerr << "[ERROR] Could not open " << filename << " for writing!\n";
-            return 2;
-        }
-        std::cout << "[DEBUG] Writing JSON to " << filename << "...\n";
-        json << "[\n"; 
+    std::ofstream json(filename);
+    if (!json) {
+        std::cerr << "[ERROR] Could not open " << filename << " for writing!\n";
+        return 2;
+    }
+    std::cout << "[DEBUG] Writing JSON to " << filename << "...\n";
+    json << "[\n"; 
     for (size_t i = 0; i < actualTokens.size(); ++i) {
         const Token& token = actualTokens[i];
         std::string expectedType, expectedValue;
         computeExpected(token, expectedType, expectedValue);
-        std::string returnedType = tokenTypeToString(token.type);
+        std::string returnedType;
+        if (token.type == TokenType::Text) {
+            returnedType = "Text";
+        } else {
+            returnedType = tokenTypeToString(token.type);
+        }
         std::string returnedValue = token.value;
         std::string status = (expectedType == returnedType && expectedValue == returnedValue) ? "OK" : "DIFF";
         json << "  {\n"
@@ -200,8 +265,8 @@ int main() {
              << "    \"status\": \"" << jsonEscape(status) << "\"\n"
              << "  }" << (i < actualTokens.size() - 1 ? "," : "") << "\n"; 
     }
-        json << "]\n";
-        json.close();
+    json << "]\n";
+    json.close();
     std::cout << "Lexer test complete. Output written to " << filename << "\n";
     return 0;
 }

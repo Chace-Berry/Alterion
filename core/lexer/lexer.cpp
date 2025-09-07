@@ -2,16 +2,16 @@
 #include <cctype>
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 #include <unordered_set>
 #include <unordered_map>
 #include <algorithm>
 #include <cstdint>
 
-
 namespace {
-    // Decodes a UTF-8 sequence starting at 'pos' in 'input'.
-    // Returns the Unicode codepoint and number of bytes consumed.
-    // If the sequence is malformed, returns U+FFFD and consumes one byte.
+    
+    
+    
     std::pair<uint32_t, size_t> decodeUTF8(const std::string& input, size_t pos) {
         if (pos >= input.size()) return {0, 0};
         unsigned char c = input[pos];
@@ -43,9 +43,7 @@ namespace {
     }
 }
 
-
 namespace {
-    
     const std::unordered_set<std::string> KEYWORDS = {
         
         "async", "component", "import", "extern", "for", "if", "else", "while", 
@@ -72,7 +70,6 @@ namespace {
         "print", "println"
     };
 
-    
     const std::unordered_map<std::string, TokenType> MULTI_CHAR_OPERATORS = {
         {"=>", TokenType::Arrow},
         {"->", TokenType::Arrow}, 
@@ -99,15 +96,12 @@ Lexer::Lexer(const std::string& source)
 }
 
 
-
-// Returns the next Unicode codepoint without advancing the position.
 uint32_t Lexer::peekCodepoint() const {
     auto [cp, len] = decodeUTF8(input, position);
     return cp;
 }
 
 
-// Returns the codepoint after the current one, without advancing.
 uint32_t Lexer::peekAdvanceCodepoint() const {
     auto [cp1, len1] = decodeUTF8(input, position);
     auto [cp2, len2] = decodeUTF8(input, position + len1);
@@ -115,8 +109,7 @@ uint32_t Lexer::peekAdvanceCodepoint() const {
 }
 
 
-// Advances the position by one Unicode codepoint and returns it.
-// Sets isUTF8Error if a malformed sequence is found.
+
 uint32_t Lexer::advanceCodepoint() {
     auto [cp, len] = decodeUTF8(input, position);
     position += len;
@@ -130,14 +123,13 @@ uint32_t Lexer::advanceCodepoint() {
     return cp;
 }
 
-
 char Lexer::peek() const {
     return static_cast<char>(peekCodepoint());
 }
 
 char Lexer::peekAdvance() const {
     return static_cast<char>(peekAdvanceCodepoint());
-    }
+}
 
 char Lexer::advance() {
     return static_cast<char>(advanceCodepoint());
@@ -167,33 +159,13 @@ void Lexer::exitState() {
     }
 }
 
-// Skips whitespace and comments (single-line and multi-line).
-// Advances the lexer position until a non-whitespace, non-comment character is found.
+
 void Lexer::skipWhitespace() {
     while (!eof()) {
         char c = peek();
         unsigned char uc = static_cast<unsigned char>(c);
         if (uc <= 127 && std::isspace(uc)) {
             advance();
-        } else if (c == '/' && peekAdvance() == '/') {
-            // Single-line comment: skip until end of line
-            advance(); 
-            advance(); 
-            while (!eof() && peek() != '\n') {
-                advance();
-            }
-        } else if (c == '/' && peekAdvance() == '*') {
-            // Multi-line comment: skip until closing '*/'
-            advance(); 
-            advance(); 
-            while (!eof()) {
-                if (peek() == '*' && peekAdvance() == '/') {
-                    advance(); 
-                    advance(); 
-                    break;
-                }
-                advance();
-            }
         } else {
             break;
         }
@@ -204,12 +176,9 @@ bool Lexer::isDigit(char c) const {
     return c >= '0' && c <= '9';
 }
 
-
-
 bool Lexer::isAlpha(char c) const {
     unsigned char uc = static_cast<unsigned char>(c);
     return (uc >= 'a' && uc <= 'z') || (uc >= 'A' && uc <= 'Z') || uc == '_' || (uc >= 0x80);
-    
 }
 
 bool Lexer::isAlphaNumeric(char c) const {
@@ -223,7 +192,7 @@ bool Lexer::isOperatorStartChar(char c) const {
            c == ',' || c == ';' || c == '[' || c == ']';
 }
 
-// Lexes a number literal (decimal, hex, binary, float, scientific notation).
+
 Token Lexer::processNumber() {
     size_t startLine = line, startColumn = column;
     std::string number;
@@ -282,7 +251,7 @@ Token Lexer::processNumber() {
     return Token(TokenType::Number, number, startLine, startColumn);
 }
 
-// Lexes an identifier or keyword. Identifiers may contain Unicode letters and '-'.
+
 Token Lexer::processIdentifierOrKeyword() {
     size_t startLine = line, startColumn = column;
     std::string text;
@@ -299,7 +268,7 @@ Token Lexer::processIdentifierOrKeyword() {
     return Token(TokenType::Identifier, text, startLine, startColumn);
 }
 
-// Lexes a string literal, handling escape sequences and Unicode.
+
 Token Lexer::processString() {
     size_t startLine = line, startColumn = column;
     char quote = peek(); 
@@ -307,11 +276,16 @@ Token Lexer::processString() {
     
     std::string value;
     
-    while (!eof() && peek() != quote) {
+    bool closed = false;
+    while (!eof()) {
+        if (peek() == quote) {
+            closed = true;
+            advance();
+            break;
+        }
         if (peek() == '\\') {
-            advance(); 
+            advance();
             if (eof()) break;
-            
             char escaped = advance();
             switch (escaped) {
                 case 'n': value += '\n'; break;
@@ -324,35 +298,42 @@ Token Lexer::processString() {
                 default: value += escaped; break;
             }
         } else {
+            
+            if (peek() == '\n' || peek() == '\r') {
+                break;
+            }
             value += advance();
         }
     }
-    
-    if (!eof()) {
-        advance(); 
+    if (!closed) {
+        
+        recoverFromError();
+        return Token(TokenType::Error, value, startLine, startColumn, "Unclosed or malformed string literal");
     }
-    
     return Token(TokenType::String, value, startLine, startColumn);
 }
 
-// Lexes operators (single and multi-character).
+
 Token Lexer::processOperator() {
     size_t startLine = line, startColumn = column;
     char first = peek();
     char second = peekAdvance();
-    
-    
+
+    // Check for comment before operator
+    if (first == '/' && (second == '/' || second == '*')) {
+        return processComment();
+    }
+
     std::string twoChar;
     twoChar += first;
     twoChar += second;
-    
+
     if (MULTI_CHAR_OPERATORS.count(twoChar)) {
         advance(); 
         advance(); 
         return Token(MULTI_CHAR_OPERATORS.at(twoChar), twoChar, startLine, startColumn);
     }
-    
-    
+
     char op = advance();
     switch (op) {
         case '=': return Token(TokenType::Equals, "=", startLine, startColumn);
@@ -374,7 +355,7 @@ Token Lexer::processOperator() {
     }
 }
 
-// Lexes an opening tag (e.g., <div>). Handles tag name and enters attribute state.
+
 Token Lexer::processTag() {
     size_t startLine = line, startColumn = column;
     advance(); 
@@ -397,7 +378,7 @@ Token Lexer::processTag() {
     return Token(TokenType::TagOpen, tagName, startLine, startColumn);
 }
 
-// Lexes a closing tag (e.g., </div>). Handles tag name and exits content state if needed.
+
 Token Lexer::processTagEnd() {
     size_t startLine = line, startColumn = column;
     advance(); 
@@ -420,22 +401,83 @@ Token Lexer::processTagEnd() {
     return Token(TokenType::TagClose, tagName, startLine, startColumn);
 }
 
-// Lexes raw text content between tags or expressions.
+
+Token Lexer::processComment() {
+    size_t startLine = line, startColumn = column;
+    std::string commentText;
+    
+    std::ofstream debugLog("lexer-debug.log", std::ios::app);
+    
+    if (peek() == '/' && peekAdvance() == '/') {
+        commentText += advance(); 
+        commentText += advance(); 
+        while (!eof() && peek() != '\n') {
+            commentText += advance();
+        }
+        
+        if (!eof() && peek() == '\n') {
+            advance();
+        }
+        if (debugLog) {
+            debugLog << "[processComment] Single-line: '" << commentText << "' at " << startLine << ":" << startColumn << "\n";
+        }
+        return Token(TokenType::Comment, commentText, startLine, startColumn);
+    }
+    
+    if (peek() == '/' && peekAdvance() == '*') {
+        commentText += advance(); 
+        commentText += advance(); 
+        while (!eof()) {
+            if (peek() == '*' && peekAdvance() == '/') {
+                commentText += advance(); 
+                commentText += advance(); 
+                if (debugLog) {
+                    debugLog << "[processComment] Multi-line: '" << commentText << "' at " << startLine << ":" << startColumn << "\n";
+                }
+                return Token(TokenType::Comment, commentText, startLine, startColumn);
+            }
+            commentText += advance();
+        }
+        
+        if (debugLog) {
+            debugLog << "[processComment] Unterminated multi-line: '" << commentText << "' at " << startLine << ":" << startColumn << "\n";
+        }
+        return Token(TokenType::Error, commentText, startLine, startColumn, "Unterminated multi-line comment");
+    }
+    
+    char invalid = advance();
+    if (debugLog) {
+        debugLog << "[processComment] Invalid start: '" << invalid << "' at " << startLine << ":" << startColumn << "\n";
+    }
+    return Token(TokenType::Error, std::string(1, invalid), startLine, startColumn, "Invalid comment start");
+}
+
+
 Token Lexer::processTextContent() {
     size_t startLine = line, startColumn = column;
     std::string text;
     
+    
     while (!eof()) {
         char c = peek();
-        if (c == '<' || c == '{') {
+        
+        if (isAlpha(c) || isDigit(c) || isOperatorStartChar(c) ||
+            c == '<' || c == '{' || c == '}' || c == '>' || c == '[' || c == ']' ||
+            c == '(' || c == ')' || c == '=' || c == ':' || c == ';' || c == ',' ||
+            c == '"' || c == '\'' || c == '/' || c == '@' || c == '!') {
             break;
         }
         text += advance();
     }
-    return Token(TokenType::Text, text, startLine, startColumn);
+    
+    if (!text.empty()) {
+        return Token(TokenType::Text, text, startLine, startColumn);
+    }
+    
+    return nextToken();
 }
 
-// Lexes a value binding (e.g., !identifier).
+
 Token Lexer::processValueBinding() {
     size_t startLine = line, startColumn = column;
     advance(); 
@@ -452,7 +494,7 @@ Token Lexer::processValueBinding() {
     return Token(TokenType::ValueBinding, "!" + identifier, startLine, startColumn);
 }
 
-// Lexes a style property name inside a style block.
+
 Token Lexer::processStyleProperty() {
     size_t startLine = line, startColumn = column;
     std::string property;
@@ -465,80 +507,95 @@ Token Lexer::processStyleProperty() {
     return Token(TokenType::StyleProperty, property, startLine, startColumn);
 }
 
-// Main tokenization function. Dispatches based on current state and character.
+
 Token Lexer::nextToken() {
-    skipWhitespace();
     
-    if (eof()) {
-        return Token(TokenType::EOFToken, "", line, column);
-    }
+
     
-    char c = peek();
-    size_t startLine = line, startColumn = column;
-    
-    
-    switch (state) {
-        case LexerState::ALTXAttribute:
-            return processALTXAttribute();
-            
-        case LexerState::ALTXContent:
-            return processALTXContent();
-            
-        case LexerState::Expression:
-            return processExpression();
-            
-        case LexerState::StyleValue:
-            return processStyleValue();
-            
-        default:
-            break;
-    }
-    
-    
-    if (isDigit(c)) {
-        return processNumber();
-    }
-    
-    if (isAlpha(c)) {
-        return processIdentifierOrKeyword();
-    }
-    
-    if (c == '"' || c == '\'') {
-        return processString();
-    }
-    
-    if (c == '<') {
-        return processTag();
-    }
-    
-    if (c == '@') {
-        advance();
-        std::string modifier;
-        while (!eof() && isAlphaNumeric(peek())) {
-            modifier += advance();
+    while (!eof()) {
+        skipWhitespace();
+        if (eof()) {
+            return Token(TokenType::EOFToken, "", line, column);
         }
-        return Token(TokenType::AtModifier, "@" + modifier, startLine, startColumn);
+        char c = peek();
+        size_t startLine = line, startColumn = column;
+        
+        if (c == '/' && (peekAdvance() == '/' || peekAdvance() == '*')) {
+            Token commentToken = processComment();
+            
+            skipWhitespace();
+            if (eof()) return Token(TokenType::EOFToken, "", line, column);
+            return commentToken;
+        }
+        
+        if (std::isspace(static_cast<unsigned char>(c))) {
+            advance();
+            continue;
+        }
+        
+        switch (state) {
+            case LexerState::ALTXAttribute:
+                return processALTXAttribute();
+            case LexerState::ALTXContent:
+                return processALTXContent();
+            case LexerState::Expression:
+                return processExpression();
+            case LexerState::StyleValue:
+                return processStyleValue();
+            default:
+                break;
+        }
+        if (isDigit(c)) {
+            return processNumber();
+        }
+        if (isAlpha(c)) {
+            return processIdentifierOrKeyword();
+        }
+        if (c == '"' || c == '\'') {
+            return processString();
+        }
+        if (c == '<') {
+            return processTag();
+        }
+        if (c == '@') {
+            advance();
+            std::string modifier;
+            while (!eof() && isAlphaNumeric(peek())) {
+                modifier += advance();
+            }
+            return Token(TokenType::AtModifier, "@" + modifier, startLine, startColumn);
+        }
+        if (c == '!') {
+            return processValueBinding();
+        }
+        if (c == '{') {
+            advance();
+            enterState(LexerState::Expression);
+            return Token(TokenType::ExpressionStart, "{", startLine, startColumn);
+        }
+        if (c == '(') {
+            advance();
+            return Token(TokenType::ParenOpen, "(", startLine, startColumn);
+        }
+        if (c == ')') {
+            advance();
+            return Token(TokenType::ParenClose, ")", startLine, startColumn);
+        }
+        if (c == '\\') {
+            advance();
+            return Token(TokenType::Error, "\\", startLine, startColumn, "Unexpected backslash");
+        }
+        if (isOperatorStartChar(c)) {
+            return processOperator();
+        }
+        
+        return Token(TokenType::Unknown, std::string(1, advance()), startLine, startColumn);
     }
     
-    if (c == '!') {
-        return processValueBinding();
-    }
-    
-    if (c == '{') {
-        advance();
-        enterState(LexerState::Expression);
-        return Token(TokenType::ExpressionStart, "{", startLine, startColumn);
-    }
-    
-    if (isOperatorStartChar(c)) {
-        return processOperator();
-    }
-    
-    
-    return Token(TokenType::Unknown, std::string(1, advance()), startLine, startColumn);
+    return Token(TokenType::EOFToken, "", line, column);
 }
 
-// Lexes attributes inside a tag (e.g., <div attr="value">).
+
 Token Lexer::processALTXAttribute() {
     skipWhitespace();
     
@@ -549,6 +606,24 @@ Token Lexer::processALTXAttribute() {
     
     char c = peek();
     size_t startLine = line, startColumn = column;
+    
+    
+    if (c == '/' && (peekAdvance() == '/' || peekAdvance() == '*')) {
+        Token commentToken = processComment();
+        skipWhitespace();
+        if (eof()) return Token(TokenType::EOFToken, "", line, column);
+        return commentToken;
+    }
+    if (c == '/') {
+        // Check for comment before operator
+        if (peekAdvance() == '/' || peekAdvance() == '*') {
+            Token commentToken = processComment();
+            skipWhitespace();
+            if (eof()) return Token(TokenType::EOFToken, "", line, column);
+            return commentToken;
+        }
+        return processOperator();
+    }
     
     
     if (c == '>') {
@@ -598,7 +673,7 @@ Token Lexer::processALTXAttribute() {
     return nextToken();
 }
 
-// Lexes content inside a tag (e.g., <div> ... </div>).
+
 Token Lexer::processALTXContent() {
     skipWhitespace();
     
@@ -608,6 +683,24 @@ Token Lexer::processALTXContent() {
     }
     
     char c = peek();
+    
+    
+    if (c == '/' && (peekAdvance() == '/' || peekAdvance() == '*')) {
+        Token commentToken = processComment();
+        skipWhitespace();
+        if (eof()) return Token(TokenType::EOFToken, "", line, column);
+        return commentToken;
+    }
+    if (c == '/') {
+        // Check for comment before operator
+        if (peekAdvance() == '/' || peekAdvance() == '*') {
+            Token commentToken = processComment();
+            skipWhitespace();
+            if (eof()) return Token(TokenType::EOFToken, "", line, column);
+            return commentToken;
+        }
+        return processOperator();
+    }
     
     
     if (c == '<') {
@@ -629,7 +722,27 @@ Token Lexer::processALTXContent() {
     }
     
     
-    if (isAlpha(c) || isDigit(c)) {
+    if (isAlpha(c)) {
+        return processIdentifierOrKeyword();
+    }
+    if (isDigit(c)) {
+        return processNumber();
+    }
+    if (isOperatorStartChar(c)) {
+        return processOperator();
+    }
+    if (c == '"' || c == '\'') {
+        return processString();
+    }
+    if (c == '!') {
+        return processValueBinding();
+    }
+    
+    
+    if (!isAlpha(c) && !isDigit(c) && !isOperatorStartChar(c) &&
+        c != '<' && c != '{' && c != '}' && c != '>' && c != '[' && c != ']' &&
+        c != '(' && c != ')' && c != '=' && c != ':' && c != ';' && c != ',' &&
+        c != '"' && c != '\'' && c != '/' && c != '@' && c != '!') {
         return processTextContent();
     }
     
@@ -638,7 +751,7 @@ Token Lexer::processALTXContent() {
     return nextToken();
 }
 
-// Lexes an embedded expression (e.g., { ... }). Handles nested tokens until '}'.
+
 Token Lexer::processExpression() {
     skipWhitespace();
     
@@ -651,10 +764,39 @@ Token Lexer::processExpression() {
     size_t startLine = line, startColumn = column;
     
     
+    if (c == '/' && (peekAdvance() == '/' || peekAdvance() == '*')) {
+        Token commentToken = processComment();
+        skipWhitespace();
+        if (eof()) return Token(TokenType::EOFToken, "", line, column);
+        return commentToken;
+    }
+    if (c == '/') {
+        // Check for comment before operator
+        if (peekAdvance() == '/' || peekAdvance() == '*') {
+            Token commentToken = processComment();
+            skipWhitespace();
+            if (eof()) return Token(TokenType::EOFToken, "", line, column);
+            return commentToken;
+        }
+        return processOperator();
+    }
+    
+    
     if (c == '}') {
         advance();
         exitState();
         return Token(TokenType::ExpressionEnd, "}", startLine, startColumn);
+    }
+    
+    
+    if (c == '(') {
+        advance();
+        return Token(TokenType::ParenOpen, "(", startLine, startColumn);
+    }
+    
+    if (c == ')') {
+        advance();
+        return Token(TokenType::ParenClose, ")", startLine, startColumn);
     }
     
     
@@ -682,14 +824,14 @@ Token Lexer::processExpression() {
     return Token(TokenType::Unknown, std::string(1, advance()), startLine, startColumn);
 }
 
-// Lexes a style value (not yet implemented).
+
 Token Lexer::processStyleValue() {
     
     exitState();
     return nextToken();
 }
 
-// Tokenizes the entire input and returns a vector of tokens.
+
 std::vector<Token> Lexer::tokenize() {
     std::vector<Token> tokens;
     
@@ -720,6 +862,7 @@ std::string Lexer::getTokenTypeName(TokenType type) const {
         case TokenType::AttributeName: return "AttributeName";
         case TokenType::AttributeValue: return "AttributeValue";
         case TokenType::Text: return "Text";
+        case TokenType::Comment: return "Comment";
         case TokenType::ExpressionStart: return "ExpressionStart";
         case TokenType::ExpressionEnd: return "ExpressionEnd";
         case TokenType::Equals: return "Equals";
@@ -744,7 +887,7 @@ std::string Lexer::getTokenTypeName(TokenType type) const {
     }
 }
 
-// Prints the token stream for debugging purposes.
+
 void Lexer::debugPrintTokens(const std::vector<Token>& tokens) const {
     std::cout << "=== TOKEN STREAM (" << tokens.size() << " tokens) ===" << std::endl;
     for (size_t i = 0; i < tokens.size(); ++i) {
@@ -762,12 +905,12 @@ void Lexer::debugPrintTokens(const std::vector<Token>& tokens) const {
     std::cout << "=== END TOKEN STREAM ===" << std::endl;
 }
 
-// Creates an error token with a message.
+
 Token Lexer::createErrorToken(const std::string& lexeme, const std::string& message) {
     return Token(TokenType::Error, lexeme, line, column, message);
 }
 
-// Skips characters until a safe recovery point (delimiter) is found after an error.
+
 void Lexer::recoverFromError() {
     
     while (!eof()) {
@@ -775,11 +918,11 @@ void Lexer::recoverFromError() {
         if (c == '\n' || c == ';' || c == '}' || c == ')' || c == ']') {
             break;
         }
-        advance();
+        advance(); 
     }
 }
 
-// Calls nextToken() and recovers from exceptions, returning an error recovery token if needed.
+
 Token Lexer::safeNextToken() {
     try {
         return nextToken();

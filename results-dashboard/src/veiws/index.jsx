@@ -42,7 +42,7 @@ export default function ResultsDashboard() {
     : results;
 
   const diffCount = results.filter((r) => r.status === "DIFF").length;
-  const passCount = results.filter((r) => r.status === "PASS").length;
+  const passCount = results.filter((r) => r.status === "OK").length;
 
   return (
     <div style={{

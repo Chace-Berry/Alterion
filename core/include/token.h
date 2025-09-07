@@ -4,7 +4,7 @@
 
 enum class TokenType
 {
-    // Identifiers and Literals
+    
     Identifier,
     Keyword,
     Number,
@@ -12,39 +12,39 @@ enum class TokenType
     Boolean,
     Null,
     
-    // Operators
+    
     Operator,
     Arrow,
     
-    // Arithmetic operators
-    Plus,           // +
-    Minus,          // -
-    Multiply,       // *
-    Divide,         // /
-    Modulo,         // %
-    Power,          // **
     
-    // Assignment operators  
-    Assign,         // =
-    PlusAssign,     // +=
-    MinusAssign,    // -=
-    MultiplyAssign, // *=
-    DivideAssign,   // /=
+    Plus,           
+    Minus,          
+    Multiply,       
+    Divide,         
+    Modulo,         
+    Power,          
     
-    // Comparison operators
-    Equal,          // ==
-    NotEqual,       // !=
-    Less,           // <
-    LessEqual,      // <=
-    Greater,        // >
-    GreaterEqual,   // >=
     
-    // Logical operators
-    LogicalAnd,     // &&
-    LogicalOr,      // ||
-    LogicalNot,     // !
+    Assign,         
+    PlusAssign,     
+    MinusAssign,    
+    MultiplyAssign, 
+    DivideAssign,   
+    
+    
+    Equal,          
+    NotEqual,       
+    Less,           
+    LessEqual,      
+    Greater,        
+    GreaterEqual,   
+    
+    
+    LogicalAnd,     
+    LogicalOr,      
+    LogicalNot,     
 
-    // JSX/Tag tokens
+    
     TagOpen,
     TagClose,
     TagSelfClose,
@@ -53,51 +53,52 @@ enum class TokenType
     AttributeValue,
 
     Text,
+    Comment,
 
-    // Expression boundaries
-    ExpressionStart,    // {
-    ExpressionEnd,      // }
+    
+    ExpressionStart,    
+    ExpressionEnd,      
 
-    // Punctuation
+    
     Equals,
-    BraceOpen,         // {
-    BraceClose,        // }
-    Colon,             // :
-    SemiColon,         // ;
-    ParenOpen,         // (
-    ParenClose,        // )
-    SquareBracketOpen,       // [
-    SquareBracketClose,      // ]
-    Comma,             // ,
-    Dot,               // .
+    BraceOpen,         
+    BraceClose,        
+    Colon,             
+    SemiColon,         
+    ParenOpen,         
+    ParenClose,        
+    SquareBracketOpen,       
+    SquareBracketClose,      
+    Comma,             
+    Dot,               
 
-    // Special Alterion tokens
-    AtModifier,        // @
-    ValueBinding,      // !
+    
+    AtModifier,        
+    ValueBinding,      
     StyleProperty,
     
-    // Async block syntax
-    AsyncBlockStart,   // async{
-    AsyncTryStart,     // [
-    AsyncCatchStart,   // ][
-    AsyncFinallyStart, // ][
-    AsyncBlockEnd,     // }
     
-    // Control flow
-    IfStart,           // if (
-    ForStart,          // for 
-    WhileStart,        // while (
-    ControlBlockStart, // [
-    ControlBlockEnd,   // ]
+    AsyncBlockStart,   
+    AsyncTryStart,     
+    AsyncCatchStart,   
+    AsyncFinallyStart, 
+    AsyncBlockEnd,     
     
-    // Special states
+    
+    IfStart,           
+    ForStart,          
+    WhileStart,        
+    ControlBlockStart, 
+    ControlBlockEnd,   
+    
+    
     EOFToken,
     Unknown,
     Error,
     ErrorRecovery,
-    PowerAssign,      // Power assignment operator
-    SlashGreater,     // >
-    Slash,            // /
+    PowerAssign,      
+    SlashGreater,     
+    Slash,            
 };
 
 enum class LexerState
@@ -140,7 +141,7 @@ public:
     const std::optional<std::string> &getError() const { return error; }
     const std::string &getErrorMessage() const { return errorMessage; }
     
-    // Convert token to string for debugging/testing
+    
     std::string toString() const {
         std::string result = tokenTypeToString(type) + ": \"" + value + "\"";
         if (error) {

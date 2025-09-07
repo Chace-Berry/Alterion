@@ -7,8 +7,11 @@
 #include <stack>
 
 class Lexer {
+    // Processes single-line and multi-line comments and emits a Comment token.
+    Token processComment();
 private:
-    // UTF-8 helpers
+    std::optional<Token> lastCommentToken;
+    
     uint32_t peekCodepoint() const;
     uint32_t peekAdvanceCodepoint() const;
     uint32_t advanceCodepoint();
@@ -20,7 +23,7 @@ private:
     std::vector<LexerState> stateStack;
     bool isUTF8Error;
 
-    // Core character and state helpers
+    
     char peek() const;
     char peekAdvance() const;
     char advance();
@@ -30,13 +33,13 @@ private:
     void exitState();
     void skipWhitespace();
 
-    // Character classification
+    
     bool isDigit(char c) const;
     bool isAlpha(char c) const;
     bool isAlphaNumeric(char c) const;
     bool isOperatorStartChar(char c) const;
 
-    // Token processors
+    
     Token processNumber();
     Token processIdentifierOrKeyword();
     Token processString();
@@ -52,12 +55,12 @@ private:
     Token processStyleValue();
     Token nextToken();
 
-    // Error handling
+    
     Token createErrorToken(const std::string& lexeme, const std::string& message);
     void recoverFromError();
     Token safeNextToken();
 
-    // Debug helpers
+    
     std::string getTokenTypeName(TokenType type) const;
     void debugPrintTokens(const std::vector<Token>& tokens) const;
 
