@@ -1,0 +1,96 @@
+component ResultsDashboard {
+    results = []
+    showDiffsOnly = false
+    error = null
+    lastUpdated = null
+
+    @async {
+        [
+            fetchResults() {
+                try {
+                    let res = await fetch("/results/lexer-results.json")
+                    if (!res.ok) {
+                        throw Error("HTTP " + res.status + ": " + res.statusText)
+                    }
+                    let data = await res.json()
+                    results = Array.isArray(data) ? data : []
+                    error = null
+                } catch (err) {
+                    error = err.message
+                    results = []
+                }
+            }
+        ]
+        [
+            onMount() {
+                await fetchResults()
+                setInterval(() => {
+                    fetchResults()
+                    lastUpdated = now()
+                }, 3000)
+            }
+        ]
+    }
+
+    render:
+        <div style="minHeight:100vh;width:100vw;background:linear-gradient(135deg,#e0eafc 0%,#cfdef3 100%);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0;margin:0;position:absolute;top:0;left:0;right:0;bottom:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+            <header style="width:100%;background:#343a40;color:#fff;padding:32px 0 16px 0;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+                <h1 style="margin:0;font-size:2.5rem;letter-spacing:2px">Alterion Test Results Dashboard</h1>
+                <p style="margin:8px 0 0 0;font-size:1.2rem;color:#b0c4de">Live parser test results</p>
+                {lastUpdated ? <p style="margin:4px 0 0 0;font-size:0.9rem;color:#adb5bd">Last updated: {lastUpdated}</p> : null}
+            </header>
+            <main style="width:100%;max-width:1200px;margin:32px auto;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0 16px;box-sizing:border-box">
+                <div style="display:flex;flex-direction:row;gap:24px;align-items:center;margin-bottom:24px;flex-wrap:wrap;justify-content:center">
+                    <div style="background:#fff;padding:16px 24px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);text-align:center">
+                        <div style="font-size:2rem;font-weight:bold;color:#2e7d32">{results.filter(r => r.status == "OK").length}</div>
+                        <div style="font-size:0.9rem;color:#666">PASS</div>
+                    </div>
+                    <div style="background:#fff;padding:16px 24px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);text-align:center">
+                        <div style="font-size:2rem;font-weight:bold;color:#c0392b">{results.filter(r => r.status == "DIFF").length}</div>
+                        <div style="font-size:0.9rem;color:#666">DIFF</div>
+                    </div>
+                    <button style="padding:12px 28px;font-weight:bold;font-size:1.1rem;border-radius:8px;border:none;background:{showDiffsOnly ? '#ff6b6b' : '#38b2ac'};color:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.1);cursor:pointer;transition:all 0.2s ease;transform:translateY(0)" onClick={() => showDiffsOnly = !showDiffsOnly}>
+                        {showDiffsOnly ? "Show All Results" : "Show Only DIFFs"}
+                    </button>
+                </div>
+                {error} ? <div style="background:#ffebee;color:#c62828;padding:16px 24px;border-radius:8px;margin-bottom:24px;width:100%;max-width:600px;text-align:center;border:1px solid #ffcdd2"><strong>Error loading results:</strong> {error}</div> : null}
+                {results}.length > 0 ? <div style="width:100%;max-width:900px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.1);overflow:hidden">
+                    <table style="border-collapse:collapse;width:100%;min-width:800px;color:#111;table-layout:fixed">
+                        <thead>
+                            <tr style="background:#f8f9fa">
+                                <th style="padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef">Index</th>
+                                <th style="padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef">Expected Type</th>
+                                <th style="padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef">Expected Value</th>
+                                <th style="padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef">Returned Type</th>
+                                <th style="padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef">Returned Value</th>
+                                <th style="padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef">Line</th>
+                                <th style="padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef">Column</th>
+                                <th style="padding:16px 12px;font-size:1rem;font-weight:600;text-align:left;border-bottom:2px solid #e9ecef">Status</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div style="max-height:440px;overflow-y:auto;width:100%">
+                        <table style="border-collapse:collapse;width:100%;min-width:800px;color:#111;table-layout:fixed">
+                            <tbody>
+                                {(showDiffsOnly ? results.filter(r => r.status == "DIFF") : results).map((r, i) =>
+                                    <tr key={r.index ?? i} style="background:{r.status == 'DIFF' ? '#ffebee' : '#e8f5e8'};border-bottom:1px solid #e9ecef;color:#111">
+                                        <td style="padding:12px;font-weight:500">{r.index}</td>
+                                        <td style="padding:12px;font-family:monospace">{r.expectedType}</td>
+                                        <td style="padding:12px;font-family:monospace;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{r.expectedValue}</td>
+                                        <td style="padding:12px;font-family:monospace">{r.returnedType}</td>
+                                        <td style="padding:12px;font-family:monospace;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{r.returnedValue}</td>
+                                        <td style="padding:12px">{r.line}</td>
+                                        <td style="padding:12px">{r.column}</td>
+                                        <td style="padding:12px;font-weight:bold;color:{r.status == 'DIFF' ? '#c0392b' : '#2e7d32'}">
+                                            <span style="padding:4px 8px;border-radius:4px;font-size:0.875rem;background:{r.status == 'DIFF' ? '#ffcdd2' : '#c8e6c9'};color:#111">{r.status}</span>
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                </div> : <div style="margin-top:64px;color:#888;font-size:1.2rem;text-align:center;padding:32px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1)">{error ? "Failed to load results" : "No results found"}</div>}
+            </main>
+            <footer style="width:100%;background:#343a40;color:#fff;text-align:center;padding:16px 0;font-size:1rem;letter-spacing:1px;margin-top:auto">&copy; {year()} Alterion Test Dashboard</footer>
+        </div>
+
