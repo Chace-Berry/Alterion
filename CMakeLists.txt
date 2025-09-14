@@ -70,9 +70,19 @@ add_executable(lexertest
 )
 target_include_directories(lexertest PRIVATE ${CMAKE_SOURCE_DIR}/core/include)
 
+# AST unit test executable
+add_executable(asttest
+    tests/unit/asttest.cpp
+    core/lexer/lexer.cpp
+    core/lexer/token.cpp
+    core/ast_implementation.cpp
+)
+target_include_directories(asttest PRIVATE ${CMAKE_SOURCE_DIR}/core/include)
+
 # Optionally add to test suite
 if(BUILD_TESTS)
     add_test(NAME LexerTest COMMAND lexertest)
+    add_test(NAME ASTTest COMMAND asttest)
 endif()
 
 # Installation

@@ -178,6 +178,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{EA29C930-D7F9-3861-8D63-6BEB046BA08D}</Project>
       <Name>alterion</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\Users\chace\Documents\Alterion\build\asttest.vcxproj">
+      <Project>{30A59AAB-31AA-3158-AD18-7B022E269630}</Project>
+      <Name>asttest</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\Users\chace\Documents\Alterion\build\lexertest.vcxproj">
       <Project>{EC2CB762-91D3-3302-868D-76A5BB1613EA}</Project>
       <Name>lexertest</Name>

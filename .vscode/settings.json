@@ -77,6 +77,12 @@
         "xtree": "cpp",
         "csignal": "cpp",
         "span": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "coroutine": "cpp",
+        "resumable": "cpp",
+        "filesystem": "cpp",
+        "future": "cpp",
+        "random": "cpp",
+        "stack": "cpp"
     }
 }

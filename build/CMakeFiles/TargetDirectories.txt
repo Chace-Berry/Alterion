@@ -1,5 +1,6 @@
 C:/Users/chace/Documents/Alterion/build/CMakeFiles/alterion.dir
 C:/Users/chace/Documents/Alterion/build/CMakeFiles/lexertest.dir
+C:/Users/chace/Documents/Alterion/build/CMakeFiles/asttest.dir
 C:/Users/chace/Documents/Alterion/build/CMakeFiles/INSTALL.dir
 C:/Users/chace/Documents/Alterion/build/CMakeFiles/ALL_BUILD.dir
 C:/Users/chace/Documents/Alterion/build/CMakeFiles/ZERO_CHECK.dir
