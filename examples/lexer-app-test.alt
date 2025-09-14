@@ -4,29 +4,32 @@ component ResultsDashboard {
     error = null
     lastUpdated = null
 
-    @async
-    fetchResults() {
-        try {
-            let res = await fetch("/results/lexer-results.json")
-            if (!res.ok) {
-                throw Error("HTTP " + res.status + ": " + res.statusText)
+    @async {
+        [
+            fetchResults() {
+                try {
+                    let res = await fetch("/results/lexer-results.json")
+                    if (!res.ok) {
+                        throw Error("HTTP " + res.status + ": " + res.statusText)
+                    }
+                    let data = await res.json()
+                    results = Array.isArray(data) ? data : []
+                    error = null
+                } catch (err) {
+                    error = err.message
+                    results = []
+                }
             }
-            let data = await res.json()
-            results = Array.isArray(data) ? data : []
-            error = null
-        } catch (err) {
-            error = err.message
-            results = []
-        }
-    }
-
-    @async
-    onMount() {
-        await fetchResults()
-        setInterval(() => {
-            fetchResults()
-            lastUpdated = now()
-        }, 3000)
+        ]
+        [
+            onMount() {
+                await fetchResults()
+                setInterval(() => {
+                    fetchResults()
+                    lastUpdated = now()
+                }, 3000)
+            }
+        ]
     }
 
     render:
@@ -50,8 +53,8 @@ component ResultsDashboard {
                         {showDiffsOnly ? "Show All Results" : "Show Only DIFFs"}
                     </button>
                 </div>
-                {error ? <div style="background:#ffebee;color:#c62828;padding:16px 24px;border-radius:8px;margin-bottom:24px;width:100%;max-width:600px;text-align:center;border:1px solid #ffcdd2"><strong>Error loading results:</strong> {error}</div> : null}
-                {results.length > 0 ? <div style="width:100%;max-width:900px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.1);overflow:hidden">
+                {error} ? <div style="background:#ffebee;color:#c62828;padding:16px 24px;border-radius:8px;margin-bottom:24px;width:100%;max-width:600px;text-align:center;border:1px solid #ffcdd2"><strong>Error loading results:</strong> {error}</div> : null}
+                {results}.length > 0 ? <div style="width:100%;max-width:900px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.1);overflow:hidden">
                     <table style="border-collapse:collapse;width:100%;min-width:800px;color:#111;table-layout:fixed">
                         <thead>
                             <tr style="background:#f8f9fa">
@@ -90,4 +93,4 @@ component ResultsDashboard {
             </main>
             <footer style="width:100%;background:#343a40;color:#fff;text-align:center;padding:16px 0;font-size:1rem;letter-spacing:1px;margin-top:auto">&copy; {year()} Alterion Test Dashboard</footer>
         </div>
-}
+

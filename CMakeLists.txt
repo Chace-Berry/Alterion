@@ -72,9 +72,10 @@ target_include_directories(lexertest PRIVATE ${CMAKE_SOURCE_DIR}/core/include)
 
 # AST unit test executable
 add_executable(asttest
-    tests/unit/asttest.cpp
+    tests/unit/parsertest.cpp
     core/lexer/lexer.cpp
     core/lexer/token.cpp
+    core/parser/parser.cpp
     core/ast_implementation.cpp
 )
 target_include_directories(asttest PRIVATE ${CMAKE_SOURCE_DIR}/core/include)

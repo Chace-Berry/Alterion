@@ -4,7 +4,7 @@
 #include <memory>
 #include <optional>
 
-// AST Node Types
+
 enum class ASTNodeType {
     Program,
     Component,
@@ -19,12 +19,21 @@ enum class ASTNodeType {
     Return,
     Block,
     Call,
+    FunctionCall,  
     Literal,
     Identifier,
     Tag,
     Attribute,
     Render,
-    Error
+    Error,
+    AsyncBlock,
+    TryBlock,
+    CatchBlock,
+    FinallyBlock,
+    UIElement,
+    UIAttribute,
+    Modifier,
+    ValueBinding
 };
 
 struct ASTNode {
@@ -32,13 +41,15 @@ struct ASTNode {
     std::string name;
     std::vector<std::shared_ptr<ASTNode>> children;
     std::optional<std::string> value;
+    std::optional<std::string> variableType;  
     size_t line = 0;
     size_t column = 0;
     std::optional<std::string> error;
+    std::optional<std::string> decorator; 
 
     ASTNode(ASTNodeType t, const std::string& n = "", size_t l = 0, size_t c = 0)
         : type(t), name(n), line(l), column(c) {}
 };
 
-// Utility for JSON serialization
+
 std::string astToJson(const std::shared_ptr<ASTNode>& node, int indent = 0);

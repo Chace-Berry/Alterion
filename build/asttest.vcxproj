@@ -328,9 +328,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\chace\Documents\Alterion\tests\unit\asttest.cpp" />
+    <ClCompile Include="C:\Users\chace\Documents\Alterion\tests\unit\parsertest.cpp" />
     <ClCompile Include="C:\Users\chace\Documents\Alterion\core\lexer\lexer.cpp" />
     <ClCompile Include="C:\Users\chace\Documents\Alterion\core\lexer\token.cpp" />
+    <ClCompile Include="C:\Users\chace\Documents\Alterion\core\parser\parser.cpp" />
     <ClCompile Include="C:\Users\chace\Documents\Alterion\core\ast_implementation.cpp" />
   </ItemGroup>
   <ItemGroup />

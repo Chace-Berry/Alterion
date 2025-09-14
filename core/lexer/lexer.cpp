@@ -189,7 +189,7 @@ bool Lexer::isOperatorStartChar(char c) const {
     return c == '=' || c == '!' || c == '<' || c == '>' || c == '&' || 
            c == '|' || c == '-' || c == '+' || c == '*' || c == '/' || 
            c == '%' || c == '^' || c == '~' || c == ':' || c == '.' || 
-           c == ',' || c == ';' || c == '[' || c == ']' || c == '$' || c == '#' || c == '?' || c == '@' || c == '{' || c == '}';
+           c == ',' || c == ';' || c == '[' || c == ']' || c == '$' || c == '#' || c == '?' || c == '@';
 }
 
 
@@ -510,9 +510,6 @@ Token Lexer::processStyleProperty() {
 
 
 Token Lexer::nextToken() {
-    
-
-    
     while (!eof()) {
         skipWhitespace();
         if (eof()) {
@@ -523,7 +520,6 @@ Token Lexer::nextToken() {
         
         if (c == '/' && (peekAdvance() == '/' || peekAdvance() == '*')) {
             Token commentToken = processComment();
-            
             skipWhitespace();
             if (eof()) return Token(TokenType::EOFToken, "", line, column);
             return commentToken;
@@ -546,6 +542,7 @@ Token Lexer::nextToken() {
             default:
                 break;
         }
+        
         if (isDigit(c)) {
             return processNumber();
         }
@@ -569,11 +566,25 @@ Token Lexer::nextToken() {
         if (c == '!') {
             return processValueBinding();
         }
+        
+        // FIXED: Handle braces correctly based on context
         if (c == '{') {
             advance();
-            enterState(LexerState::Expression);
-            return Token(TokenType::ExpressionStart, "{", startLine, startColumn);
+            // In ALTX content or attribute context, treat as expression start
+            if (state == LexerState::ALTXContent || state == LexerState::ALTXAttribute) {
+                enterState(LexerState::Expression);
+                return Token(TokenType::ExpressionStart, "{", startLine, startColumn);
+            }
+            // In normal context, treat as regular brace
+            return Token(TokenType::BraceOpen, "{", startLine, startColumn);
         }
+        
+        if (c == '}') {
+            advance();
+            // In normal context, treat as regular brace
+            return Token(TokenType::BraceClose, "}", startLine, startColumn);
+        }
+        
         if (c == '(') {
             advance();
             return Token(TokenType::ParenOpen, "(", startLine, startColumn);
@@ -582,11 +593,37 @@ Token Lexer::nextToken() {
             advance();
             return Token(TokenType::ParenClose, ")", startLine, startColumn);
         }
+        if (c == '[') {
+            advance();
+            return Token(TokenType::SquareBracketOpen, "[", startLine, startColumn);
+        }
+        if (c == ']') {
+            advance();
+            return Token(TokenType::SquareBracketClose, "]", startLine, startColumn);
+        }
+        if (c == ':') {
+            advance();
+            return Token(TokenType::Colon, ":", startLine, startColumn);
+        }
+        if (c == ';') {
+            advance();
+            return Token(TokenType::SemiColon, ";", startLine, startColumn);
+        }
+        if (c == ',') {
+            advance();
+            return Token(TokenType::Comma, ",", startLine, startColumn);
+        }
+        if (c == '.') {
+            advance();
+            return Token(TokenType::Dot, ".", startLine, startColumn);
+        }
         if (c == '\\') {
             advance();
             return Token(TokenType::Error, "\\", startLine, startColumn, "Unexpected backslash");
         }
-        if (isOperatorStartChar(c)) {
+        
+        // Handle remaining operators (excluding { and } which we handle above)
+        if (isOperatorStartChar(c) && c != '{' && c != '}') {
             return processOperator();
         }
         
