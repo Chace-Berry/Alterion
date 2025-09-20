@@ -48,7 +48,8 @@ std::string tokenTypeToString(TokenType type) {
         case TokenType::SquareBracketClose: return "SquareBracketClose";
         case TokenType::Comma: return "Comma";
         case TokenType::Dot: return "Dot";
-        case TokenType::AtModifier: return "AtModifier";
+    case TokenType::AtModifier: return "AtModifier";
+    case TokenType::AtAsyncModifier: return "AtAsyncModifier";
         case TokenType::ValueBinding: return "ValueBinding";
         case TokenType::StyleProperty: return "StyleProperty";
         case TokenType::EOFToken: return "EOFToken";
@@ -148,6 +149,12 @@ void computeExpected(const Token& token, std::string& expectedType, std::string&
     // Predict expected type for at-modifier
     if (token.type == TokenType::AtModifier) {
         expectedType = "AtModifier";
+        expectedValue = token.value;
+        return;
+    }
+    // Predict expected type for at-async-modifier
+    if (token.type == TokenType::AtAsyncModifier) {
+        expectedType = "AtAsyncModifier";
         expectedValue = token.value;
         return;
     }

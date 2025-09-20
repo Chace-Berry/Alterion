@@ -73,8 +73,9 @@ enum class TokenType
     Dot,               
 
     
-    AtModifier,        
-    ValueBinding,      
+    AtModifier,
+    AtAsyncModifier,
+    ValueBinding,
     StyleProperty,
     
     

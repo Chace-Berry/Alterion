@@ -35,7 +35,8 @@ std::ostream& operator<<(std::ostream& os, const Token& token) {
         case TokenType::ExpressionStart:  os << "ExpressionStart"; break;
         case TokenType::ExpressionEnd:    os << "ExpressionEnd"; break;
 
-        case TokenType::AtModifier:       os << "AtModifier"; break;
+    case TokenType::AtModifier:       os << "AtModifier"; break;
+    case TokenType::AtAsyncModifier:  os << "AtAsyncModifier"; break;
         case TokenType::ValueBinding:     os << "ValueBinding"; break;
         case TokenType::StyleProperty:    os << "StyleProperty"; break;
 

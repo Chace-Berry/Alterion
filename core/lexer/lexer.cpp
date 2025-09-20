@@ -561,6 +561,9 @@ Token Lexer::nextToken() {
             while (!eof() && isAlphaNumeric(peek())) {
                 modifier += advance();
             }
+            if (modifier == "async") {
+                return Token(TokenType::AtAsyncModifier, "@" + modifier, startLine, startColumn);
+            }
             return Token(TokenType::AtModifier, "@" + modifier, startLine, startColumn);
         }
         if (c == '!') {
@@ -617,12 +620,18 @@ Token Lexer::nextToken() {
             advance();
             return Token(TokenType::Dot, ".", startLine, startColumn);
         }
-        if (c == '\\') {
+        if (c == '@') {
             advance();
-            return Token(TokenType::Error, "\\", startLine, startColumn, "Unexpected backslash");
+            std::string modifier;
+            while (!eof() && isAlphaNumeric(peek())) {
+                modifier += advance();
+            }
+            if (modifier == "async") {
+                return Token(TokenType::AtAsyncModifier, "@" + modifier, startLine, startColumn);
+            }
+            // For other cases, still return AtModifier
+            return Token(TokenType::AtModifier, "@" + modifier, startLine, startColumn);
         }
-        
-        // Handle remaining operators (excluding { and } which we handle above)
         if (isOperatorStartChar(c) && c != '{' && c != '}') {
             return processOperator();
         }

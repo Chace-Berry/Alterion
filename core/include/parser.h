@@ -33,6 +33,8 @@ private:
 	std::shared_ptr<ASTNode> parseExpression();
 	std::shared_ptr<ASTNode> parseBinaryExpression(int minPrecedence);
 	std::shared_ptr<ASTNode> parsePrimaryExpression();
+    std::shared_ptr<ASTNode> parseStatement(bool inBlockContext);
+    std::shared_ptr<ASTNode> parsePrimaryExpression(bool inBlockContext);
 	std::shared_ptr<ASTNode> parseBlock();
 	std::shared_ptr<ASTNode> parseIf();
 	std::shared_ptr<ASTNode> parseFor();
@@ -50,4 +52,15 @@ private:
 	std::shared_ptr<ASTNode> parseValueBinding();
 	std::shared_ptr<ASTNode> parseError(const std::string& message);
 	std::shared_ptr<ASTNode> parseBracketBlock(bool allowExpressions = false);
+	std::shared_ptr<ASTNode> parseThrowStatement();
+	std::shared_ptr<ASTNode> parseAwaitStatement();
+	std::shared_ptr<ASTNode> parseArrayLiteral();
+	std::shared_ptr<ASTNode> parseObjectLiteral();
+	std::shared_ptr<ASTNode> parseFunctionDefinition();
+	std::shared_ptr<ASTNode> parseCallExpression(std::shared_ptr<ASTNode> callee);
+	std::shared_ptr<ASTNode> parsePostfixExpression(std::shared_ptr<ASTNode> left);
+	bool isExpressionTerminator() const;
+    std::shared_ptr<ASTNode> parseAsyncBracketBlock();
+    std::shared_ptr<ASTNode> parseExpressionWithPrecedence(int minPrecedence);
+
 };

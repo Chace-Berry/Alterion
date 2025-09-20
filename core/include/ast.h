@@ -33,7 +33,8 @@ enum class ASTNodeType {
     UIElement,
     UIAttribute,
     Modifier,
-    ValueBinding
+    ValueBinding,
+    AsyncFunction,
 };
 
 struct ASTNode {

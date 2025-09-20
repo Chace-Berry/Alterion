@@ -47,6 +47,36 @@ void Parser::expectToken(TokenType type, const std::string& message) {
     }
 }
 
+int Parser::getOperatorPrecedence(const std::string& op) {
+    if (op == "||") return 1;
+    if (op == "&&") return 2;
+    if (op == "==" || op == "!=" || op == "<=" || op == ">=" || op == "<" || op == ">") return 3;
+    if (op == "+" || op == "-") return 4;
+    if (op == "*" || op == "/" || op == "%") return 5;
+    if (op == "**") return 6;
+    return 0;
+}
+
+void Parser::skipToNextStatement() {
+    bool advanced = false;
+    while (!eof() && 
+           peek().type != TokenType::SemiColon && 
+           peek().type != TokenType::BraceOpen &&
+           peek().type != TokenType::BraceClose &&
+           !(peek().type == TokenType::Keyword && 
+             (peek().value == "if" || peek().value == "for" || peek().value == "while" ||
+              peek().value == "function" || peek().value == "component" || peek().value == "return"))) {
+        advance();
+        advanced = true;
+    }
+    if (!advanced && !eof()) {
+        advance(); 
+    }
+    if (peek().type == TokenType::SemiColon) {
+        advance();
+    }
+}
+
 std::shared_ptr<ASTNode> Parser::parseProgram() {
     auto node = std::make_shared<ASTNode>(ASTNodeType::Program);
     node->line = peek().line;
@@ -94,14 +124,12 @@ std::shared_ptr<ASTNode> Parser::parseComponent() {
     
     expectToken(TokenType::Keyword, "Expected 'component' keyword");
     
-    
     if (peek().type == TokenType::Identifier) {
         node->name = peek().value;
         advance();
     } else {
         throw std::runtime_error("Expected component name after 'component'");
     }
-    
     
     if (match(TokenType::ParenOpen)) {
         while (!eof() && peek().type != TokenType::ParenClose) {
@@ -125,7 +153,6 @@ std::shared_ptr<ASTNode> Parser::parseComponent() {
     
     expectToken(TokenType::BraceOpen, "Expected '{' to start component body");
     
-    
     size_t stuckCount = 0;
     size_t lastPos = position;
     
@@ -133,10 +160,8 @@ std::shared_ptr<ASTNode> Parser::parseComponent() {
         size_t before = position;
         try {
             if (peek().type == TokenType::Keyword && peek().value == "render") {
-                
                 auto renderNode = std::make_shared<ASTNode>(ASTNodeType::Render);
                 advance(); 
-                
                 
                 if (peek().type == TokenType::Colon) {
                     advance();
@@ -144,12 +169,10 @@ std::shared_ptr<ASTNode> Parser::parseComponent() {
                     throw std::runtime_error("Expected ':' after 'render'");
                 }
                 
-                
                 renderNode->children.push_back(parseExpression());
                 node->children.push_back(renderNode);
                 
             } else if (peek().type == TokenType::Identifier) {
-                
                 auto propNode = std::make_shared<ASTNode>(ASTNodeType::Assignment);
                 propNode->name = peek().value;
                 advance();
@@ -163,38 +186,48 @@ std::shared_ptr<ASTNode> Parser::parseComponent() {
                 
                 node->children.push_back(propNode);
                 
-            } else if (peek().type == TokenType::AtModifier) {
-                
+            } else if (peek().type == TokenType::AtModifier || peek().type == TokenType::AtAsyncModifier) {
                 std::string modifier = peek().value;
                 advance(); 
-                if (modifier == "async") {
-                    if (peek().type == TokenType::BraceOpen) {
-                        advance(); 
-                        auto asyncNode = std::make_shared<ASTNode>(ASTNodeType::AsyncBlock);
-                        asyncNode->line = peek().line;
-                        asyncNode->column = peek().column;
-                        while (!eof() && peek().type != TokenType::BraceClose) {
-                            if (peek().type == TokenType::SquareBracketOpen) {
-                                asyncNode->children.push_back(parseBracketBlock(false));
-                            } else {
-                                skipToNextStatement(); 
+                
+                if (modifier == "@async") {
+                    expectToken(TokenType::BraceOpen, "Expected '{' after @async");
+                    
+                    auto asyncNode = std::make_shared<ASTNode>(ASTNodeType::AsyncBlock);
+                    asyncNode->line = peek().line;
+                    asyncNode->column = peek().column;
+                    asyncNode->name = "async";
+                    
+                    // Parse multiple bracket blocks inside the async block
+                    while (!eof() && peek().type != TokenType::BraceClose) {
+                        if (peek().type == TokenType::SquareBracketOpen) {
+                            auto bracketBlock = parseAsyncBracketBlock();
+                            asyncNode->children.push_back(bracketBlock);
+                        } else if (peek().type == TokenType::Comment) {
+                            advance(); 
+                        } else {
+                            // Skip whitespace or other tokens
+                            if (peek().type != TokenType::BraceClose) {
+                                advance();
                             }
                         }
-                        expectToken(TokenType::BraceClose, "Expected '}' after async block");
-                        node->children.push_back(asyncNode);
-                    } else {
-                        throw std::runtime_error("Expected '{' after @async");
                     }
-                } else if (peek().type == TokenType::Identifier) {
-                    auto funcNode = parseFunction();
-                    funcNode->decorator = modifier;
-                    node->children.push_back(funcNode);
+                    
+                    expectToken(TokenType::BraceClose, "Expected '}' after async block");
+                    node->children.push_back(asyncNode);
+                    
                 } else {
-                    throw std::runtime_error("Expected function after decorator");
+                    // Handle other modifiers on functions
+                    if (peek().type == TokenType::Identifier) {
+                        auto funcNode = parseFunction();
+                        funcNode->decorator = modifier;
+                        node->children.push_back(funcNode);
+                    } else {
+                        throw std::runtime_error("Expected function after decorator");
+                    }
                 }
                 
             } else {
-                
                 node->children.push_back(parseStatement());
             }
         } catch (const std::exception& e) {
@@ -220,6 +253,68 @@ std::shared_ptr<ASTNode> Parser::parseComponent() {
     return node;
 }
 
+std::shared_ptr<ASTNode> Parser::parseAsyncBracketBlock() {
+    auto node = std::make_shared<ASTNode>(ASTNodeType::AsyncFunction);
+    node->line = peek().line;
+    node->column = peek().column;
+    
+    expectToken(TokenType::SquareBracketOpen, "Expected '[' to start async block");
+    
+    // Parse the function definition inside the bracket block
+    while (!eof() && peek().type != TokenType::SquareBracketClose) {
+        try {
+            if (peek().type == TokenType::Identifier) {
+                // This is a function definition like: functionName() { ... }
+                auto funcNode = std::make_shared<ASTNode>(ASTNodeType::Function);
+                funcNode->line = peek().line;
+                funcNode->column = peek().column;
+                funcNode->name = peek().value;
+                funcNode->decorator = "async"; 
+                advance();
+                
+                // Parse parameters
+                expectToken(TokenType::ParenOpen, "Expected '(' after function name");
+                
+                while (!eof() && peek().type != TokenType::ParenClose) {
+                    if (peek().type == TokenType::Identifier) {
+                        auto param = std::make_shared<ASTNode>(ASTNodeType::Variable);
+                        param->name = peek().value;
+                        funcNode->children.push_back(param);
+                        advance();
+                        
+                        if (peek().type == TokenType::Comma) {
+                            advance();
+                        } else if (peek().type != TokenType::ParenClose) {
+                            throw std::runtime_error("Expected ',' or ')' in parameter list");
+                        }
+                    } else {
+                        throw std::runtime_error("Expected parameter name");
+                    }
+                }
+                
+                expectToken(TokenType::ParenClose, "Expected ')' after parameters");
+                
+                // Parse function body
+                funcNode->children.push_back(parseBlock());
+                node->children.push_back(funcNode);
+                
+            } else if (peek().type == TokenType::Comment) {
+                advance(); 
+            } else {
+                // Handle other statements inside the async block
+                node->children.push_back(parseStatement());
+            }
+        } catch (const std::exception& e) {
+            node->children.push_back(parseError(e.what()));
+            skipToNextStatement();
+        }
+    }
+    
+    expectToken(TokenType::SquareBracketClose, "Expected ']' to end async block");
+    
+    return node;
+}
+
 std::shared_ptr<ASTNode> Parser::parseFunction() {
     auto node = std::make_shared<ASTNode>(ASTNodeType::Function);
     node->line = peek().line;
@@ -227,14 +322,12 @@ std::shared_ptr<ASTNode> Parser::parseFunction() {
     
     expectToken(TokenType::Keyword, "Expected 'function' keyword");
     
-    
     if (peek().type == TokenType::Identifier) {
         node->name = peek().value;
         advance();
     } else {
         throw std::runtime_error("Expected function name after 'function'");
     }
-    
     
     expectToken(TokenType::ParenOpen, "Expected '(' after function name");
     
@@ -257,7 +350,6 @@ std::shared_ptr<ASTNode> Parser::parseFunction() {
     
     expectToken(TokenType::ParenClose, "Expected ')' after parameters");
     
-    
     node->children.push_back(parseBlock());
     
     return node;
@@ -268,7 +360,6 @@ std::shared_ptr<ASTNode> Parser::parseVariable() {
     node->line = peek().line;
     node->column = peek().column;
     
-    
     if (peek().type == TokenType::Keyword && 
         (peek().value == "let" || peek().value == "const" || peek().value == "var")) {
         node->variableType = peek().value;
@@ -277,7 +368,6 @@ std::shared_ptr<ASTNode> Parser::parseVariable() {
         throw std::runtime_error("Expected variable declaration keyword");
     }
     
-    
     if (peek().type == TokenType::Identifier) {
         node->name = peek().value;
         advance();
@@ -285,12 +375,10 @@ std::shared_ptr<ASTNode> Parser::parseVariable() {
         throw std::runtime_error("Expected variable name");
     }
     
-    
     if (peek().type == TokenType::Equals) {
         advance();
         node->children.push_back(parseExpression());
     }
-    
     
     if (peek().type == TokenType::SemiColon) {
         advance();
@@ -304,7 +392,6 @@ std::shared_ptr<ASTNode> Parser::parseAssignment() {
     node->line = peek().line;
     node->column = peek().column;
     
-    
     if (peek().type == TokenType::Identifier) {
         node->name = peek().value;
         advance();
@@ -312,13 +399,11 @@ std::shared_ptr<ASTNode> Parser::parseAssignment() {
         throw std::runtime_error("Expected identifier for assignment");
     }
     
-    
     if (peek().type == TokenType::Equals) {
         advance();
     } else {
         throw std::runtime_error("Expected '=' in assignment");
     }
-    
     
     node->children.push_back(parseExpression());
     
@@ -343,9 +428,14 @@ std::shared_ptr<ASTNode> Parser::parseStatement() {
             return parseAsyncBlock();
         } else if (keyword == "try") {
             return parseTryBlock();
+        } else if (keyword == "throw") {
+            return parseThrowStatement();
+        } else if (keyword == "await") {
+            return parseAwaitStatement();
+        } else if (keyword == "let" || keyword == "const" || keyword == "var") {
+            return parseVariable();
         }
     }
-    
     
     if (peek().type == TokenType::Identifier) {
         size_t saved_pos = position;
@@ -361,11 +451,9 @@ std::shared_ptr<ASTNode> Parser::parseStatement() {
         position = saved_pos; 
     }
     
-    
     if (peek().type == TokenType::Operator && peek().value == "<") {
         return parseUIElement();
     }
-    
     
     auto node = std::make_shared<ASTNode>(ASTNodeType::Statement);
     node->line = peek().line;
@@ -386,13 +474,11 @@ std::shared_ptr<ASTNode> Parser::parseExpression() {
     return parseBinaryExpression(0);
 }
 
-
 std::shared_ptr<ASTNode> Parser::parseBinaryExpression(int minPrecedence) {
     auto left = parsePrimaryExpression();
     
     while (!eof() && peek().type == TokenType::Operator) {
         const std::string& op = peek().value;
-        
         
         if (op == "=" || op == ";" || op == ")" || op == "}" || op == ">" || op == "]") {
             break;
@@ -426,7 +512,7 @@ std::shared_ptr<ASTNode> Parser::parsePrimaryExpression() {
         node->name = peek().value;
         advance();
         
-        
+        // Handle function call
         if (peek().type == TokenType::ParenOpen) {
             auto callNode = std::make_shared<ASTNode>(ASTNodeType::FunctionCall);
             callNode->line = peek().line;
@@ -448,7 +534,7 @@ std::shared_ptr<ASTNode> Parser::parsePrimaryExpression() {
             return callNode;
         }
         
-        
+        // Handle array access and property access
         while (!eof()) {
             if (peek().type == TokenType::SquareBracketOpen) {
                 advance(); 
@@ -470,28 +556,50 @@ std::shared_ptr<ASTNode> Parser::parsePrimaryExpression() {
                 break;
             }
         }
+        return node;
         
     } else if (peek().type == TokenType::Number) {
         node->value = peek().value;
         advance();
+        return node;
+        
     } else if (peek().type == TokenType::String) {
         node->value = peek().value;
         advance();
-    } else if (peek().type == TokenType::Keyword && 
-               (peek().value == "true" || peek().value == "false" || 
-                peek().value == "null" || peek().value == "undefined")) {
-        node->value = peek().value;
-        advance();
-    } else if (match(TokenType::ParenOpen)) {
+        return node;
         
+    } else if (peek().type == TokenType::Keyword) {
+        const std::string& keyword = peek().value;
+        
+        if (keyword == "true" || keyword == "false" || keyword == "null" || keyword == "undefined") {
+            node->value = peek().value;
+            advance();
+            return node;
+        } else if (keyword == "let" || keyword == "const" || keyword == "var") {
+            return parseVariable();
+        } else if (keyword == "throw") {
+            return parseThrowStatement();
+        } else if (keyword == "await") {
+            return parseAwaitStatement();
+        } else if (keyword == "try") {
+            return parseTryBlock();
+        } else {
+            throw std::runtime_error("Unexpected keyword in expression: " + keyword);
+        }
+        
+    } else if (match(TokenType::ParenOpen)) {
+        // Parenthesized expression
         node = parseExpression();
         expectToken(TokenType::ParenClose, "Expected ')' after expression");
-    } else if (peek().type == TokenType::SquareBracketOpen) {
+        return node;
         
+    } else if (peek().type == TokenType::SquareBracketOpen) {
+        // Array literal
         advance(); 
-    node->name = "array";
-    node->line = peek().line;
-    node->column = peek().column;
+        node->name = "array";
+        node->line = peek().line;
+        node->column = peek().column;
+        
         while (!eof() && peek().type != TokenType::SquareBracketClose) {
             node->children.push_back(parseExpression());
             
@@ -502,30 +610,29 @@ std::shared_ptr<ASTNode> Parser::parsePrimaryExpression() {
             }
         }
         expectToken(TokenType::SquareBracketClose, "Expected ']' after array elements");
-    } else if (peek().type == TokenType::Operator) {
+        return node;
         
+    } else if (peek().type == TokenType::BraceOpen) {
+        // Object literal or block expression
+        return parseObjectLiteral();
+        
+    } else if (peek().type == TokenType::Operator) {
+        // Handle operators
         if (peek().value == "<") {
             return parseUIElement();
-        } else {
-            
+        } else if (peek().value == "!" || peek().value == "-" || peek().value == "+") {
+            // Unary operator
             node->name = peek().value;
             advance();
             node->children.push_back(parsePrimaryExpression());
+            return node;
+        } else {
+            throw std::runtime_error("Unexpected operator in expression: " + peek().value);
         }
+        
     } else {
         throw std::runtime_error("Unexpected token in expression: " + peek().value);
     }
-    
-    return node;
-}
-
-int Parser::getOperatorPrecedence(const std::string& op) {
-    if (op == "||") return 1;
-    if (op == "&&") return 2;
-    if (op == "==" || op == "!=" || op == "<=" || op == ">=" || op == "<" || op == ">") return 3;
-    if (op == "+" || op == "-") return 4;
-    if (op == "*" || op == "/" || op == "%") return 5;
-    return 0;
 }
 
 std::shared_ptr<ASTNode> Parser::parseBlock() {
@@ -557,14 +664,11 @@ std::shared_ptr<ASTNode> Parser::parseIf() {
     expectToken(TokenType::Keyword, "Expected 'if' keyword");
     expectToken(TokenType::ParenOpen, "Expected '(' after 'if'");
     
-    
     node->children.push_back(parseExpression());
     
     expectToken(TokenType::ParenClose, "Expected ')' after if condition");
     
-    
     node->children.push_back(parseStatement());
-    
     
     if (peek().type == TokenType::Keyword && peek().value == "else") {
         advance();
@@ -582,43 +686,39 @@ std::shared_ptr<ASTNode> Parser::parseFor() {
     expectToken(TokenType::Keyword, "Expected 'for' keyword");
     expectToken(TokenType::ParenOpen, "Expected '(' after 'for'");
     
-    
     if (peek().type != TokenType::SemiColon) {
         node->children.push_back(parseStatement());
     } else {
-    auto emptyStmt = std::make_shared<ASTNode>(ASTNodeType::Statement);
-    emptyStmt->line = node->line;
-    emptyStmt->column = node->column;
-    emptyStmt->name = "";
-    node->children.push_back(emptyStmt);
+        auto emptyStmt = std::make_shared<ASTNode>(ASTNodeType::Statement);
+        emptyStmt->line = node->line;
+        emptyStmt->column = node->column;
+        emptyStmt->name = "";
+        node->children.push_back(emptyStmt);
         advance(); 
     }
-    
     
     if (peek().type != TokenType::SemiColon) {
         node->children.push_back(parseExpression());
     } else {
-    auto emptyExpr = std::make_shared<ASTNode>(ASTNodeType::Expression);
-    emptyExpr->line = node->line;
-    emptyExpr->column = node->column;
-    emptyExpr->name = "";
-    node->children.push_back(emptyExpr);
+        auto emptyExpr = std::make_shared<ASTNode>(ASTNodeType::Expression);
+        emptyExpr->line = node->line;
+        emptyExpr->column = node->column;
+        emptyExpr->name = "";
+        node->children.push_back(emptyExpr);
     }
     expectToken(TokenType::SemiColon, "Expected ';' after for condition");
-    
     
     if (peek().type != TokenType::ParenClose) {
         node->children.push_back(parseExpression());
     } else {
-    auto emptyExpr2 = std::make_shared<ASTNode>(ASTNodeType::Expression);
-    emptyExpr2->line = node->line;
-    emptyExpr2->column = node->column;
-    emptyExpr2->name = "";
-    node->children.push_back(emptyExpr2);
+        auto emptyExpr2 = std::make_shared<ASTNode>(ASTNodeType::Expression);
+        emptyExpr2->line = node->line;
+        emptyExpr2->column = node->column;
+        emptyExpr2->name = "";
+        node->children.push_back(emptyExpr2);
     }
     
     expectToken(TokenType::ParenClose, "Expected ')' after for clauses");
-    
     
     node->children.push_back(parseStatement());
     
@@ -633,11 +733,9 @@ std::shared_ptr<ASTNode> Parser::parseWhile() {
     expectToken(TokenType::Keyword, "Expected 'while' keyword");
     expectToken(TokenType::ParenOpen, "Expected '(' after 'while'");
     
-    
     node->children.push_back(parseExpression());
     
     expectToken(TokenType::ParenClose, "Expected ')' after while condition");
-    
     
     node->children.push_back(parseStatement());
     
@@ -650,7 +748,6 @@ std::shared_ptr<ASTNode> Parser::parseReturn() {
     node->column = peek().column;
     
     expectToken(TokenType::Keyword, "Expected 'return' keyword");
-    
     
     if (peek().type != TokenType::SemiColon && !eof()) {
         node->children.push_back(parseExpression());
@@ -670,7 +767,6 @@ std::shared_ptr<ASTNode> Parser::parseRender() {
     
     expectToken(TokenType::Keyword, "Expected 'render' keyword");
     
-    
     node->children.push_back(parseExpression());
     
     return node;
@@ -687,7 +783,6 @@ std::shared_ptr<ASTNode> Parser::parseAsyncBlock() {
     
     expectToken(TokenType::Keyword, "Expected 'async' keyword");
     
-    
     if (peek().type == TokenType::BraceOpen) {
         node->children.push_back(parseBlock());
     } else {
@@ -699,17 +794,16 @@ std::shared_ptr<ASTNode> Parser::parseAsyncBlock() {
 
 std::shared_ptr<ASTNode> Parser::parseTryBlock() {
     auto node = std::make_shared<ASTNode>(ASTNodeType::TryBlock);
+    node->line = peek().line;
+    node->column = peek().column;
     
     expectToken(TokenType::Keyword, "Expected 'try' keyword");
     
-    
     node->children.push_back(parseBlock());
-    
     
     while (peek().type == TokenType::Keyword && peek().value == "catch") {
         node->children.push_back(parseCatchBlock());
     }
-    
     
     if (peek().type == TokenType::Keyword && peek().value == "finally") {
         node->children.push_back(parseFinallyBlock());
@@ -720,9 +814,10 @@ std::shared_ptr<ASTNode> Parser::parseTryBlock() {
 
 std::shared_ptr<ASTNode> Parser::parseCatchBlock() {
     auto node = std::make_shared<ASTNode>(ASTNodeType::CatchBlock);
+    node->line = peek().line;
+    node->column = peek().column;
     
     expectToken(TokenType::Keyword, "Expected 'catch' keyword");
-    
     
     if (match(TokenType::ParenOpen)) {
         if (peek().type == TokenType::Identifier) {
@@ -732,7 +827,6 @@ std::shared_ptr<ASTNode> Parser::parseCatchBlock() {
         expectToken(TokenType::ParenClose, "Expected ')' after catch parameter");
     }
     
-    
     node->children.push_back(parseBlock());
     
     return node;
@@ -740,9 +834,10 @@ std::shared_ptr<ASTNode> Parser::parseCatchBlock() {
 
 std::shared_ptr<ASTNode> Parser::parseFinallyBlock() {
     auto node = std::make_shared<ASTNode>(ASTNodeType::FinallyBlock);
+    node->line = peek().line;
+    node->column = peek().column;
     
     expectToken(TokenType::Keyword, "Expected 'finally' keyword");
-    
     
     node->children.push_back(parseBlock());
     
@@ -751,7 +846,8 @@ std::shared_ptr<ASTNode> Parser::parseFinallyBlock() {
 
 std::shared_ptr<ASTNode> Parser::parseUIElement() {
     auto node = std::make_shared<ASTNode>(ASTNodeType::UIElement);
-    
+    node->line = peek().line;
+    node->column = peek().column;
     
     if (peek().type == TokenType::Operator && peek().value == "<") {
         advance();
@@ -763,26 +859,21 @@ std::shared_ptr<ASTNode> Parser::parseUIElement() {
             throw std::runtime_error("Expected element name after '<'");
         }
         
-        
         while (!eof() && peek().type == TokenType::Identifier) {
             node->children.push_back(parseUIAttribute());
         }
         
-        
         if (peek().type == TokenType::Operator && peek().value == "/") {
             advance();
             expectToken(TokenType::Operator, "Expected '>' after '/'");
-            
             return node;
         }
-        
         
         if (peek().type == TokenType::Operator && peek().value == ">") {
             advance();
         } else {
             throw std::runtime_error("Expected '>' after element name");
         }
-        
         
         size_t stuckCount = 0;
         size_t lastPos = position;
@@ -840,7 +931,6 @@ std::shared_ptr<ASTNode> Parser::parseUIAttribute() {
                 node->value = peek().value;
                 advance();
             } else if (peek().type == TokenType::BraceOpen) {
-                
                 node->children.push_back(parseValueBinding());
             } else {
                 throw std::runtime_error("Expected string or value binding after '='");
@@ -860,7 +950,6 @@ std::shared_ptr<ASTNode> Parser::parseModifier() {
     if (peek().type == TokenType::Identifier) {
         node->name = peek().value;
         advance();
-        
         
         if (match(TokenType::ParenOpen)) {
             while (!eof() && peek().type != TokenType::ParenClose) {
@@ -904,33 +993,14 @@ std::shared_ptr<ASTNode> Parser::parseError(const std::string& message) {
     return node;
 }
 
-void Parser::skipToNextStatement() {
-    bool advanced = false;
-    while (!eof() && 
-           peek().type != TokenType::SemiColon && 
-           peek().type != TokenType::BraceOpen &&
-           peek().type != TokenType::BraceClose &&
-           !(peek().type == TokenType::Keyword && 
-             (peek().value == "if" || peek().value == "for" || peek().value == "while" ||
-              peek().value == "function" || peek().value == "component" || peek().value == "return"))) {
-        advance();
-        advanced = true;
-    }
-    if (!advanced && !eof()) {
-        advance(); 
-    }
-    if (peek().type == TokenType::SemiColon) {
-        advance();
-    }
-}
-
 std::shared_ptr<ASTNode> Parser::parseBracketBlock(bool allowExpressions) {
     auto node = std::make_shared<ASTNode>(allowExpressions ? ASTNodeType::Expression : ASTNodeType::Block);
     node->line = peek().line;
     node->column = peek().column;
+    
     expectToken(TokenType::SquareBracketOpen, "Expected '[' to start block or array");
+    
     if (allowExpressions) {
-        
         while (!eof() && peek().type != TokenType::SquareBracketClose) {
             node->children.push_back(parseExpression());
             if (peek().type == TokenType::Comma) {
@@ -940,7 +1010,6 @@ std::shared_ptr<ASTNode> Parser::parseBracketBlock(bool allowExpressions) {
             }
         }
     } else {
-        
         while (!eof() && peek().type != TokenType::SquareBracketClose) {
             try {
                 node->children.push_back(parseStatement());
@@ -950,6 +1019,165 @@ std::shared_ptr<ASTNode> Parser::parseBracketBlock(bool allowExpressions) {
             }
         }
     }
+    
     expectToken(TokenType::SquareBracketClose, "Expected ']' to end block or array");
     return node;
+}
+
+std::shared_ptr<ASTNode> Parser::parseThrowStatement() {
+    auto node = std::make_shared<ASTNode>(ASTNodeType::Statement);
+    node->line = peek().line;
+    node->column = peek().column;
+    node->name = "throw";
+    
+    expectToken(TokenType::Keyword, "Expected 'throw' keyword");
+    
+    if (peek().type != TokenType::SemiColon && !eof()) {
+        node->children.push_back(parseExpression());
+    }
+    
+    return node;
+}
+
+std::shared_ptr<ASTNode> Parser::parseAwaitStatement() {
+    auto node = std::make_shared<ASTNode>(ASTNodeType::Expression);
+    node->line = peek().line;
+    node->column = peek().column;
+    node->name = "await";
+    
+    expectToken(TokenType::Keyword, "Expected 'await' keyword");
+    
+    node->children.push_back(parseExpression());
+    
+    return node;
+}
+
+std::shared_ptr<ASTNode> Parser::parseArrayLiteral() {
+    auto node = std::make_shared<ASTNode>(ASTNodeType::Expression);
+    node->line = peek().line;
+    node->column = peek().column;
+    node->name = "array";
+    
+    expectToken(TokenType::SquareBracketOpen, "Expected '[' to start array");
+    
+    while (!eof() && peek().type != TokenType::SquareBracketClose) {
+        node->children.push_back(parseExpression());
+        
+        if (peek().type == TokenType::Comma) {
+            advance();
+        } else if (peek().type != TokenType::SquareBracketClose) {
+            throw std::runtime_error("Expected ',' or ']' in array literal");
+        }
+    }
+    
+    expectToken(TokenType::SquareBracketClose, "Expected ']' to end array");
+    return node;
+}
+
+std::shared_ptr<ASTNode> Parser::parseObjectLiteral() {
+    auto node = std::make_shared<ASTNode>(ASTNodeType::Expression);
+    node->line = peek().line;
+    node->column = peek().column;
+    node->name = "object";
+    
+    expectToken(TokenType::BraceOpen, "Expected '{' to start object");
+    
+    while (!eof() && peek().type != TokenType::BraceClose) {
+        try {
+            auto stmt = parseStatement();
+            node->children.push_back(stmt);
+        } catch (const std::exception& e) {
+            node->children.push_back(parseError(e.what()));
+            skipToNextStatement();
+        }
+        
+        if (peek().type == TokenType::Comma) {
+            advance();
+        } else if (peek().type != TokenType::BraceClose) {
+            continue;
+        }
+    }
+    
+    expectToken(TokenType::BraceClose, "Expected '}' to end object");
+    return node;
+}
+
+std::shared_ptr<ASTNode> Parser::parseFunctionDefinition() {
+    return parseFunction();
+}
+
+std::shared_ptr<ASTNode> Parser::parseCallExpression(std::shared_ptr<ASTNode> callee) {
+    auto callNode = std::make_shared<ASTNode>(ASTNodeType::FunctionCall);
+    callNode->line = peek().line;
+    callNode->column = peek().column;
+    callNode->name = callee->name;
+    
+    expectToken(TokenType::ParenOpen, "Expected '(' for function call");
+    
+    while (!eof() && peek().type != TokenType::ParenClose) {
+        callNode->children.push_back(parseExpression());
+        
+        if (peek().type == TokenType::Comma) {
+            advance();
+        } else if (peek().type != TokenType::ParenClose) {
+            throw std::runtime_error("Expected ',' or ')' in function call");
+        }
+    }
+    
+    expectToken(TokenType::ParenClose, "Expected ')' after function arguments");
+    return callNode;
+}
+
+std::shared_ptr<ASTNode> Parser::parsePostfixExpression(std::shared_ptr<ASTNode> left) {
+    while (!eof()) {
+        if (peek().type == TokenType::SquareBracketOpen) {
+            advance();
+            auto indexExpr = parseExpression();
+            expectToken(TokenType::SquareBracketClose, "Expected ']' after array index");
+            
+            auto accessNode = std::make_shared<ASTNode>(ASTNodeType::Expression);
+            accessNode->name = "array_access";
+            accessNode->children.push_back(left);
+            accessNode->children.push_back(indexExpr);
+            left = accessNode;
+        } else if (peek().type == TokenType::ParenOpen) {
+            left = parseCallExpression(left);
+        } else if (peek().type == TokenType::Dot) {
+            advance();
+            if (peek().type == TokenType::Identifier) {
+                auto memberNode = std::make_shared<ASTNode>(ASTNodeType::Expression);
+                memberNode->name = "member_access";
+                memberNode->children.push_back(left);
+                
+                auto memberName = std::make_shared<ASTNode>(ASTNodeType::Expression);
+                memberName->name = peek().value;
+                advance();
+                memberNode->children.push_back(memberName);
+                left = memberNode;
+            } else {
+                throw std::runtime_error("Expected identifier after '.'");
+            }
+        } else {
+            break;
+        }
+    }
+    return left;
+}
+
+bool Parser::isExpressionTerminator() const {
+    if (eof()) return true;
+    
+    TokenType type = peek().type;
+    const std::string& value = peek().value;
+    
+    return (type == TokenType::SemiColon ||
+            type == TokenType::BraceClose ||
+            type == TokenType::ParenClose ||
+            type == TokenType::SquareBracketClose ||
+            type == TokenType::Comma ||
+            (type == TokenType::Operator && (value == ">" || value == "</")));
+}
+
+std::shared_ptr<ASTNode> Parser::parseExpressionWithPrecedence(int minPrecedence) {
+    return parseBinaryExpression(minPrecedence);
 }
