@@ -8,7 +8,7 @@
 
 <div align="center">
 
-[![License: APULv2.0](https://img.shields.io/badge/License-APULv2.0-blue.svg)](https://github.com/Chace-Berry/Alterion_Panel/blob/master/LICENSE)
+[![License: APULv2.0](https://img.shields.io/badge/License-APULv2.0-blue.svg)](https://github.com/Chace-Berry/Alterion-lang/blob/master/LICENSE)
 [![C++](https://img.shields.io/badge/C++-%2300599C.svg?style=flat&logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 [![Build Status](https://img.shields.io/badge/build-In%20Progress-red.svg)](#)
 [![Version](https://img.shields.io/badge/version-0.1.26-orange.svg)](.)
